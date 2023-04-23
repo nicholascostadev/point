@@ -20,6 +20,14 @@ export function Header() {
                                 </a>
                             </li>
                             <li>
+                                <a
+                                    href="/projects"
+                                    className="dark:hover:text-gray-100"
+                                >
+                                    Projects
+                                </a>
+                            </li>
+                            <li>
                                 <Link
                                     href="/pricing"
                                     className="dark:hover:text-gray-100"
