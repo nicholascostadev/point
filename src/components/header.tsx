@@ -1,6 +1,7 @@
 import { Binocular } from "@/icons/binocular";
 import { Logo } from "@/icons/logo";
 import Link from "next/link";
+import { Button } from "./button";
 
 export function Header() {
     return (
@@ -30,13 +31,14 @@ export function Header() {
                     </div>
                 </div>
 
-                <button
-                    className="flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200"
+                <Button
+                    as="a"
+                    href="/projects"
                     aria-label="Explore our solutions"
                 >
-                    Explore{" "}
+                    Explore
                     <Binocular aria-label="Binocular" className="w-6 h-6" />
-                </button>
+                </Button>
             </div>
         </nav>
     );

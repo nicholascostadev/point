@@ -1,3 +1,4 @@
+import { Button } from "@/components/button";
 import { Binocular } from "@/icons/binocular";
 
 export function Hero() {
@@ -11,13 +12,14 @@ export function Hero() {
                     Ideas turned into reality like a charm, give us the idea and
                     we deliver you the goods
                 </p>
-                <button
-                    className="flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200"
+                <Button
+                    as="a"
+                    href="/projects"
                     aria-label="Explore our solutions"
                 >
                     Explore{" "}
                     <Binocular aria-label="Binocular" className="w-6 h-6" />
-                </button>
+                </Button>
             </div>
             <h2 className="text-2xl">
                 Browse our{" "}
