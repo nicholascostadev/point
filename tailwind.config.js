@@ -7,6 +7,30 @@ module.exports = {
     ],
     theme: {
         extend: {
+            animation: {
+                "slide-in-left": "slide-in-left 0.35s ease-out",
+                "slide-out-left": "slide-out-left 0.35s ease-out",
+                "slide-in-right": "slide-in-right 0.35s ease-out",
+                "slide-out-right": "slide-out-right 0.35s ease-out",
+            },
+            keyframes: {
+                "slide-in-left": {
+                    "0%": { transform: "translateX(100%)" },
+                    "100%": { transform: "translateX(0%)" },
+                },
+                "slide-out-left": {
+                    "100%": { transform: "translateX(100%)" },
+                    "0%": { transform: "translateX(0%)" },
+                },
+                "slide-in-right": {
+                    "100%": { transform: "translateX(-100%)" },
+                    "0%": { transform: "translateX(0%)" },
+                },
+                "slide-out-right": {
+                    "100%": { transform: "translateX(-100%)" },
+                    "0%": { transform: "translateX(0%)" },
+                },
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
