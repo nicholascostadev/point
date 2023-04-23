@@ -1,3 +1,5 @@
+import { cl } from "@/utils/cl";
+
 type ButtonProps =
     | ({
           as: "a";
@@ -6,11 +8,14 @@ type ButtonProps =
           as: "button";
       } & React.ComponentPropsWithoutRef<"button">);
 
-export function Button(props: ButtonProps) {
+export function Button({ className, ...props }: ButtonProps) {
     if (props.as === "a") {
         return (
             <a
-                className="flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200"
+                className={cl(
+                    "flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200",
+                    className
+                )}
                 {...props}
             />
         );
@@ -18,7 +23,10 @@ export function Button(props: ButtonProps) {
 
     return (
         <button
-            className="flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200"
+            className={cl(
+                "flex items-center justify-center gap-2 text-lg dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors py-2 px-6 rounded-full dark:text-gray-200",
+                className
+            )}
             {...props}
         />
     );

@@ -1,11 +1,65 @@
-import { Hero } from "@/route-specific/home/hero";
-import { Presentation } from "@/route-specific/home/presentation";
+import { Button } from "@/components/button";
+import { Binocular } from "@/icons/binocular";
+import Image from "next/image";
 
 export default function Home() {
     return (
         <main className="flex flex-col items-center min-h-[calc(100vh-var(--header-height))]">
-            <Hero />
-            <Presentation />
+            <section
+                aria-label="Hero"
+                className="flex flex-col justify-center items-center w-full"
+            >
+                <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-8">
+                    <h1 className="text-3xl text-center">
+                        Come and explore our solutions
+                    </h1>
+                    <p className="text-2xl max-w-full md:max-w-xl text-center">
+                        Ideas turned into reality like a charm, give us the idea
+                        and we deliver you the goods
+                    </p>
+                    <Button
+                        as="a"
+                        href="/projects"
+                        aria-label="Explore our solutions"
+                    >
+                        Explore{" "}
+                        <Binocular aria-label="Binocular" className="w-6 h-6" />
+                    </Button>
+                </div>
+                <h2 className="text-2xl">
+                    Browse our{" "}
+                    <strong className="underline font-normal text-green-400 dark:hover:text-green-600 transition-colors cursor-default">
+                        successful
+                    </strong>{" "}
+                    client products
+                </h2>
+                <div className="flex relative h-[950px] w-full max-w-layout-base">
+                    <a
+                        href="https://clerk.com/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <Image
+                            src="/clerk-landing.svg"
+                            fill
+                            alt="Clerk's website landing page"
+                            className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
+                        />
+                    </a>
+                    <a
+                        href="https://linear.app"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <Image
+                            src="/linear-landing.svg"
+                            fill
+                            alt="Linear's website landing page"
+                            className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
+                        />
+                    </a>
+                </div>
+            </section>
         </main>
     );
 }

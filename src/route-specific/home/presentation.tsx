@@ -12,7 +12,7 @@ export function Presentation() {
                     src="/clerk-landing.svg"
                     fill
                     alt="Clerk's website landing page"
-                    className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px] object-fill"
+                    className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
                 />
             </a>
             <a
@@ -24,7 +24,7 @@ export function Presentation() {
                     src="/linear-landing.svg"
                     fill
                     alt="Linear's website landing page"
-                    className="absolute inset-x-0 top-0 mx-auto max-w-6xl object-fill"
+                    className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
                 />
             </a>
         </div>

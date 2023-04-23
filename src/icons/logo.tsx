@@ -14,8 +14,8 @@ export function Logo(props: ILogoProps) {
                 <path
                     d="M41 29.3086V56C9.6381 35.7577 27.9325 11.5657 41 2V29.3086ZM41 29.3086C41 29.3086 23.7819 29.3086 4 29.3086"
                     stroke="#D1D5DB"
-                    stroke-width="2"
-                    shape-rendering="crispEdges"
+                    strokeWidth="2"
+                    shapeRendering="crispEdges"
                 />
             </g>
             <g filter="url(#filter1_d_13_194)">
@@ -32,9 +32,9 @@ export function Logo(props: ILogoProps) {
                     width="46"
                     height="65.807"
                     filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                 >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feColorMatrix
                         in="SourceAlpha"
                         type="matrix"
@@ -67,9 +67,9 @@ export function Logo(props: ILogoProps) {
                     width="65.0313"
                     height="26.744"
                     filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                 >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feColorMatrix
                         in="SourceAlpha"
                         type="matrix"
