@@ -18,6 +18,9 @@ module.exports = {
             width: {
                 "layout-base": "var(--layout-base)",
             },
+            maxWidth: {
+                "layout-base": "var(--layout-base)",
+            },
         },
     },
     plugins: [],
