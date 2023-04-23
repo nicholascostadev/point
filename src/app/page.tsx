@@ -1,5 +1,6 @@
 import { Button } from "@/components/button";
 import { Binocular } from "@/icons/binocular";
+import { Chevron } from "@/icons/chevron";
 import Image from "next/image";
 
 export default function Home() {
@@ -58,6 +59,44 @@ export default function Home() {
                             className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
                         />
                     </a>
+                </div>
+            </section>
+            <section
+                aria-label="About us"
+                id="about"
+                className="flex flex-col gap-8 py-8"
+            >
+                <h2 className="text-4xl">About us</h2>
+                <div className="flex items-center gap-4">
+                    <div className="flex flex-col justify-center items-start gap-8">
+                        <h3 className="text-3xl">
+                            A team of{" "}
+                            <strong className="dark:text-green-400 font-normal">
+                                passionate
+                            </strong>{" "}
+                            developers
+                        </h3>
+                        <p className="text-2xl max-w-full md:max-w-xl">
+                            Aimed to deliver the best solutions for our clients
+                            and partners, we create the best products for the
+                            end user with the best technologies available.
+                        </p>
+                        <a
+                            href="/products"
+                            className="text-lg dark:hover:text-green-400 transition-colors flex items-center justify-center gap-2 group"
+                        >
+                            Check products
+                            <Chevron className="w-6 h-6 fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
+                        </a>
+                    </div>
+                    <Image
+                        src="/developers.jpg"
+                        width={650}
+                        height={650}
+                        className="object-contain rounded-2xl shadow-md"
+                        alt="Developers working together"
+                        quality={100}
+                    />
                 </div>
             </section>
         </main>
