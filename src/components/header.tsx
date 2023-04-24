@@ -38,6 +38,14 @@ export function Header() {
                                     Pricing
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    href="/references"
+                                    className="dark:hover:text-gray-100"
+                                >
+                                    References
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

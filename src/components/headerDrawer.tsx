@@ -31,6 +31,9 @@ export function HeaderDrawer() {
                             <li>
                                 <a href="/pricing">Pricing</a>
                             </li>
+                            <li>
+                                <a href="/references">References</a>
+                            </li>
                             <li className="pt-6 mt-3 border-t dark:border-t-gray-400 flex justify-start items-start">
                                 <a
                                     href="/projects"
