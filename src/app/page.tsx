@@ -12,11 +12,13 @@ export default function Home() {
             >
                 <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-8">
                     <h1 className="text-3xl text-center">
-                        Come and explore our solutions
+                        Bring Your Vision to Life with Custom Development
                     </h1>
                     <p className="text-2xl max-w-full md:max-w-xl text-center">
-                        Ideas turned into reality like a charm, give us the idea
-                        and we deliver you the goods
+                        Partner with our expert developers to bring your unique
+                        vision to life. From design to deployment, we&apos;ll
+                        guide you every step of the way to make something
+                        amazing together.
                     </p>
                     <Button
                         as="a"
