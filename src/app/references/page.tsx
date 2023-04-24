@@ -2,7 +2,7 @@ import { sections } from "./referencesData";
 
 export default function References() {
     return (
-        <main className="w-layout-base max-w-full flex flex-col md:flex-row gap-4 px-4 md:px-8 py-8 mx-auto">
+        <main className="w-layout-base max-w-full flex flex-col md:flex-row gap-4 px-2 md:px-8 py-8 mx-auto">
             {sections.map((section) => (
                 <section
                     key={section.id}

@@ -24,7 +24,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Header />
                 <div className="dark:bg-red-300 w-full py-1">
-                    <p className="text-md dark:text-gray-900 w-layout-base px-0 md:px-8 text-center max-w-full mx-auto transition-colors">
+                    <p className="text-md dark:text-gray-900 w-layout-base px-2 md:px-8 text-center max-w-full mx-auto transition-colors">
                         PS: I don&apos;t own and neither have worked on the
                         projects listed below, please remember, this website is
                         a project meant for practicing, credits to all

@@ -10,7 +10,7 @@ export default function Home() {
                 aria-label="Hero"
                 className="flex flex-col justify-center items-center w-full"
             >
-                <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-8">
+                <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-2 md:px-8">
                     <h1 className="text-3xl text-center">
                         Bring Your Vision to Life with Custom Development
                     </h1>
@@ -68,7 +68,7 @@ export default function Home() {
             <section
                 aria-label="About us"
                 id="about"
-                className="flex flex-col justify-center items-center gap-16 py-8 px-2 lg:px-8 w-[1250px] max-w-full mx-auto min-h-screen"
+                className="flex flex-col justify-center items-center gap-16 py-8 px-2 md:px-8 w-[1250px] max-w-full mx-auto min-h-screen"
             >
                 <div className="grid grid-cols-1 lg:grid-cols-2 auto-cols-max items-center gap-8">
                     <div className="flex flex-col justify-center items-start gap-8 min-w-fit">
