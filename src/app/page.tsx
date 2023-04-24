@@ -64,10 +64,9 @@ export default function Home() {
             <section
                 aria-label="About us"
                 id="about"
-                className="flex flex-col gap-8 py-8"
+                className="flex flex-col justify-center items-center gap-16 py-8 w-[1250px] max-w-full mx-auto min-h-screen"
             >
-                <h2 className="text-4xl">About us</h2>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-8">
                     <div className="flex flex-col justify-center items-start gap-8">
                         <h3 className="text-3xl">
                             A team of{" "}
