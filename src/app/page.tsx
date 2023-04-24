@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Home() {
     return (
-        <main className="flex flex-col items-center min-h-[calc(100vh-var(--header-height))]">
+        <main className="flex flex-col items-center min-h-[calc(100vh-var(--header-height))] bg-[url('/background-line.svg')] bg-no-repeat">
             <section
                 aria-label="Hero"
                 className="flex flex-col justify-center items-center w-full"
@@ -45,6 +45,7 @@ export default function Home() {
                             fill
                             alt="Clerk's website landing page"
                             className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
+                            priority
                         />
                     </a>
                     <a
@@ -57,6 +58,7 @@ export default function Home() {
                             fill
                             alt="Linear's website landing page"
                             className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
+                            priority
                         />
                     </a>
                 </div>
