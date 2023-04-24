@@ -27,6 +27,7 @@ export default function References() {
                                     <span className="underline decoration-dotted group-hover:decoration-dashed">
                                         {sectionData.name}
                                     </span>
+                                    {sectionData.desc}
                                 </a>
                             </li>
                         ))}

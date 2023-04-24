@@ -2,10 +2,12 @@ const references = [
     {
         name: "Linear",
         url: "https://linear.app",
+        desc: undefined,
     },
     {
         name: "Clerk",
         url: "https://clerk.com",
+        desc: undefined,
     },
 ];
 
