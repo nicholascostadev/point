@@ -23,7 +23,7 @@ export function HeaderDrawer() {
                     <div className="flex flex-col items-start justify-start gap-4">
                         <ul className="flex flex-col gap-4 py-4 text-xl w-full">
                             <li>
-                                <a href="#about">About us</a>
+                                <a href="/#about">About us</a>
                             </li>
                             <li>
                                 <a href="/projects">Projects</a>
