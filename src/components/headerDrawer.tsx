@@ -11,12 +11,12 @@ export function HeaderDrawer() {
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <button className="block sm:hidden">
-                    <Menu className="w-8 h-8 fill-white" />
-                </button>
+                <Button as="button" className="block sm:hidden p-2">
+                    <Menu className="w-6 h-6 fill-white" />
+                </Button>
             </Dialog.Trigger>
             <Dialog.Portal>
-                <Dialog.Content className="data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left fixed inset-0 w-full h-screen rounded-[6px] dark:bg-gray-950 pt-2 pb-6 px-4">
+                <Dialog.Content className="bg-white dark:bg-gray-950 data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left fixed inset-0 w-full h-screen rounded-[6px] dark:bg-gray-950 pt-2 pb-6 px-4">
                     <Dialog.Title>
                         <Logo />
                     </Dialog.Title>
@@ -50,12 +50,13 @@ export function HeaderDrawer() {
                     </div>
 
                     <Dialog.Close asChild>
-                        <button
-                            className="inline-flex appearance-none top-6 right-4 absolute"
+                        <Button
+                            as="button"
+                            className="inline-flex appearance-none p-2 top-5 right-2 absolute"
                             aria-label="Close"
                         >
-                            <Close className="w-8 h-8" />
-                        </button>
+                            <Close className="w-6 h-6" />
+                        </Button>
                     </Dialog.Close>
                 </Dialog.Content>
             </Dialog.Portal>

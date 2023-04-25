@@ -1,16 +1,22 @@
+import Image from "next/image";
 import { Button } from "@/components/button";
 import { Binocular } from "@/icons/binocular";
 
 export function Hero() {
     return (
-        <>
-            <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-8">
+        <section
+            aria-label="Hero"
+            className="flex flex-col justify-center items-center w-full"
+        >
+            <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-2 md:px-8">
                 <h1 className="text-3xl text-center">
-                    Come and explore our solutions
+                    Bring Your Vision to Life with Custom Development
                 </h1>
                 <p className="text-2xl max-w-full md:max-w-xl text-center">
-                    Ideas turned into reality like a charm, give us the idea and
-                    we deliver you the goods
+                    Partner with our expert developers to bring your unique
+                    vision to life. From design to deployment, we&apos;ll guide
+                    you every step of the way to make something amazing
+                    together.
                 </p>
                 <Button
                     as="a"
@@ -28,6 +34,34 @@ export function Hero() {
                 </strong>{" "}
                 client products
             </h2>
-        </>
+            <div className="flex relative h-[950px] w-full max-w-layout-base">
+                <a
+                    href="https://clerk.com/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    <Image
+                        src="/clerk-landing.svg"
+                        fill
+                        alt="Clerk's website landing page"
+                        className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
+                        priority
+                    />
+                </a>
+                <a
+                    href="https://linear.app"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    <Image
+                        src="/linear-landing.svg"
+                        fill
+                        alt="Linear's website landing page"
+                        className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
+                        priority
+                    />
+                </a>
+            </div>
+        </section>
     );
 }

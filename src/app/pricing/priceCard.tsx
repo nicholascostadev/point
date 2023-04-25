@@ -46,11 +46,11 @@ export function PriceCard({
             </ul>
 
             <button
-                className="flex justify-center items-center gap-2 w-full my-4 text-lg group dark:hover:text-green-400 transition-colors"
+                className="text-base sm:text-lg transition-colors flex items-center justify-center gap-2 group w-full dark:hover:bg-gray-200/5 hover:bg-cyan-200/60 dark:active:bg-gray-400/5 active:bg-cyan-400/60 p-2 rounded-full"
                 onClick={handleClick}
             >
-                {buttonText}{" "}
-                <Chevron className="w-6 h-6 fill-gray-200 group-hover:translate-x-1 transition-all dark:group-hover:fill-green-400" />
+                {buttonText}
+                <Chevron className="w-6 h-6 dark:fill-gray-200 group-hover:translate-x-2 transition-all" />
             </button>
         </div>
     );

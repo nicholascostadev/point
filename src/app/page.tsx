@@ -31,7 +31,7 @@ export default function Home() {
                 </div>
                 <h2 className="text-2xl">
                     Browse our{" "}
-                    <strong className="underline font-normal text-green-400 dark:hover:text-green-600 transition-colors cursor-default">
+                    <strong className="underline font-normal dark:text-green-400 text-green-700 hover:text-green-500 dark:hover:text-green-600 transition-colors cursor-default">
                         successful
                     </strong>{" "}
                     client products
@@ -74,7 +74,7 @@ export default function Home() {
                     <div className="flex flex-col justify-center items-start gap-8 min-w-fit">
                         <h3 className="text-2xl sm:text-3xl">
                             A team of{" "}
-                            <strong className="dark:text-green-400 font-normal">
+                            <strong className="dark:text-green-400 text-green-700 font-normal">
                                 passionate
                             </strong>{" "}
                             developers
@@ -86,10 +86,10 @@ export default function Home() {
                         </p>
                         <a
                             href="/products"
-                            className="text-base sm:text-lg dark:hover:text-green-400 transition-colors flex items-center justify-center gap-2 group"
+                            className="text-base sm:text-lg dark:hover:text-green-400 hover:text-green-700 transition-colors flex items-center justify-center gap-2 group"
                         >
                             Check products
-                            <Chevron className="w-6 h-6 fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
+                            <Chevron className="w-6 h-6 group-hover:fill-green-700 dark:fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
                         </a>
                     </div>
                     <div className="relative">

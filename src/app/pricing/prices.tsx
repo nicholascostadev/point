@@ -7,7 +7,8 @@ const prices = [
         title: "Starter",
         price: 25,
         benefits: ["Support 24/7", "2 maintenances/mo", "Email support"],
-        className: "bg-gray-800 h-[420px] max-h-full w-full md:w-auto",
+        className:
+            "dark:bg-gray-800 bg-gray-50 h-[420px] max-h-full w-full md:w-auto border border-gray-400/20",
         buttonText: "Get Started",
     },
     {
@@ -20,7 +21,7 @@ const prices = [
             "Email or direct chat support",
         ],
         className:
-            "dark:bg-gray-700/10 backdrop-blur-sm h-[550px] max-h-full border dark:border-gray-200/10 w-full md:w-auto",
+            "dark:bg-gray-700/10 bg-cyan-200/20 backdrop-blur-sm h-[550px] max-h-full border border-gray-400/20 w-full md:w-auto",
         buttonText: "Contact us",
     },
     {
@@ -32,7 +33,8 @@ const prices = [
             "Priority support",
             "Email support",
         ],
-        className: "dark:bg-gray-900 h-[420px] max-h-full w-full md:w-auto",
+        className:
+            "dark:bg-gray-900 bg-gray-100 h-[420px] max-h-full w-full md:w-auto border border-gray-400/20",
         buttonText: "Get Started",
     },
 ];
@@ -48,7 +50,7 @@ export function Prices() {
     }
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 w-full md:w-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 w-full md:w-auto ">
             {prices.map((price) => (
                 <PriceCard
                     key={price.title}

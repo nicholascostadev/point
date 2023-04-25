@@ -18,7 +18,7 @@ export const ProjectCard = ({
             href={projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="dark:bg-gray-900/60 border dark:border-gray-200/10 backdrop-blur-sm rounded-lg"
+            className="dark:bg-gray-900/60 bg-cyan-200/30 border-cyan-200/10 border dark:border-gray-200/10 backdrop-blur-sm rounded-lg"
         >
             <div className="flex flex-col items-start gap-2 rounded-lg relative">
                 <div className="max-w-full h-48 w-full mb-4 border-b border-b-gray-200/10 relative">

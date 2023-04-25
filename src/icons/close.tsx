@@ -7,7 +7,7 @@ export function Close({ className, ...props }: ICloseProps) {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            className={cl("fill-white", className)}
+            className={cl("fill-white dark:fill-grey-950", className)}
             {...props}
         >
             <title>close</title>

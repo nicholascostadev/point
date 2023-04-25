@@ -22,7 +22,7 @@ export default function References() {
                             >
                                 <a
                                     href={sectionData.url}
-                                    className="group dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
+                                    className="group dark:text-gray-300 dark:hover:text-gray-100 hover:text-gray-600 transition-colors"
                                 >
                                     <span className="underline decoration-dotted group-hover:decoration-dashed">
                                         {sectionData.name}
