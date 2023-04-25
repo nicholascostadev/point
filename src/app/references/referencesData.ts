@@ -9,6 +9,26 @@ const references = [
         url: "https://clerk.com",
         desc: undefined,
     },
+    {
+        name: "Stripe",
+        url: "https://stripe.com",
+        desc: undefined,
+    },
+    {
+        name: "Planetscale",
+        url: "https://planetscale.com",
+        desc: undefined,
+    },
+    {
+        name: "Vercel",
+        url: "https://vercel.com",
+        desc: undefined,
+    },
+    {
+        name: "Prisma",
+        url: "https://prisma.io",
+        desc: undefined,
+    },
 ];
 
 const designInspirations = [
