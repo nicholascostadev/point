@@ -9,14 +9,19 @@ import { Binocular } from "@/icons/binocular";
 
 export function HeaderDrawer() {
     return (
-        <Dialog.Root>
+        <Dialog.Root modal>
             <Dialog.Trigger asChild>
-                <Button as="button" className="block sm:hidden p-2">
+                <Button
+                    as="button"
+                    className="block sm:hidden p-2 dark:bg-transparent bg-transparent"
+                >
                     <Menu className="w-6 h-6 fill-white" />
                 </Button>
             </Dialog.Trigger>
             <Dialog.Portal>
-                <Dialog.Content className="bg-white dark:bg-gray-950 data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left fixed inset-0 w-full h-screen rounded-[6px] dark:bg-gray-950 pt-2 pb-6 px-4">
+                <Dialog.Content className="bg-white dark:bg-gray-950 data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left fixed inset-0 w-full h-screen rounded-[6px] pt-2 pb-6 px-4 z-50">
+                    <div className="absolute inset-0 m-auto bg-conic-gradient blur-[360px] w-1/2 h-full"></div>
+
                     <Dialog.Title>
                         <Logo />
                     </Dialog.Title>

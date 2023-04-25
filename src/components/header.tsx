@@ -7,8 +7,8 @@ import { ThemeToggle } from "./themeToggle";
 
 export function Header() {
     return (
-        <nav className="h-header dark:bg-gray-900/20 backdrop-blur-sm shadow-sm flex justify-center items-center">
-            <div className="w-layout-base px-2 md:px-8 max-w-full flex justify-between items-center gap-2">
+        <header className="h-header fixed top-0 left-0 w-full dark:bg-gray-900/60 bg-gray-50/40 backdrop-blur-md shadow-sm flex justify-center items-center z-50">
+            <nav className="w-layout-base px-2 md:px-8 max-w-full flex justify-between items-center gap-2">
                 <div className="flex items-center gap-8">
                     <a href="/">
                         <Logo aria-label='Arrow pointing to the left with the string being part of the letter "p" leg' />
@@ -59,13 +59,13 @@ export function Header() {
                         as="a"
                         href="/projects"
                         aria-label="Explore our solutions"
-                        className="hidden sm:flex"
+                        className="hidden sm:flex dark:bg-transparent"
                     >
                         Explore
                         <Binocular aria-label="Binocular" className="w-6 h-6" />
                     </Button>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     );
 }

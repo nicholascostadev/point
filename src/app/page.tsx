@@ -8,7 +8,7 @@ export default function Home() {
         <main className="flex flex-col items-center min-h-[calc(100vh-var(--header-height))] bg-[url('/background-line.svg')] bg-no-repeat">
             <section
                 aria-label="Hero"
-                className="flex flex-col justify-center items-center w-full"
+                className="flex flex-col justify-center items-center w-full dark:bg-spotlight-radial bg-top pt-header-height-alert"
             >
                 <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-2 md:px-8">
                     <h1 className="text-3xl text-center">
@@ -36,33 +36,36 @@ export default function Home() {
                     </strong>{" "}
                     client products
                 </h2>
-                <div className="flex relative h-[950px] w-full max-w-layout-base">
-                    <a
-                        href="https://clerk.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    >
-                        <Image
-                            src="/clerk-landing.svg"
-                            fill
-                            alt="Clerk's website landing page"
-                            className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
-                            priority
-                        />
-                    </a>
-                    <a
-                        href="https://linear.app"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    >
-                        <Image
-                            src="/linear-landing.svg"
-                            fill
-                            alt="Linear's website landing page"
-                            className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
-                            priority
-                        />
-                    </a>
+                <div className="w-full flex justify-center items-center relative">
+                    <div className="absolute top-2/3 -translate-y-1/2 w-full max-w-layout-base mx-auto max-h-full h-[500px] bg-conic-gradient bg-center blur-[160px]"></div>
+                    <div className="flex relative h-[950px] w-full max-w-layout-base z-40">
+                        <a
+                            href="https://clerk.com/"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            <Image
+                                src="/clerk-landing.svg"
+                                fill
+                                alt="Clerk's website landing page"
+                                className="absolute !left-[-280px] !top-1/3 max-w-6xl max-h-[520px]"
+                                priority
+                            />
+                        </a>
+                        <a
+                            href="https://linear.app"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            <Image
+                                src="/linear-landing.svg"
+                                fill
+                                alt="Linear's website landing page"
+                                className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
+                                priority
+                            />
+                        </a>
+                    </div>
                 </div>
             </section>
             <section
@@ -82,7 +85,7 @@ export default function Home() {
                         <p className="text-lg sm:text-2xl max-w-full md:max-w-xl">
                             Aimed to deliver the best solutions for our clients
                             and partners, we create the best products for the
-                            end user with the best technologies available.
+                            end user with cutting-edge technologies.
                         </p>
                         <a
                             href="/products"
@@ -93,11 +96,12 @@ export default function Home() {
                         </a>
                     </div>
                     <div className="relative">
+                        <div className="absolute inset-0 m-auto w-3/4 h-3/4 bg-conic-gradient blur-[160px] z-0"></div>
                         <Image
                             src="/developers.jpg"
                             width={650}
                             height={650}
-                            className="object-contain rounded-2xl max-w-full shadow-md"
+                            className="object-contain rounded-2xl max-w-full shadow-md z-10 relative"
                             alt="Developers working together"
                             quality={100}
                         />

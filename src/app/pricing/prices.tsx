@@ -21,7 +21,7 @@ const prices = [
             "Email or direct chat support",
         ],
         className:
-            "dark:bg-gray-700/10 bg-cyan-200/20 backdrop-blur-sm h-[550px] max-h-full border border-gray-400/20 w-full md:w-auto",
+            "dark:bg-gray-900/60 bg-gray-200/60 backdrop-blur-md h-[550px] max-h-full border border-gray-400/20 w-full md:w-auto",
         buttonText: "Contact us",
     },
     {
@@ -50,14 +50,17 @@ export function Prices() {
     }
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 w-full md:w-auto ">
-            {prices.map((price) => (
-                <PriceCard
-                    key={price.title}
-                    onButtonClick={handleButtonClick}
-                    {...price}
-                />
-            ))}
+        <div className="relative w-full">
+            <div className="absolute inset-0 m-auto bg-conic-gradient blur-[240px] w-1/3 h-1/2"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 md:w-fit mx-auto max-w-full z-10 relative">
+                {prices.map((price) => (
+                    <PriceCard
+                        key={price.title}
+                        onButtonClick={handleButtonClick}
+                        {...price}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

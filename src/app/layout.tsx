@@ -26,7 +26,10 @@ export default function RootLayout({
             <Providers>
                 <body className={inter.className}>
                     <Header />
-                    <div className="dark:bg-red-300 bg-red-300 w-full py-1">
+                    <div
+                        role="alertdialog"
+                        className="dark:bg-red-300 bg-red-300 w-full py-1 fixed left-0 top-[var(--header-height)] z-50"
+                    >
                         <p className="text-md dark:text-gray-900 w-layout-base px-2 md:px-8 text-center max-w-full mx-auto transition-colors">
                             PS: I don&apos;t own and neither have worked on the
                             projects listed below, please remember, this website
