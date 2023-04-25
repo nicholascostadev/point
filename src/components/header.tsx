@@ -16,7 +16,7 @@ export function Header() {
                         <ul className="flex items-center justify-center gap-8 dark:text-gray-300 text-lg">
                             <li>
                                 <a
-                                    href="#about"
+                                    href="/#about"
                                     className="dark:hover:text-gray-100"
                                 >
                                     About us
