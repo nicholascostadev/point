@@ -20,7 +20,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="en" className="dark">
             <body className={inter.className}>
                 <Header />
                 <div className="dark:bg-red-300 w-full py-1">
