@@ -1,9 +1,9 @@
-import { Header } from "@/components/header";
 import { Inter } from "next/font/google";
-import Link from "next/link";
-import { Providers } from "./providers";
+import { ClerkProvider } from "@clerk/nextjs/app-beta";
+import { Providers } from "../providers";
 
-import "./globals.css";
+import "../globals.css";
+import { Header } from "@/components/header/header";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -22,11 +22,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <Providers>
-                <body className={inter.className}>
-                    <Header />
-                    <div
+        <ClerkProvider>
+            <html lang="en" suppressHydrationWarning>
+                <Providers>
+                    <body className={inter.className}>
+                        <Header />
+                        {/* <div
                         role="alertdialog"
                         className="dark:bg-red-300 bg-red-300 w-full py-1 fixed left-0 top-[var(--header-height)] z-50"
                     >
@@ -43,10 +44,11 @@ export default function RootLayout({
                                 &#34;/references&#34;
                             </Link>
                         </p>
-                    </div>
-                    {children}
-                </body>
-            </Providers>
-        </html>
+                    </div> */}
+                        {children}
+                    </body>
+                </Providers>
+            </html>
+        </ClerkProvider>
     );
 }

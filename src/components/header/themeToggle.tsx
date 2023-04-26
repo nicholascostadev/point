@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Button } from "./button";
+import { Button } from "../button";
 import { Sun } from "@/icons/sun";
 import { Moon } from "@/icons/moon";
 

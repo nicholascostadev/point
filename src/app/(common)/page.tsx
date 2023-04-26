@@ -8,7 +8,7 @@ export default function Home() {
         <main className="flex flex-col items-center min-h-[calc(100vh-var(--header-height))] bg-[url('/background-line.svg')] bg-no-repeat">
             <section
                 aria-label="Hero"
-                className="flex flex-col justify-center items-center w-full dark:bg-spotlight-radial bg-top pt-header-height-alert"
+                className="flex flex-col justify-center items-center w-full dark:bg-spotlight-radial bg-top pt-header-height"
             >
                 <div className="flex flex-col justify-center items-center gap-8 pt-48 pb-8 px-2 md:px-8">
                     <h1 className="text-3xl text-center">
@@ -88,10 +88,10 @@ export default function Home() {
                             end user with cutting-edge technologies.
                         </p>
                         <a
-                            href="/products"
+                            href="/projects"
                             className="text-base sm:text-lg dark:hover:text-green-400 hover:text-green-700 transition-colors flex items-center justify-center gap-2 group"
                         >
-                            Check products
+                            Check our projects
                             <Chevron className="w-6 h-6 group-hover:fill-green-700 dark:fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
                         </a>
                     </div>

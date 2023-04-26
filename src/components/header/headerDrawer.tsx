@@ -4,7 +4,7 @@ import { Close } from "@/icons/close";
 import { Logo } from "@/icons/logo";
 import { Menu } from "@/icons/menu";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "./button";
+import { Button } from "../button";
 import { Binocular } from "@/icons/binocular";
 
 export function HeaderDrawer() {
