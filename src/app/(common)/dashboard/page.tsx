@@ -7,6 +7,7 @@ import { Search } from "./search";
 import { ProjectList } from "./projectList";
 import { Suspense, useMemo } from "react";
 import { useProjectsStore } from "@/app/stores/projectStore";
+import { BackLighting } from "@/components/backLighting";
 
 export default function Page() {
     const { isSignedIn, isLoaded, user } = useUser();
@@ -42,7 +43,7 @@ export default function Page() {
     return (
         <main className="mt-header-height py-8 min-h-with-header pt-header-height bg-[url('/background-line.svg')]">
             <div className="w-layout-base max-w-full px-2 md:px-8 mx-auto flex flex-col gap-4 relative">
-                <div className="absolute inset-0 m-auto bg-conic-gradient blur-[360px] w-1/2 h-1/2"></div>
+                <BackLighting />
                 <h1 className="text-4xl">Dashboard</h1>
                 <p className="text-lg">
                     Check the progress of the projects you&apos;ve requested

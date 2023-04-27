@@ -1,9 +1,10 @@
+import { BackLighting } from "@/components/backLighting";
 import { sections } from "./referencesData";
 
 export default function References() {
     return (
         <main className="pt-header-height-alert">
-            <div className="absolute inset-0 m-auto bg-conic-gradient blur-[360px] w-1/3 h-1/3"></div>
+            <BackLighting className="w-1/3 h-1/3" />
             <div className="w-layout-base max-w-full flex flex-col md:flex-row gap-4 px-2 md:px-8 py-8 mx-auto relative z-10">
                 {sections.map((section) => (
                     <section

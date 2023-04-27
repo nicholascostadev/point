@@ -16,4 +16,8 @@
     body {
         @apply bg-white text-gray-950 dark:bg-gray-950 dark:text-gray-200;
     }
+
+    * {
+        @apply focus:outline-none focus:ring focus:ring-offset-transparent focus:aria-disabled:ring-0;
+    }
 }

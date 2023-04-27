@@ -1,3 +1,4 @@
+import { BackLighting } from "@/components/backLighting";
 import { Button } from "@/components/button";
 import { Binocular } from "@/icons/binocular";
 import { Chevron } from "@/icons/chevron";
@@ -37,7 +38,10 @@ export default function Home() {
                     client products
                 </h2>
                 <div className="w-full flex justify-center items-center relative">
-                    <div className="absolute top-2/3 -translate-y-1/2 w-full max-w-layout-base mx-auto max-h-full h-[500px] bg-conic-gradient bg-center blur-[160px]"></div>
+                    <BackLighting
+                        className="top-2/3 -translate-y-1/2 w-full max-w-layout-base max-h-full h-[550px] blur-[240px]"
+                        style={{ margin: "unset" }}
+                    />
                     <div className="flex relative h-[950px] w-full max-w-layout-base z-40">
                         <a
                             href="https://clerk.com/"
@@ -96,7 +100,7 @@ export default function Home() {
                         </a>
                     </div>
                     <div className="relative">
-                        <div className="absolute inset-0 m-auto w-3/4 h-3/4 bg-conic-gradient blur-[160px] z-0"></div>
+                        <BackLighting className="w-3/4 h-3/4 blur-[160px]" />
                         <Image
                             src="/developers.jpg"
                             width={650}

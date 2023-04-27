@@ -6,24 +6,30 @@ type ButtonProps =
     | ({
           as: "a";
       } & React.ComponentPropsWithoutRef<"a"> &
-          Omit<LinkProps, "a">)
+          Omit<LinkProps, "a"> & { disabled?: boolean })
     | ({
           as: "button";
       } & React.ComponentPropsWithoutRef<"button">);
 
 export const Button = forwardRef<any, ButtonProps>(
     ({ className, ...rest }, ref) => {
-        const buttonClasses =
-            "flex items-center justify-center gap-2 text-lg hover:bg-gray-200 active:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 dark:active:bg-gray-700 transition-colors py-2 px-6 rounded-full dark:text-gray-200 [&_svg]:dark:fill-gray-200 [&_svg]:fill-gray-950";
+        const buttonClasses = cl(
+            "flex items-center justify-center gap-2 text-lg hover:bg-gray-200 active:bg-gray-300 dark:bg-transparent dark:hover:bg-gray-800 dark:active:bg-gray-700 transition-colors py-2 px-6 rounded-full dark:text-gray-200 [&_svg]:dark:fill-gray-200 [&_svg]:fill-gray-950 disabled:cursor-not-allowed [&[aria-disabled='true']:cursor-not-allowed   ]",
+            "aria-disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:hover:bg-transparent aria-disabled:active:bg-transparent aria-disabled:dark:hover:bg-transparent aria-disabled:dark:active:bg-transparent"
+        );
 
         if (rest.as === "a") {
             // as is a reserved prop inside Link component
-            const { as, ...props } = rest;
+            const { as, disabled, ...props } = rest;
 
             return (
                 <Link
                     ref={ref}
-                    className={cl(buttonClasses, className)}
+                    className={cl(
+                        buttonClasses,
+                        "aria-disabled:pointer-events-none"
+                    )}
+                    aria-disabled={disabled}
                     {...props}
                 />
             );
@@ -33,6 +39,7 @@ export const Button = forwardRef<any, ButtonProps>(
             <button
                 ref={ref}
                 className={cl(buttonClasses, className)}
+                aria-disabled={rest.disabled || rest["aria-disabled"]}
                 {...rest}
             />
         );

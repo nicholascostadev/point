@@ -1,6 +1,7 @@
 import { Button } from "@/components/button";
 import { Gear } from "@/icons/gear";
 import { Plus } from "@/icons/plus";
+import { AddProject } from "./addProject";
 
 export function Settings() {
     return (
@@ -14,9 +15,7 @@ export function Settings() {
             >
                 Filters
             </label>
-            <Button as="button" className="p-2 dark:bg-transparent">
-                <Plus className="w-6 h-6" />
-            </Button>
+            <AddProject />
             <Button as="button" className="p-2 dark:bg-transparent">
                 <Gear className="w-6 h-6" />
             </Button>

@@ -1,5 +1,6 @@
 "use client";
 
+import { BackLighting } from "@/components/backLighting";
 import { PriceCard } from "./priceCard";
 
 const prices = [
@@ -51,7 +52,7 @@ export function Prices() {
 
     return (
         <div className="relative w-full">
-            <div className="absolute inset-0 m-auto bg-conic-gradient blur-[240px] w-1/3 h-1/2"></div>
+            <BackLighting className="blur-[240px] w-1/3" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 md:w-fit mx-auto max-w-full z-10 relative">
                 {prices.map((price) => (
                     <PriceCard
