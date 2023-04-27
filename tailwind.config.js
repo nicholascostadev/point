@@ -50,6 +50,9 @@ module.exports = {
             maxWidth: {
                 "layout-base": "var(--layout-base)",
             },
+            minHeight: {
+                "with-header": "calc(100vh - var(--header-height))",
+            },
             margin: {
                 "header-height": "var(--header-height)",
                 "header-height-alert": "calc(var(--header-height) + 3.95rem)",

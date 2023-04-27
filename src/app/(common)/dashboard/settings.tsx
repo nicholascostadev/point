@@ -9,7 +9,7 @@ export function Settings() {
             className="relative flex justify-end border border-gray-950/20 dark:border-gray-200/20 w-full rounded-lg p-1"
         >
             <label
-                className="absolute left-1 -top-[18px] bg-gray-100 dark:bg-gray-950 p-1"
+                className="absolute left-1 -top-[18px] border-4 dark:border-transparent"
                 htmlFor="settings-section"
             >
                 Filters

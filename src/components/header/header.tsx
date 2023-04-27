@@ -23,20 +23,20 @@ export function Header() {
                     <div className="hidden md:block">
                         <ul className="flex items-center justify-center gap-8 dark:text-gray-300 text-lg">
                             <li>
-                                <a
+                                <Link
                                     href="/#about"
                                     className="dark:hover:text-gray-100 hover:text-gray-600"
                                 >
                                     About us
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="/projects"
                                     className="dark:hover:text-gray-100 hover:text-gray-600"
                                 >
                                     Projects
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <Link
