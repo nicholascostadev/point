@@ -15,6 +15,9 @@ async function getProjects(userId: string) {
 
 export function useProjects(userId: string) {
     const setProjects = useProjectsStore((state) => state.setProjects);
+    const changeLoadingState = useProjectsStore(
+        (state) => state.changeLoadingState
+    );
 
     const query = useQuery({
         queryKey: ["projects"],
@@ -24,7 +27,11 @@ export function useProjects(userId: string) {
 
     useEffect(() => {
         if (query.data) setProjects(query.data);
-    }, [query.data, setProjects]);
+    }, [query.data, query.isLoading, setProjects]);
+
+    useEffect(() => {
+        changeLoadingState(query.isLoading);
+    }, [query.isLoading, changeLoadingState]);
 
     return query;
 }

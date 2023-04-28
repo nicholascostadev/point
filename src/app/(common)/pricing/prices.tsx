@@ -2,10 +2,12 @@
 
 import { BackLighting } from "@/components/backLighting";
 import { PriceCard } from "./priceCard";
+import { useUser } from "@clerk/nextjs";
 
 const prices = [
     {
         title: "Starter",
+        plan: "starter",
         price: 25,
         benefits: ["Support 24/7", "2 maintenances/mo", "Email support"],
         className:
@@ -14,6 +16,7 @@ const prices = [
     },
     {
         title: "Enterprise",
+        plan: "enterprise",
         price: 255,
         benefits: [
             "Support 24/7",
@@ -27,6 +30,7 @@ const prices = [
     },
     {
         title: "Business",
+        plan: "business",
         price: 125,
         benefits: [
             "Support 24/7",
@@ -41,13 +45,12 @@ const prices = [
 ];
 
 export function Prices() {
-    function handleButtonClick(title: string) {
-        if (title !== prices[1].title) {
+    const { isSignedIn } = useUser();
+    function handleButtonClick(plan: string) {
+        if (isSignedIn) {
             // TODO: Implement Stripe checkout
             return;
         }
-
-        // TODO: Implement contact form
     }
 
     return (

@@ -1,8 +1,6 @@
 "use client";
 
 import { DashboardCard } from "./dashboardCard";
-import { useEffect } from "react";
-import { useProjectsStore } from "@/app/stores/projectStore";
 import { useProjects } from "@/hooks/useProjects";
 
 type ProjectListProps = {

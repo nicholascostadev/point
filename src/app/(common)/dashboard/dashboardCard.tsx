@@ -14,11 +14,6 @@ export function DashboardCard({
     status,
 }: DashboardCardProps) {
     const changeStatus = useFiltersStore((state) => state.changeStatus);
-    const storeStatus = useFiltersStore((state) => state.status);
-
-    useEffect(() => {
-        console.log({ storeStatus });
-    }, [storeStatus]);
 
     function generateStatusColor() {
         switch (status) {
@@ -37,13 +32,13 @@ export function DashboardCard({
     const statusColor = generateStatusColor();
 
     return (
-        <div className="relative flex flex-col gap-2 dark:bg-gray-900/60 bg-gray-200/60 border border-cyan-200/10 dark:border-gray-200/10 backdrop-blur-md min-h-[20rem] p-2 rounded-lg">
+        <div className="relative flex flex-col gap-2 dark:bg-gray-900/60 bg-gray-200/60 border border-cyan-200/10 dark:border-gray-200/10 backdrop-blur-md min-h-[20rem] p-4 rounded-lg">
             <h1 className="text-2xl">{title}</h1>
             <p className="text-lg">{description}</p>
             <button
                 onClick={() => changeStatus(status as Status)}
                 className={cl(
-                    "text-sm absolute top-2 right-2 text-gray-950 rounded-full px-2 py-1",
+                    "text-sm absolute top-4 right-4 text-gray-950 rounded-full px-2 py-1",
                     statusColor
                 )}
             >

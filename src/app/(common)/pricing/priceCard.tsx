@@ -3,6 +3,7 @@ import { cl } from "@/utils/cl";
 
 type PriceCardProps = {
     title: string;
+    plan: string;
     price: number;
     benefits: string[];
     buttonText: string;
@@ -12,6 +13,7 @@ type PriceCardProps = {
 
 export function PriceCard({
     title,
+    plan,
     price,
     benefits,
     buttonText,
@@ -19,7 +21,7 @@ export function PriceCard({
     onButtonClick,
 }: PriceCardProps) {
     function handleClick() {
-        onButtonClick?.(title);
+        onButtonClick?.(plan);
     }
 
     return (

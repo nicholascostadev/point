@@ -4,26 +4,48 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/button";
+import { descriptionSchema, nameSchema } from "@/validations";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const formSchema = z.object({
-    name: z.string().min(3).max(50),
-    description: z.string().min(3).max(500),
+    name: nameSchema,
+    description: descriptionSchema,
 });
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export function AddProjectForm() {
+type AddProjectFormProps = {
+    closeModal: () => void;
+};
+
+export function AddProjectForm({ closeModal }: AddProjectFormProps) {
     const {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
+        reset,
     } = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
     });
 
-    async function handleCreateProject() {
-        await new Promise((r) => setTimeout(r, 1000));
-        console.log("Yay");
+    const queryClient = useQueryClient();
+    const { mutate: addPost } = useMutation({
+        mutationKey: ["createProject"],
+        mutationFn: async (data: FormSchema) => {
+            return await fetch("/api/projects", {
+                body: JSON.stringify(data),
+                method: "POST",
+            });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(["projects"]);
+            reset();
+            closeModal();
+        },
+    });
+
+    async function handleCreateProject(data: FormSchema) {
+        addPost(data);
     }
 
     return (
