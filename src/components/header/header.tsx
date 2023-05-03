@@ -3,6 +3,7 @@ import { HeaderDrawer } from "./headerDrawer";
 import { ThemeToggle } from "./themeToggle";
 import { HeaderCTA } from "./headerCTA";
 import Image from "next/image";
+import { Profile } from "./Profile";
 
 export function Header() {
     return (
@@ -55,8 +56,9 @@ export function Header() {
                     </div>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <ThemeToggle />
+                    <Profile />
                     <HeaderDrawer />
                     <div className="hidden sm:flex">
                         <HeaderCTA />
