@@ -1,9 +1,8 @@
 "use client";
 
-import { Binocular } from "@/icons/binocular";
 import { Button } from "../button";
 import { useSession } from "@clerk/nextjs";
-import { Grid } from "@/icons/grid";
+import { LayoutDashboard, Map } from "lucide-react";
 
 export const HeaderCTA = () => {
     const { isSignedIn } = useSession();
@@ -17,7 +16,7 @@ export const HeaderCTA = () => {
                 className="hidden sm:flex dark:bg-transparent"
             >
                 Dashboard
-                <Grid aria-label="Binocular" className="w-6 h-6" />
+                <LayoutDashboard className="w-6 h-6 stroke-default" />
             </Button>
         );
 
@@ -29,7 +28,7 @@ export const HeaderCTA = () => {
             className="hidden sm:flex dark:bg-transparent"
         >
             Explore
-            <Binocular aria-label="Binocular" className="w-6 h-6" />
+            <Map className="w-6 h-6" />
         </Button>
     );
 };

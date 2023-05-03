@@ -21,3 +21,13 @@
         @apply focus:outline-none focus:ring focus:ring-offset-transparent focus:aria-disabled:ring-0;
     }
 }
+
+@layer components {
+    .stroke-default {
+        @apply dark:stroke-gray-200 stroke-gray-800;
+    }
+
+    .fill-default {
+        @apply dark:fill-gray-200 fill-gray-800;
+    }
+}

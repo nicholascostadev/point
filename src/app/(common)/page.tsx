@@ -1,7 +1,6 @@
 import { BackLighting } from "@/components/backLighting";
 import { Button } from "@/components/button";
-import { Binocular } from "@/icons/binocular";
-import { Chevron } from "@/icons/chevron";
+import { ChevronRight, Map } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -26,11 +25,10 @@ export default function Home() {
                         href="/projects"
                         aria-label="Explore our solutions"
                     >
-                        Explore{" "}
-                        <Binocular aria-label="Binocular" className="w-6 h-6" />
+                        Explore <Map className="w-6 h-6 stroke-default" />
                     </Button>
                 </div>
-                <h2 className="text-2xl">
+                <h2 className="text-2xl text-center">
                     Browse our{" "}
                     <strong className="underline font-normal dark:text-green-400 text-green-700 hover:text-green-500 dark:hover:text-green-600 transition-colors cursor-default">
                         successful
@@ -93,10 +91,10 @@ export default function Home() {
                         </p>
                         <a
                             href="/projects"
-                            className="text-base sm:text-lg dark:hover:text-green-400 hover:text-green-700 transition-colors flex items-center justify-center gap-2 group"
+                            className="text-base sm:text-lg dark:hover:text-green-400 hover:text-green-700 transition-all flex items-center justify-center gap-2 group"
                         >
                             Check our projects
-                            <Chevron className="w-6 h-6 group-hover:fill-green-700 dark:fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
+                            <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-all" />
                         </a>
                     </div>
                     <div className="relative">

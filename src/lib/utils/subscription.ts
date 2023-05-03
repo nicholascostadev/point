@@ -2,13 +2,15 @@ export function getRemainingProjects(
     plan: string,
     totalProjects: number | undefined = 0
 ) {
+    console.log({ totalProjects, plan });
+
     switch (plan) {
         case "enterprise":
-            return Math.max(Math.abs(totalProjects - 5), 0);
+            return 5 - totalProjects > 0 ? 5 - totalProjects : 0;
             break;
         case "business":
-            return Math.max(Math.abs(totalProjects - 3), 0);
+            return 3 - totalProjects > 0 ? 3 - totalProjects : 0;
         default:
-            return Math.max(Math.abs(totalProjects - 1), 0);
+            return 1 - totalProjects > 0 ? 1 - totalProjects : 0;
     }
 }

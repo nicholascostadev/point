@@ -1,4 +1,4 @@
-import { Chevron } from "@/icons/chevron";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 export function Presentation() {
@@ -27,7 +27,7 @@ export function Presentation() {
                         className="text-base sm:text-lg dark:hover:text-green-400 transition-colors flex items-center justify-center gap-2 group"
                     >
                         Check products
-                        <Chevron className="w-6 h-6 dark:fill-gray-200 group-hover:translate-x-2 dark:group-hover:fill-green-400 transition-all" />
+                        <ChevronRight className="w-6 h-6 dark:fill-gray-200 group-hover:translate-x-2  transition-all" />
                     </a>
                 </div>
                 <div className="relative">

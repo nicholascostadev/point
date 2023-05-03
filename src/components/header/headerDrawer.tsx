@@ -1,13 +1,15 @@
 "use client";
 
-import { Close } from "@/icons/close";
 import { Logo } from "@/icons/logo";
-import { Menu } from "@/icons/menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "../button";
-import { Binocular } from "@/icons/binocular";
+import { LayoutDashboard, List, Map, X } from "lucide-react";
+import { Menu } from "lucide-react";
+import { useSession } from "@clerk/nextjs";
 
 export function HeaderDrawer() {
+    const { isSignedIn } = useSession();
+
     return (
         <Dialog.Root modal>
             <Dialog.Trigger asChild>
@@ -40,16 +42,29 @@ export function HeaderDrawer() {
                                 <a href="/references">References</a>
                             </li>
                             <li className="pt-6 mt-3 border-t dark:border-t-gray-400 flex justify-start items-start">
-                                <a
-                                    href="/projects"
-                                    className="flex justify-center items-center gap-2"
-                                >
-                                    Explore
-                                    <Binocular
-                                        aria-label="Binocular"
-                                        className="w-6 h-6"
-                                    />
-                                </a>
+                                {isSignedIn ? (
+                                    <a
+                                        href="/dashboard"
+                                        className="flex justify-center items-center gap-2"
+                                    >
+                                        Dashboard
+                                        <LayoutDashboard
+                                            aria-label="Binocular"
+                                            className="w-6 h-6"
+                                        />
+                                    </a>
+                                ) : (
+                                    <a
+                                        href="/projects"
+                                        className="flex justify-center items-center gap-2"
+                                    >
+                                        Explore
+                                        <Map
+                                            aria-label="Binocular"
+                                            className="w-6 h-6"
+                                        />
+                                    </a>
+                                )}
                             </li>
                         </ul>
                     </div>
@@ -60,7 +75,7 @@ export function HeaderDrawer() {
                             className="inline-flex appearance-none p-2 top-5 right-2 absolute"
                             aria-label="Close"
                         >
-                            <Close className="w-6 h-6" />
+                            <X className="w-6 h-6" />
                         </Button>
                     </Dialog.Close>
                 </Dialog.Content>

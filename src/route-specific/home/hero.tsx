@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/button";
-import { Binocular } from "@/icons/binocular";
+import { Map } from "lucide-react";
 
 export function Hero() {
     return (
@@ -23,8 +23,7 @@ export function Hero() {
                     href="/projects"
                     aria-label="Explore our solutions"
                 >
-                    Explore{" "}
-                    <Binocular aria-label="Binocular" className="w-6 h-6" />
+                    Explore <Map className="w-6 h-6" />
                 </Button>
             </div>
             <h2 className="text-2xl">

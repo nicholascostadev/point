@@ -1,5 +1,5 @@
-import { Chevron } from "@/icons/chevron";
 import { cl } from "@/lib/utils/cl";
+import { ChevronRight } from "lucide-react";
 
 type PriceCardProps = {
     title: string;
@@ -52,7 +52,7 @@ export function PriceCard({
                 onClick={handleClick}
             >
                 {buttonText}
-                <Chevron className="w-6 h-6 dark:fill-gray-200 group-hover:translate-x-2 transition-all" />
+                <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-all" />
             </button>
         </div>
     );

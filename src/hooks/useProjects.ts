@@ -42,14 +42,6 @@ export function useProjects() {
     }, [query.isLoading, changeLoadingState]);
 
     useEffect(() => {
-        console.log(user?.publicMetadata.subscription_plan);
-        console.log(
-            getRemainingProjects(
-                (user?.publicMetadata.subscription_plan as string) ?? "starter",
-                query.data?.length
-            )
-        );
-
         setRemainingProjects(
             getRemainingProjects(
                 (user?.publicMetadata.subscription_plan as string) ?? "starter",

@@ -1,6 +1,5 @@
 import { Button } from "@/components/button";
-import { Gear } from "@/icons/gear";
-import { Plus } from "@/icons/plus";
+import { Settings as SettingsIcon } from "lucide-react";
 import { AddProject } from "./addProject";
 import {
     Tooltip,
@@ -33,7 +32,7 @@ export function Settings() {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button as="button" className="p-2 dark:bg-transparent">
-                            <Gear className="w-6 h-6 pointer-events-none" />
+                            <SettingsIcon className="w-6 h-6 stroke-default pointer-events-none" />
                         </Button>
                     </TooltipTrigger>
                     <TooltipContent>

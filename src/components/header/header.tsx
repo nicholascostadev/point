@@ -1,7 +1,4 @@
-import { Binocular } from "@/icons/binocular";
-import { Logo } from "@/icons/logo";
 import Link from "next/link";
-import { Button } from "../button";
 import { HeaderDrawer } from "./headerDrawer";
 import { ThemeToggle } from "./themeToggle";
 import { HeaderCTA } from "./headerCTA";
@@ -61,7 +58,9 @@ export function Header() {
                 <div className="flex gap-4">
                     <ThemeToggle />
                     <HeaderDrawer />
-                    <HeaderCTA />
+                    <div className="hidden sm:flex">
+                        <HeaderCTA />
+                    </div>
                 </div>
             </nav>
         </header>
