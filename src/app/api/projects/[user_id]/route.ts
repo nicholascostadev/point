@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/app-beta";
-import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 
 const urlParamsSchema = z.object({
