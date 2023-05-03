@@ -1,6 +1,5 @@
 import { Status, useFiltersStore } from "@/app/stores/filters";
-import { cl } from "@/utils/cl";
-import { useEffect } from "react";
+import { cl } from "@/lib/utils/cl";
 
 type DashboardCardProps = {
     title: string;

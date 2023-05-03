@@ -1,15 +1,14 @@
 "use client";
 
 import { LoadingPage } from "./loadingPage";
-import { useSession, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { Settings } from "./settings";
 import { Search } from "./search";
 import { ProjectList } from "./projectList";
-import { Suspense, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useProjectsStore } from "@/app/stores/projectStore";
 import { BackLighting } from "@/components/backLighting";
 import { LoadingProjects } from "./loadingProjects";
-import { Metadata } from "next";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -70,7 +69,7 @@ export default function Page() {
                         </div>
                     )}
                     {isLoadingPosts && <LoadingProjects />}
-                    <ProjectList user={user} />
+                    <ProjectList />
                 </div>
             </div>
         </main>

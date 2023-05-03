@@ -15,10 +15,15 @@ import { AddProjectForm } from "./addProjectForm";
 import { useState } from "react";
 import { PopoverArrow } from "@radix-ui/react-popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
+import { useProjectsStore } from "@/app/stores/projectStore";
 
 export function AddProject() {
     const [open, setOpen] = useState(false);
-    const hasMoreProjectsRemaining = true;
+    const remainingProjects = useProjectsStore(
+        (state) => state.remainingProjects
+    );
+
+    const hasMoreProjectsRemaining = remainingProjects > 0;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -41,7 +46,8 @@ export function AddProject() {
                     </Tooltip>
                     <PopoverContent className="border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
                         You&apos;ve reached the maximum amount of projects your
-                        plan covers.
+                        plan covers, upgrade your plan or wait for more usages
+                        next month.
                         <PopoverArrow className="fill-red-500" />
                     </PopoverContent>
                 </Popover>

@@ -1,4 +1,4 @@
-import { cl } from "@/utils/cl";
+import { cl } from "@/lib/utils/cl";
 import Link, { LinkProps } from "next/link";
 import { forwardRef } from "react";
 

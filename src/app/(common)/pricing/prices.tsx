@@ -3,6 +3,7 @@
 import { BackLighting } from "@/components/backLighting";
 import { PriceCard } from "./priceCard";
 import { useUser } from "@clerk/nextjs";
+import { z } from "zod";
 
 const prices = [
     {
@@ -44,11 +45,47 @@ const prices = [
     },
 ];
 
+const stripeUrlValidator = z
+    .string()
+    .url()
+    .startsWith("https://checkout.stripe.com/c/pay");
+
+const responseValidator = z.object({
+    checkoutUrl: stripeUrlValidator,
+});
+
+const mappedPlanToPrice = {
+    starter: process.env.NEXT_PUBLIC_POINT_STARTER,
+    enterprise: process.env.NEXT_PUBLIC_POINT_ENTERPRISE,
+    business: process.env.NEXT_PUBLIC_POINT_BUSINESS,
+};
+
 export function Prices() {
-    const { isSignedIn } = useUser();
-    function handleButtonClick(plan: string) {
+    const { isSignedIn, user } = useUser();
+
+    async function handleButtonClick(plan: string) {
+        console.log(mappedPlanToPrice[plan as keyof typeof mappedPlanToPrice]);
+
         if (isSignedIn) {
             // TODO: Implement Stripe checkout
+            const data = await fetch("/api/checkout", {
+                method: "POST",
+                body: JSON.stringify({
+                    clerk_user_id: user.id,
+                    priceId:
+                        mappedPlanToPrice[
+                            plan as keyof typeof mappedPlanToPrice
+                        ],
+                }),
+            }).then((res) => res.json());
+
+            const validationResult = responseValidator.safeParse(data);
+
+            if (validationResult.success) {
+                window.location.href = validationResult.data.checkoutUrl;
+                return;
+            }
+
             return;
         }
     }

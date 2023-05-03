@@ -9,8 +9,8 @@ type ProjectListProps = {
     };
 };
 
-export function ProjectList({ user }: ProjectListProps) {
-    const { data } = useProjects(user.id);
+export function ProjectList() {
+    const { data } = useProjects();
 
     if (data && data.length <= 0) {
         return (

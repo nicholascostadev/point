@@ -1,5 +1,5 @@
 import { Chevron } from "@/icons/chevron";
-import { cl } from "@/utils/cl";
+import { cl } from "@/lib/utils/cl";
 
 type PriceCardProps = {
     title: string;
@@ -8,7 +8,7 @@ type PriceCardProps = {
     benefits: string[];
     buttonText: string;
     className?: string;
-    onButtonClick?: (title: string) => void;
+    onButtonClick?: (plan: string) => void;
 };
 
 export function PriceCard({

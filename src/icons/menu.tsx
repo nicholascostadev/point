@@ -1,4 +1,4 @@
-import { cl } from "@/utils/cl";
+import { cl } from "@/lib/utils/cl";
 
 interface IMenuProps extends React.SVGProps<SVGSVGElement> {}
 

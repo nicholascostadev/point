@@ -1,6 +1,4 @@
-import { Button } from "@/components/button";
 import { Skeleton } from "@/components/skeleton";
-import { Gear } from "@/icons/gear";
 import { LoadingProjects } from "./loadingProjects";
 
 export function LoadingPage() {
