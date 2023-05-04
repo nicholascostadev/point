@@ -14,6 +14,7 @@ type RequestParams = {
 
 export async function GET(req: Request, { params }: RequestParams) {
     const result = urlParamsSchema.safeParse(params);
+
     const user = await currentUser();
 
     if (!user) {

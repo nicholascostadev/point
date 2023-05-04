@@ -11,7 +11,7 @@ import { useEffect } from "react";
 async function getProjects(userId?: string) {
     if (!userId) return Promise.resolve([]);
 
-    const projects: Project[] = await fetch(`/api/projects/${userId}`)
+    const projects: Project[] = await fetch(`/api/users/${userId}/projects`)
         .then((res) => res.json())
         .then((data) => {
             return data;
