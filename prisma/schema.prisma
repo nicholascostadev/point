@@ -20,5 +20,5 @@ model Project {
   author_email String
   status       String   @default("requested")
 
-  @@unique([author_id, title])
+  @@unique([author_id, id])
 }

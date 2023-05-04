@@ -1,7 +1,9 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import { DashboardCard } from "./dashboardCard";
 import { useProjects } from "@/hooks/useProjects";
+import { useUser } from "@clerk/nextjs";
 
 type ProjectListProps = {
     user: {
@@ -11,6 +13,15 @@ type ProjectListProps = {
 
 export function ProjectList() {
     const { data } = useProjects();
+    const { user } = useUser();
+    const { mutate } = useMutation({
+        mutationFn: async (projectId: string) => {
+            if (!user) return;
+            return await fetch(`/api/users/${user.id}/projects/${projectId}`, {
+                method: "DELETE",
+            });
+        },
+    });
 
     if (data && data.length <= 0) {
         return (
@@ -29,9 +40,11 @@ export function ProjectList() {
             {data?.map((proj) => (
                 <DashboardCard
                     key={proj.id}
+                    id={proj.id}
                     title={proj.title}
                     description={proj.description}
                     status={proj.status}
+                    onDeleteProject={mutate}
                 />
             ))}
         </div>
