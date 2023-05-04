@@ -1,5 +1,8 @@
 import { useProjectsStore } from "@/app/stores/projectStore";
-import { getRemainingProjects } from "@/lib/utils/subscription";
+import {
+    SubscriptionPlan,
+    getRemainingProjects,
+} from "@/lib/utils/subscription";
 import { useUser } from "@clerk/nextjs";
 import { Project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
@@ -27,6 +30,8 @@ export function useProjects() {
         (state) => state.changeLoadingState
     );
 
+    const subscriptionPlan = user?.publicMetadata.subscription_plan;
+
     const query = useQuery({
         queryKey: ["projects"],
         queryFn: () => getProjects(user?.id),
@@ -42,22 +47,21 @@ export function useProjects() {
     }, [query.isLoading, changeLoadingState]);
 
     useEffect(() => {
+        if (query.isLoading) return;
+        if (!subscriptionPlan) return;
+
         setRemainingProjects(
             getRemainingProjects(
-                (user?.publicMetadata.subscription_plan as string) ?? "starter",
+                subscriptionPlan as SubscriptionPlan,
                 query.data?.length
             )
         );
-    }, [
-        query.data?.length,
-        setRemainingProjects,
-        user?.publicMetadata.subscription_plan,
-    ]);
+    }, [query.data, query.isLoading, setRemainingProjects, subscriptionPlan]);
 
     return {
         data: query.data,
         remainingProjects: getRemainingProjects(
-            (user?.publicMetadata.subscription_plan as string) ?? "starter",
+            subscriptionPlan as SubscriptionPlan,
             query.data?.length
         ),
     };

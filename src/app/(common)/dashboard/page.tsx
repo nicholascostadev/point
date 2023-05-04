@@ -5,29 +5,21 @@ import { useUser } from "@clerk/nextjs";
 import { Settings } from "./settings";
 import { Search } from "./search";
 import { ProjectList } from "./projectList";
-import { useEffect, useMemo } from "react";
+import {  useMemo } from "react";
 import { useProjectsStore } from "@/app/stores/projectStore";
 import { BackLighting } from "@/components/backLighting";
 import { LoadingProjects } from "./loadingProjects";
-import { useRouter } from "next/navigation";
 
 export default function Page() {
-    const { isSignedIn, isLoaded, user } = useUser();
+    const { isSignedIn, isLoaded } = useUser();
     const projects = useProjectsStore((state) => state.projects);
     const isLoadingPosts = useProjectsStore((state) => state.isLoading);
-    const router = useRouter();
 
     const text = useMemo(() => {
         const project = projects.length > 1 ? "projects" : "project";
 
         return `You have requested ${projects.length} ${project} in total`;
     }, [projects.length]);
-
-    useEffect(() => {
-        if (isLoaded && !isSignedIn) {
-            router.push("/login");
-        }
-    }, [isLoaded, projects.length, router, isSignedIn]);
 
     if (!isLoaded) {
         return <LoadingPage />;

@@ -4,46 +4,7 @@ import { BackLighting } from "@/components/backLighting";
 import { PriceCard } from "./priceCard";
 import { useUser } from "@clerk/nextjs";
 import { z } from "zod";
-
-const prices = [
-    {
-        title: "Starter",
-        plan: "starter",
-        price: 25,
-        benefits: ["Support 24/7", "2 maintenances/mo", "Email support"],
-        className:
-            "dark:bg-gray-800 bg-gray-50 h-[420px] max-h-full w-full md:w-auto border border-gray-400/20",
-        buttonText: "Get Started",
-    },
-    {
-        title: "Enterprise",
-        plan: "enterprise",
-        price: 255,
-        benefits: [
-            "Support 24/7",
-            "Full availability",
-            "Priority support",
-            "Email or direct chat support",
-        ],
-        className:
-            "dark:bg-gray-900/60 bg-gray-200/60 backdrop-blur-md h-[550px] max-h-full border border-gray-400/20 w-full md:w-auto",
-        buttonText: "Contact us",
-    },
-    {
-        title: "Business",
-        plan: "business",
-        price: 125,
-        benefits: [
-            "Support 24/7",
-            "8 maintenances/mo",
-            "Priority support",
-            "Email support",
-        ],
-        className:
-            "dark:bg-gray-900 bg-gray-100 h-[420px] max-h-full w-full md:w-auto border border-gray-400/20",
-        buttonText: "Get Started",
-    },
-];
+import { prices } from "./pricingData";
 
 const stripeUrlValidator = z
     .string()
@@ -64,8 +25,6 @@ export function Prices() {
     const { isSignedIn, user } = useUser();
 
     async function handleButtonClick(plan: string) {
-        console.log(mappedPlanToPrice[plan as keyof typeof mappedPlanToPrice]);
-
         if (isSignedIn) {
             // TODO: Implement Stripe checkout
             const data = await fetch("/api/checkout", {

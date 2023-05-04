@@ -79,8 +79,6 @@ export async function POST(req: Request) {
         const parsedBody = checkoutBodyValidator.safeParse(body);
 
         if (!parsedBody.success) {
-            console.log(JSON.stringify(parsedBody.error, null, 2));
-
             return new Response(JSON.stringify({ err: parsedBody.error }), {
                 status: 400,
             });
