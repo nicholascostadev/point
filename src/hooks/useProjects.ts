@@ -34,14 +34,13 @@ async function getProjects({ userId, search }: GetProjectsParams) {
 
 export function useProjects() {
     const { user } = useUser();
+    const {
+        changeFetchingState,
+        changeLoadingState,
+        setProjects,
+        setRemainingProjects,
+    } = useProjectsStore((state) => state.actions);
     const search = useFiltersStore((state) => state.search);
-    const setProjects = useProjectsStore((state) => state.setProjects);
-    const setRemainingProjects = useProjectsStore(
-        (state) => state.setRemainingProjects
-    );
-    const changeLoadingState = useProjectsStore(
-        (state) => state.changeLoadingState
-    );
 
     const subscriptionPlan = user?.publicMetadata.subscription_plan;
 
@@ -64,6 +63,10 @@ export function useProjects() {
     }, [query.isLoading, changeLoadingState]);
 
     useEffect(() => {
+        changeFetchingState(query.isFetching || query.isRefetching);
+    }, [query.isFetching, query.isRefetching, changeFetchingState]);
+
+    useEffect(() => {
         if (query.isLoading) return;
         if (!subscriptionPlan) return;
 
@@ -76,7 +79,7 @@ export function useProjects() {
     }, [query.data, query.isLoading, setRemainingProjects, subscriptionPlan]);
 
     return {
-        data: query.data,
+        ...query,
         remainingProjects: getRemainingProjects(
             subscriptionPlan as SubscriptionPlan,
             query.data?.length

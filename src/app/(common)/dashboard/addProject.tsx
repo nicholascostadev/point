@@ -15,7 +15,7 @@ import { useState } from "react";
 import { PopoverArrow } from "@radix-ui/react-popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { useProjectsStore } from "@/app/stores/projectStore";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 
 export function AddProject() {
     const [open, setOpen] = useState(false);
@@ -23,6 +23,7 @@ export function AddProject() {
         (state) => state.remainingProjects
     );
     const isLoadingProjects = useProjectsStore((state) => state.isLoading);
+    const isFetchingProjects = useProjectsStore((state) => state.isFetching);
     const hasMoreProjectsRemaining = remainingProjects > 0;
 
     return (
@@ -36,7 +37,11 @@ export function AddProject() {
                                     as="button"
                                     className="p-2 dark:bg-transparent"
                                 >
-                                    <Plus className="w-6 h-6 pointer-events-none stroke-default" />
+                                    {isLoadingProjects || isFetchingProjects ? (
+                                        <Loader2 className="w-6 h-6 pointer-events-none stroke-default animate-spin" />
+                                    ) : (
+                                        <Plus className="w-6 h-6 pointer-events-none stroke-default" />
+                                    )}
                                 </Button>
                             </PopoverTrigger>
                         </TooltipTrigger>

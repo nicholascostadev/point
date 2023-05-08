@@ -13,7 +13,7 @@ export function Header() {
                     <Link href="/">
                         <Image
                             src="/logo.png"
-                            alt='Arrow pointing to the left with the string being part of the letter "p" leg'
+                            alt='letter P with "point" written below it'
                             width={80}
                             height={80}
                         />

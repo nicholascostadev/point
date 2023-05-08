@@ -6,6 +6,7 @@ import { z } from "zod";
 import { Button } from "@/components/button";
 import { descriptionSchema, nameSchema } from "@/validations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
     name: nameSchema,
@@ -29,7 +30,7 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
     });
 
     const queryClient = useQueryClient();
-    const { mutate: addPost } = useMutation({
+    const { mutateAsync: addPost, isLoading } = useMutation({
         mutationKey: ["createProject"],
         mutationFn: async (data: FormSchema) => {
             return await fetch("/api/projects", {
@@ -45,7 +46,7 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
     });
 
     async function handleCreateProject(data: FormSchema) {
-        addPost(data);
+        await addPost(data);
     }
 
     return (
@@ -89,7 +90,14 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
                 )}
             </fieldset>
             <Button as="button" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Submit"}
+                {isSubmitting || isLoading ? (
+                    <div className="flex justify-center items-center gap-1">
+                        <Loader2 className="animate-spin" />
+                        Submitting...
+                    </div>
+                ) : (
+                    "Submit"
+                )}
             </Button>
         </form>
     );
