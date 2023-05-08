@@ -63,5 +63,8 @@ module.exports = {
             },
         },
     },
-    plugins: [require("@thoughtbot/tailwindcss-aria-attributes")],
+    plugins: [
+        require("@thoughtbot/tailwindcss-aria-attributes"),
+        require("tailwindcss-animate"),
+    ],
 };
