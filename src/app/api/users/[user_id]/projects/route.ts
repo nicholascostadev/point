@@ -13,29 +13,55 @@ type RequestParams = {
 };
 
 export async function GET(req: Request, { params }: RequestParams) {
-    const result = urlParamsSchema.safeParse(params);
+    try {
+        const result = urlParamsSchema.safeParse(params);
+        const url = new URL(req.url);
 
-    const user = await currentUser();
+        const query = url.searchParams.get("query");
 
-    if (!user) {
-        return new Response("Unauthorized", { status: 401 });
+        const user = await currentUser();
+
+        if (!user) {
+            return new Response("Unauthorized", { status: 401 });
+        }
+
+        if (!result.success) {
+            return new Response("Invalid params", { status: 400 });
+        }
+
+        const { user_id } = result.data;
+
+        if (user_id !== user.id) {
+            return new Response("Unauthorized", { status: 401 });
+        }
+
+        const projects = await prisma.project.findMany({
+            where: {
+                OR: [
+                    {
+                        author_id: user.id,
+                        title: {
+                            mode: "insensitive",
+                            contains: query ?? undefined,
+                        },
+                    },
+                    {
+                        author_id: user.id,
+                        description: {
+                            mode: "insensitive",
+                            contains: query ?? undefined,
+                        },
+                    },
+                ],
+            },
+            orderBy: {
+                created_at: "desc",
+            },
+        });
+
+        return new Response(JSON.stringify(projects));
+    } catch (err) {
+        console.error(err);
+        return new Response("Internal server error", { status: 500 });
     }
-
-    if (!result.success) {
-        return new Response("Invalid params", { status: 400 });
-    }
-
-    const { user_id } = result.data;
-
-    if (user_id !== user.id) {
-        return new Response("Unauthorized", { status: 401 });
-    }
-
-    const projects = await prisma.project.findMany({
-        where: {
-            author_id: user.id,
-        },
-    });
-
-    return new Response(JSON.stringify(projects));
 }

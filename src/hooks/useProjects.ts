@@ -1,3 +1,4 @@
+import { useFiltersStore } from "@/app/stores/filters";
 import { useProjectsStore } from "@/app/stores/projectStore";
 import {
     SubscriptionPlan,
@@ -8,10 +9,21 @@ import { Project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-async function getProjects(userId?: string) {
+type GetProjectsParams = {
+    userId?: string;
+    search?: string;
+};
+
+async function getProjects({ userId, search }: GetProjectsParams) {
     if (!userId) return Promise.resolve([]);
 
-    const projects: Project[] = await fetch(`/api/users/${userId}/projects`)
+    const searchParams = new URLSearchParams();
+
+    searchParams.set("query", search ?? "");
+
+    const projects: Project[] = await fetch(
+        `/api/users/${userId}/projects?${searchParams.toString()}`
+    )
         .then((res) => res.json())
         .then((data) => {
             return data;
@@ -22,6 +34,7 @@ async function getProjects(userId?: string) {
 
 export function useProjects() {
     const { user } = useUser();
+    const search = useFiltersStore((state) => state.search);
     const setProjects = useProjectsStore((state) => state.setProjects);
     const setRemainingProjects = useProjectsStore(
         (state) => state.setRemainingProjects
@@ -33,8 +46,12 @@ export function useProjects() {
     const subscriptionPlan = user?.publicMetadata.subscription_plan;
 
     const query = useQuery({
-        queryKey: ["projects"],
-        queryFn: () => getProjects(user?.id),
+        queryKey: ["projects", search],
+        queryFn: () =>
+            getProjects({
+                userId: user?.id,
+                search,
+            }),
         staleTime: 1000 * 30, // 30 seconds
     });
 

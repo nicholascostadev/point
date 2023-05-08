@@ -25,7 +25,7 @@ export function DashboardCard({
     status,
     onDeleteProject,
 }: DashboardCardProps) {
-    const changeStatus = useFiltersStore((state) => state.changeStatus);
+    const changeStatus = useFiltersStore((state) => state.actions.changeStatus);
 
     function generateStatusColor() {
         switch (status) {
