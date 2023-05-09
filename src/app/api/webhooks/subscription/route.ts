@@ -1,4 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
+import { Readable } from "stream";
 import Stripe from "stripe";
 import { z } from "zod";
 import {
@@ -166,44 +168,90 @@ async function handleSubscriptionDeleted(body: SubscriptionDeleted) {
     );
 }
 
+async function buffer(readable: Readable) {
+    const chunks = [];
+    for await (const chunk of readable) {
+        chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+    }
+    return Buffer.concat(chunks);
+}
+
+const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET as string;
+
 export async function POST(req: Request) {
-    const body = await req.json();
+    const hdrs = headers();
+    const headerSig = hdrs.get("stripe-signature");
 
-    if (body.type === "payment_intent.succeeded") {
-        const parsedBody = paymentIntentSucceededBody.safeParse(body);
+    const signatureResult = z.string().min(1).safeParse(headerSig);
 
-        if (!parsedBody.success) {
-            return new Response(JSON.stringify({ err: parsedBody.error }), {
+    if (!signatureResult.success) {
+        return new Response(JSON.stringify({ err: signatureResult.error }), {
+            status: 400,
+        });
+    }
+
+    const sig = signatureResult.data;
+    const copy = req.clone();
+    const body = await copy.json();
+    const rawBody = await req.text();
+
+    let event: Stripe.Event;
+
+    try {
+        event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
+    } catch (err) {
+        if (err instanceof Error) {
+            return new Response(`Webhook Error: ${err.message}`, {
                 status: 400,
             });
         }
 
-        return handlePaymentIntentSucceeded(parsedBody.data);
+        return new Response(`Webhook Error`, { status: 400 });
     }
 
-    if (body.type === "customer.subscription.updated") {
-        const parsedBody = subscriptionUpdatedBodySchema.safeParse(body);
+    switch (event.type) {
+        case "payment_intent.succeeded": {
+            const parsedBody = paymentIntentSucceededBody.safeParse(body);
 
-        if (!parsedBody.success) {
-            return new Response(JSON.stringify({ err: parsedBody.error }), {
-                status: 400,
-            });
+            if (!parsedBody.success) {
+                return new Response(JSON.stringify({ err: parsedBody.error }), {
+                    status: 400,
+                });
+            }
+
+            return handlePaymentIntentSucceeded(parsedBody.data);
         }
 
-        return handleSubscriptionUpdated(parsedBody.data);
-    }
+        case "customer.subscription.updated": {
+            const parsedBody = subscriptionUpdatedBodySchema.safeParse(body);
 
-    if (body.type === "customer.subscription.deleted") {
-        const parsedBody = subscriptionDeletedSchema.safeParse(body);
+            if (!parsedBody.success) {
+                return new Response(JSON.stringify({ err: parsedBody.error }), {
+                    status: 400,
+                });
+            }
 
-        if (!parsedBody.success) {
-            return new Response(JSON.stringify({ err: parsedBody.error }), {
-                status: 400,
-            });
+            return handleSubscriptionUpdated(parsedBody.data);
         }
 
-        return handleSubscriptionDeleted(parsedBody.data);
-    }
+        case "customer.subscription.deleted": {
+            const parsedBody = subscriptionDeletedSchema.safeParse(body);
 
-    return new Response(JSON.stringify({}), { status: 200 });
+            if (!parsedBody.success) {
+                return new Response(JSON.stringify({ err: parsedBody.error }), {
+                    status: 400,
+                });
+            }
+
+            return handleSubscriptionDeleted(parsedBody.data);
+        }
+
+        default:
+            return new Response(
+                JSON.stringify(
+                    "Invalid event, no handlers for the received event"
+                ),
+                { status: 200 }
+            );
+    }
 }
