@@ -11,20 +11,39 @@ import {
 } from "@/components/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
+import { useUserSubscriptionStatus } from "@/hooks/useUserPlan";
 import { useProjectsStore } from "@/stores/projectStore";
 import { PopoverArrow } from "@radix-ui/react-popover";
 import { Loader2, Plus } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AddProjectForm } from "./addProjectForm";
 
 export function AddProject() {
     const [open, setOpen] = useState(false);
+    const userSubscriptionStatus = useUserSubscriptionStatus();
     const remainingProjects = useProjectsStore(
         (state) => state.remainingProjects
     );
     const isLoadingProjects = useProjectsStore((state) => state.isLoading);
     const isFetchingProjects = useProjectsStore((state) => state.isFetching);
     const hasMoreProjectsRemaining = remainingProjects > 0;
+
+    const errorText = useMemo(() => {
+        switch (userSubscriptionStatus) {
+            case "active":
+                return "You've reached the maximum amount of projects your plan covers, upgrade your plan or wait for more usages next month.";
+            case "canceled":
+                return "Your plan has been canceled, you can't add more projects.";
+            case "incomplete":
+                return "Your plan is incomplete, you can't add more projects.";
+            case "incomplete_expired":
+                return "Your plan has expired, you can't add more projects.";
+            case "past_due":
+                return "Your plan is past due, you can't add more projects.";
+            default:
+                return "Your plan has expired, you can't add more projects.";
+        }
+    }, [userSubscriptionStatus]);
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -49,10 +68,8 @@ export function AddProject() {
                             <p>Add a new Project</p>
                         </TooltipContent>
                     </Tooltip>
-                    <PopoverContent className="w-96 border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
-                        You&apos;ve reached the maximum amount of projects your
-                        plan covers, upgrade your plan or wait for more usages
-                        next month.
+                    <PopoverContent className="w-min max-w-full border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
+                        {errorText}
                         <PopoverArrow className="fill-red-500" />
                     </PopoverContent>
                 </Popover>
