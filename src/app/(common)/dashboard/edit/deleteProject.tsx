@@ -6,18 +6,17 @@ import {
     DialogTrigger,
 } from "@/components/dialog";
 import { useDeleteProject } from "@/hooks/useDeleteProject";
+import { useEditingStoreProjectData } from "@/stores/editingStore";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
-type DeleteProjectModalProps = {
-    id: string;
-};
-
-export function DeleteProject({ id }: DeleteProjectModalProps) {
+export function DeleteProject() {
     const { mutateAsync: deleteProject, isLoading } = useDeleteProject();
     const [isOpen, setIsOpen] = useState(false);
+    const { id } = useEditingStoreProjectData();
 
     async function handleDelete() {
+        if (!id) return;
         await deleteProject(id);
         setIsOpen(false);
     }

@@ -1,5 +1,5 @@
-import { useFiltersStore } from "@/app/stores/filters";
-import { useProjectsStore } from "@/app/stores/projectStore";
+import { useFiltersStore } from "@/stores/filters";
+import { useProjectsStore } from "@/stores/projectStore";
 import {
     SubscriptionPlan,
     getRemainingProjects,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useFiltersStore } from "@/app/stores/filters";
+import { useFiltersStore } from "@/stores/filters";
 import { useDebouncedCallback } from "use-debounce";
 
 export function Search() {

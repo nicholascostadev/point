@@ -1,10 +1,14 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/button";
+import { useEditingStoreProjectData } from "@/stores/editingStore";
 import { descriptionSchema, nameSchema } from "@/validations";
+import { useUser } from "@clerk/nextjs";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
 
 const formSchema = z.object({
     name: nameSchema,
@@ -13,44 +17,71 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-type AddProjectFormProps = {
+type EditFormProps = {
     closeModal: () => void;
 };
 
-export function AddProjectForm({ closeModal }: AddProjectFormProps) {
+export function EditForm({ closeModal }: EditFormProps) {
+    const { user } = useUser();
+    const { id, title, description } = useEditingStoreProjectData();
+    const queryClient = useQueryClient();
+
     const {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
+        setValue,
         reset,
+        watch,
     } = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: title ?? "",
+            description: description ?? "",
+        },
     });
 
-    const queryClient = useQueryClient();
-    const { mutateAsync: addPost, isLoading } = useMutation({
-        mutationKey: ["createProject"],
-        mutationFn: async (data: FormSchema) => {
-            return await fetch("/api/projects", {
-                body: JSON.stringify(data),
-                method: "POST",
+    async function handleUpdateProject(formData: FormSchema) {
+        await mutateAsync(formData);
+    }
+
+    // Add initial values when opening the popover
+    useEffect(() => {
+        setValue("name", title ?? "");
+        setValue("description", description ?? "");
+    }, [setValue, title, description]);
+
+    const currentTitle = watch("name");
+    const currentDescription = watch("description");
+
+    const didntChange =
+        currentTitle.trim() === title &&
+        currentDescription.trim() === description;
+
+    const { mutateAsync, isLoading } = useMutation({
+        mutationFn: async ({ name, description }: FormSchema) => {
+            if (!user) return;
+
+            return await fetch(`/api/users/${user.id}/projects/${id}`, {
+                body: JSON.stringify({
+                    name,
+                    description,
+                }),
+                method: "PATCH",
             });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(["projects"]);
             reset();
             closeModal();
+            queryClient.invalidateQueries(["projects"]);
+            toast.success("Project updated successfully!");
         },
     });
 
-    async function handleCreateProject(data: FormSchema) {
-        await addPost(data);
-    }
-
     return (
         <form
-            className="flex flex-col gap-2"
-            onSubmit={handleSubmit(handleCreateProject)}
+            className="flex flex-col gap-2 w-96"
+            onSubmit={handleSubmit(handleUpdateProject)}
         >
             <fieldset className="flex flex-col gap-2">
                 <label htmlFor="name">Name</label>
@@ -79,6 +110,7 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
                     id="description"
                     placeholder="Describe what want this project to be like, please be brief."
                     aria-invalid={!!errors.description}
+                    rows={3}
                     {...register("description")}
                 />
                 {errors.description && (
@@ -87,7 +119,11 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
                     </small>
                 )}
             </fieldset>
-            <Button as="button" type="submit" disabled={isSubmitting}>
+            <Button
+                as="button"
+                type="submit"
+                disabled={isSubmitting || didntChange}
+            >
                 {isSubmitting || isLoading ? (
                     <div className="flex justify-center items-center gap-1">
                         <Loader2 className="animate-spin" />

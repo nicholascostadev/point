@@ -10,12 +10,12 @@ import {
     DialogTrigger,
 } from "@/components/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/popover";
-import { AddProjectForm } from "./addProjectForm";
-import { useState } from "react";
-import { PopoverArrow } from "@radix-ui/react-popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
-import { useProjectsStore } from "@/app/stores/projectStore";
+import { useProjectsStore } from "@/stores/projectStore";
+import { PopoverArrow } from "@radix-ui/react-popover";
 import { Loader2, Plus } from "lucide-react";
+import { useState } from "react";
+import { AddProjectForm } from "./addProjectForm";
 
 export function AddProject() {
     const [open, setOpen] = useState(false);
@@ -49,7 +49,7 @@ export function AddProject() {
                             <p>Add a new Project</p>
                         </TooltipContent>
                     </Tooltip>
-                    <PopoverContent className="border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
+                    <PopoverContent className="w-96 border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
                         You&apos;ve reached the maximum amount of projects your
                         plan covers, upgrade your plan or wait for more usages
                         next month.

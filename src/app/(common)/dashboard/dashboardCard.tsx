@@ -1,4 +1,4 @@
-import { Status, useFiltersStore } from "@/app/stores/filters";
+import { Status, useFiltersStore } from "@/stores/filters";
 import { cl } from "@/lib/utils/cl";
 import { EditProject } from "./edit/editProject";
 
@@ -48,7 +48,13 @@ export function DashboardCard({
                 >
                     {status}
                 </button>
-                <EditProject id={id} />
+                <EditProject
+                    projectData={{
+                        id,
+                        title,
+                        description,
+                    }}
+                />
             </div>
         </div>
     );

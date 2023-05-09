@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { cl } from "@/lib/utils/cl";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
+import * as React from "react";
 
 const Popover = PopoverPrimitive.Root;
 
@@ -18,7 +18,7 @@ const PopoverContent = React.forwardRef<
             align={align}
             sideOffset={sideOffset}
             className={cl(
-                "z-50 w-72 bg-gray-200 dark:bg-gray-950/90 border-gray-950/20 backdrop-blur-md dark:border-gray-200/20 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+                "z-50 min-w-[18rem] bg-gray-200 dark:bg-gray-950/90 border-gray-950/20 backdrop-blur-md dark:border-gray-200/20 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
                 className
             )}
             {...props}

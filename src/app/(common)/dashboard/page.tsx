@@ -5,15 +5,13 @@ import { useUser } from "@clerk/nextjs";
 import { Settings } from "./settings";
 import { Search } from "./search";
 import { ProjectList } from "./projectList";
-import {  useMemo } from "react";
-import { useProjectsStore } from "@/app/stores/projectStore";
+import { useMemo } from "react";
+import { useProjectsStore } from "@/stores/projectStore";
 import { BackLighting } from "@/components/backLighting";
-import { LoadingProjects } from "./loadingProjects";
 
 export default function Page() {
     const { isSignedIn, isLoaded } = useUser();
     const projects = useProjectsStore((state) => state.projects);
-    const isLoadingPosts = useProjectsStore((state) => state.isLoading);
 
     const text = useMemo(() => {
         const project = projects.length > 1 ? "projects" : "project";
@@ -60,7 +58,6 @@ export default function Page() {
                             <h4 className="text-lg">{text}</h4>
                         </div>
                     )}
-                    {isLoadingPosts && <LoadingProjects />}
                     <ProjectList />
                 </div>
             </div>

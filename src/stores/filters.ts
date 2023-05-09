@@ -20,6 +20,8 @@ type Store = {
 export const useFiltersStore = create<Store>((set, get) => ({
     status: "none",
     search: (() => {
+        if (typeof window === "undefined") return "";
+
         const url = new URL(window.location.href);
 
         const query = url.searchParams.get("query");

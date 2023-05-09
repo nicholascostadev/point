@@ -1,4 +1,12 @@
 import { z } from "zod";
 
-export const nameSchema = z.string().min(3).max(50);
-export const descriptionSchema = z.string().min(3).max(500);
+export const nameSchema = z
+    .string()
+    .trim()
+    .min(3, "Name must be at least 3 characters long.")
+    .max(50);
+export const descriptionSchema = z
+    .string()
+    .trim()
+    .min(3, "Description must be at least 3 characters long.")
+    .max(500);
