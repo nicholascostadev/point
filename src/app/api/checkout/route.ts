@@ -1,3 +1,4 @@
+import { clerkClient } from "@clerk/nextjs/server";
 import Stripe from "stripe";
 import { z } from "zod";
 
@@ -21,25 +22,52 @@ export async function POST(req: Request) {
         }
         const { priceId, clerk_user_id } = parsedBody.data;
 
-        const session = await stripe.checkout.sessions.create({
-            line_items: [
-                {
-                    price: priceId,
-                    quantity: 1,
-                },
-            ],
-            metadata: {
-                clerk_user_id,
-            },
-            subscription_data: {
+        const user = await clerkClient.users.getUser(clerk_user_id);
+
+        let session;
+
+        if (user && user.publicMetadata.stripe_customer_id) {
+            session = await stripe.checkout.sessions.create({
+                line_items: [
+                    {
+                        price: priceId,
+                        quantity: 1,
+                    },
+                ],
                 metadata: {
                     clerk_user_id,
                 },
-            },
-            mode: "subscription",
-            success_url: `http://localhost:3000/dashboard?success=true`,
-            cancel_url: `http://localhost:3000/dashboard?canceled=true`,
-        });
+                customer: user.publicMetadata.stripe_customer_id as string,
+                subscription_data: {
+                    metadata: {
+                        clerk_user_id,
+                    },
+                },
+                mode: "subscription",
+                success_url: `http://localhost:3000/dashboard?success=true`,
+                cancel_url: `http://localhost:3000/dashboard?canceled=true`,
+            });
+        } else {
+            session = await stripe.checkout.sessions.create({
+                line_items: [
+                    {
+                        price: priceId,
+                        quantity: 1,
+                    },
+                ],
+                metadata: {
+                    clerk_user_id,
+                },
+                subscription_data: {
+                    metadata: {
+                        clerk_user_id,
+                    },
+                },
+                mode: "subscription",
+                success_url: `http://localhost:3000/dashboard?success=true`,
+                cancel_url: `http://localhost:3000/dashboard?canceled=true`,
+            });
+        }
 
         if (!session)
             return new Response(JSON.stringify({ err: "No session" }), {

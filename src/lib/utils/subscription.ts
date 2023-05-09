@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+export const subscriptionStatusSchema = z.union([
+    z.literal("active"),
+    z.literal("canceled"),
+    z.literal("incomplete"),
+    z.literal("incomplete_expired"),
+    z.literal("past_due"),
+    z.literal("trialing"),
+    z.literal("unpaid"),
+]);
+
 export const subscriptionSchema = z.union([
     z.literal("starter"),
     z.literal("business"),
@@ -25,7 +35,6 @@ export function getRemainingProjects(
             return ENTERPRISE_MAXIMUM_PROJECTS - totalProjects > 0
                 ? ENTERPRISE_MAXIMUM_PROJECTS - totalProjects
                 : 0;
-            break;
         case "business":
             return BUSINESS_MAXIMUM_PROJECTS - totalProjects > 0
                 ? BUSINESS_MAXIMUM_PROJECTS - totalProjects

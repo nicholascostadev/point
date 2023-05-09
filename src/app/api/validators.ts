@@ -8,6 +8,8 @@ export const subscriptionIdValidator = z.string().min(1).startsWith("sub_");
 
 export const projectIdValidator = z.string().min(1).cuid();
 
+export const paymentIntentIdValidator = z.string().min(1).startsWith("pi_");
+
 export const planValidator = z
     .string()
     .min(1)
