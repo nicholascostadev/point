@@ -44,8 +44,8 @@ export async function POST(req: Request) {
                     },
                 },
                 mode: "subscription",
-                success_url: `http://localhost:3000/dashboard?success=true`,
-                cancel_url: `http://localhost:3000/dashboard?canceled=true`,
+                success_url: `${process.env.NEXT_PUBLIC_ABSOLUTE_URL}/dashboard?success=true`,
+                cancel_url: `${process.env.NEXT_PUBLIC_ABSOLUTE_URL}/dashboard?canceled=true`,
             });
         } else {
             session = await stripe.checkout.sessions.create({
@@ -64,8 +64,8 @@ export async function POST(req: Request) {
                     },
                 },
                 mode: "subscription",
-                success_url: `http://localhost:3000/dashboard?success=true`,
-                cancel_url: `http://localhost:3000/dashboard?canceled=true`,
+                success_url: `${process.env.NEXT_PUBLIC_ABSOLUTE_URL}/dashboard?success=true`,
+                cancel_url: `${process.env.NEXT_PUBLIC_ABSOLUTE_URL}/dashboard?canceled=true`,
             });
         }
 
