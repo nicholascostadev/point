@@ -159,7 +159,7 @@ async function handleSubscriptionDeleted(body: SubscriptionDeleted) {
         {
             publicMetadata: {
                 subscription_ends_at: null,
-                subscription_status: "canceled",
+                subscription_status: subscription.status,
                 subscription_plan: null,
             },
         }
