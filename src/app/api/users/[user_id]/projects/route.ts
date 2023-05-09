@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { isUserAdmin } from "@/lib/utils/userRelated";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
 
@@ -31,7 +32,7 @@ export async function GET(req: Request, { params }: RequestParams) {
 
         const { user_id } = result.data;
 
-        if (user_id !== user.id) {
+        if (user_id !== user.id && !isUserAdmin(user)) {
             return new Response("Unauthorized", { status: 401 });
         }
 

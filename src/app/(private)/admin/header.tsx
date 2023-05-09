@@ -1,9 +1,7 @@
+import { ThemeToggle } from "@/components/header/themeToggle";
 import { UserButton } from "@clerk/nextjs/app-beta";
 import Image from "next/image";
 import Link from "next/link";
-import { HeaderCTA } from "./headerCTA";
-import { HeaderDrawer } from "./headerDrawer";
-import { ThemeToggle } from "./themeToggle";
 
 export function Header() {
     return (
@@ -22,40 +20,23 @@ export function Header() {
                         <ul className="flex items-center justify-center gap-8 dark:text-gray-300 text-lg">
                             <li>
                                 <Link
-                                    href="/#about"
+                                    href="/admin/dashboard"
                                     className="dark:hover:text-gray-100 hover:text-gray-600"
                                 >
-                                    About us
+                                    Dashboard - Admin
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="/projects"
+                                    href="/dashboard"
                                     className="dark:hover:text-gray-100 hover:text-gray-600"
                                 >
-                                    Projects
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/pricing"
-                                    className="dark:hover:text-gray-100 hover:text-gray-600"
-                                >
-                                    Pricing
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/references"
-                                    className="dark:hover:text-gray-100 hover:text-gray-600"
-                                >
-                                    References
+                                    Dashboard
                                 </Link>
                             </li>
                         </ul>
                     </div>
                 </div>
-
                 <div className="flex items-center justify-start gap-4">
                     <ThemeToggle />
                     <UserButton
@@ -68,10 +49,6 @@ export function Header() {
                             },
                         }}
                     />
-                    <HeaderDrawer />
-                    <div className="hidden sm:flex">
-                        <HeaderCTA />
-                    </div>
                 </div>
             </nav>
         </header>

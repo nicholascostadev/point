@@ -3,6 +3,7 @@ import {
     getRemainingProjects,
     subscriptionSchema,
 } from "@/lib/utils/subscription";
+import { isUserAdmin } from "@/lib/utils/userRelated";
 import { descriptionSchema, nameSchema } from "@/validations";
 import { clerkClient, currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
@@ -82,4 +83,45 @@ export async function POST(req: Request) {
         }),
         { status: 201 }
     );
+}
+
+export async function GET(req: Request) {
+    const user = await currentUser();
+
+    if (!user || !isUserAdmin(user)) {
+        return new Response("Unauthorized", { status: 401 });
+    }
+
+    const searchParams = new URLSearchParams(req.url.split("?")[1]);
+
+    const with_author = searchParams.get("with_author");
+
+    const projects = await prisma.project.findMany({
+        orderBy: {
+            created_at: "desc",
+        },
+    });
+
+    if (with_author === "true") {
+        const projectsWithAuthor = await Promise.all(
+            projects.map(async (project) => {
+                const author = await clerkClient.users.getUser(
+                    project.author_id
+                );
+
+                return {
+                    ...project,
+                    author: {
+                        ...author,
+                    },
+                };
+            })
+        );
+
+        return new Response(JSON.stringify(projectsWithAuthor), {
+            status: 200,
+        });
+    }
+
+    return new Response(JSON.stringify(projects), { status: 200 });
 }

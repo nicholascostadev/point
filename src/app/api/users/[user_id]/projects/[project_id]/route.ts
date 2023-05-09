@@ -1,5 +1,6 @@
 import { clerkUserIdValidator, projectIdValidator } from "@/app/api/validators";
 import { prisma } from "@/lib/prisma";
+import { isUserAdmin } from "@/lib/utils/userRelated";
 import { descriptionSchema, nameSchema } from "@/validations";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
@@ -29,7 +30,7 @@ export async function DELETE(req: Request, { params }: DeleteRequestParams) {
 
     const { user_id, project_id } = result.data;
 
-    if (user_id !== user.id) {
+    if (user_id !== user.id && !isUserAdmin(user)) {
         return new Response("Unauthorized", { status: 401 });
     }
 
@@ -72,7 +73,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         return new Response("Unauthorized", { status: 401 });
     }
 
-    if (params.user_id !== user.id) {
+    if (params.user_id !== user.id && !isUserAdmin(user)) {
         return new Response("Unauthorized", { status: 401 });
     }
 

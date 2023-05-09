@@ -1,9 +1,9 @@
-import { useFiltersStore } from "@/stores/filters";
-import { useProjectsStore } from "@/stores/projectStore";
 import {
     SubscriptionPlan,
     getRemainingProjects,
 } from "@/lib/utils/subscription";
+import { useFiltersStore } from "@/stores/filters";
+import { useProjectsStore } from "@/stores/projectStore";
 import { useUser } from "@clerk/nextjs";
 import { Project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
@@ -45,7 +45,7 @@ export function useProjects() {
     const subscriptionPlan = user?.publicMetadata.subscription_plan;
 
     const query = useQuery({
-        queryKey: ["projects", search],
+        queryKey: ["projects", "user", search],
         queryFn: () =>
             getProjects({
                 userId: user?.id,
