@@ -2,6 +2,7 @@ import { BackLighting } from "@/components/backLighting";
 import { Button } from "@/components/button";
 import { ChevronRight, Map } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -89,13 +90,13 @@ export default function Home() {
                             and partners, we create the best products for the
                             end user with cutting-edge technologies.
                         </p>
-                        <a
+                        <Link
                             href="/projects"
                             className="text-base sm:text-lg dark:hover:text-green-400 hover:text-green-700 transition-all flex items-center justify-center gap-2 group"
                         >
                             Check our projects
                             <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-all" />
-                        </a>
+                        </Link>
                     </div>
                     <div className="relative">
                         <BackLighting className="w-3/4 h-3/4 blur-[160px]" />
