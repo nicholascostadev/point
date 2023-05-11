@@ -115,6 +115,12 @@ async function handlePaymentIntentSucceeded(body: PaymentIntentSucceededBody) {
         subscription.items.data[0].plan.metadata?.identifier
     );
 
+    await stripe.customers.update(subscription.customer.toString(), {
+        metadata: {
+            clerk_user_id: userClerkId,
+        },
+    });
+
     if (!planResult.success) {
         return new Response(JSON.stringify({ err: planResult.error }), {
             status: 400,
@@ -209,49 +215,71 @@ export async function POST(req: Request) {
         return new Response(`Webhook Error`, { status: 400 });
     }
 
-    switch (event.type) {
-        case "payment_intent.succeeded": {
-            const parsedBody = paymentIntentSucceededBody.safeParse(body);
+    try {
+        switch (event.type) {
+            case "payment_intent.succeeded": {
+                const parsedBody = paymentIntentSucceededBody.safeParse(body);
 
-            if (!parsedBody.success) {
-                return new Response(JSON.stringify({ err: parsedBody.error }), {
-                    status: 400,
-                });
+                if (!parsedBody.success) {
+                    return new Response(
+                        JSON.stringify({ err: parsedBody.error }),
+                        {
+                            status: 400,
+                        }
+                    );
+                }
+
+                return handlePaymentIntentSucceeded(parsedBody.data);
             }
 
-            return handlePaymentIntentSucceeded(parsedBody.data);
-        }
+            case "customer.subscription.updated": {
+                const parsedBody =
+                    subscriptionUpdatedBodySchema.safeParse(body);
 
-        case "customer.subscription.updated": {
-            const parsedBody = subscriptionUpdatedBodySchema.safeParse(body);
+                if (!parsedBody.success) {
+                    return new Response(
+                        JSON.stringify({ err: parsedBody.error }),
+                        {
+                            status: 400,
+                        }
+                    );
+                }
 
-            if (!parsedBody.success) {
-                return new Response(JSON.stringify({ err: parsedBody.error }), {
-                    status: 400,
-                });
+                return handleSubscriptionUpdated(parsedBody.data);
             }
 
-            return handleSubscriptionUpdated(parsedBody.data);
-        }
+            case "customer.subscription.deleted": {
+                const parsedBody = subscriptionDeletedSchema.safeParse(body);
 
-        case "customer.subscription.deleted": {
-            const parsedBody = subscriptionDeletedSchema.safeParse(body);
+                if (!parsedBody.success) {
+                    return new Response(
+                        JSON.stringify({ err: parsedBody.error }),
+                        {
+                            status: 400,
+                        }
+                    );
+                }
 
-            if (!parsedBody.success) {
-                return new Response(JSON.stringify({ err: parsedBody.error }), {
-                    status: 400,
-                });
+                return handleSubscriptionDeleted(parsedBody.data);
             }
 
-            return handleSubscriptionDeleted(parsedBody.data);
+            default:
+                return new Response(
+                    JSON.stringify(
+                        "Invalid event, no handlers for the received event"
+                    ),
+                    { status: 200 }
+                );
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            return new Response(JSON.stringify({ err: err.message }), {
+                status: 500,
+            });
         }
 
-        default:
-            return new Response(
-                JSON.stringify(
-                    "Invalid event, no handlers for the received event"
-                ),
-                { status: 200 }
-            );
+        return new Response(JSON.stringify({ err }), {
+            status: 500,
+        });
     }
 }
