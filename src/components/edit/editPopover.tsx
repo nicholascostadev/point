@@ -1,15 +1,12 @@
 import { PopoverContent } from "@/components/popover";
+import { useEditingForm } from "@/hooks/useEditingForm";
+import { useEditingMutation } from "@/hooks/useEditingMutation";
 import { projectStatusSchema } from "@/lib/utils/projectRelated";
-import { isOnAdminRoute, isUserAdmin } from "@/lib/utils/userRelated";
 import { useEditingStoreProjectData } from "@/stores/editingStore";
 import { descriptionSchema, titleSchema } from "@/validations";
-import { useUser } from "@clerk/nextjs";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
 import { Button } from "../button";
@@ -34,70 +31,28 @@ type EditFormProps = {
 };
 
 export function EditPopover({ closeModal }: EditPopoverProps) {
-    const { user } = useUser();
-    const pathname = usePathname();
-    const { id, title, description, status } = useEditingStoreProjectData();
     const queryClient = useQueryClient();
-    const methods = useForm<FormSchema>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            title: title ?? "",
-            description: description ?? "",
-            status: status ?? "requested",
-        },
-    });
+    const { title, description, status } = useEditingStoreProjectData();
+    const { methods, formState, formData } = useEditingForm();
+    const { submitUpdate } = useEditingMutation();
 
-    const { isLoading, isSubmitting } = methods.formState;
-    const { watch, setValue, handleSubmit, reset } = methods;
+    const { isLoading, isSubmitting } = formState;
+    const { handleSubmit } = methods;
 
     async function handleUpdateProject(formData: FormSchema) {
-        await mutateAsync(formData);
+        await submitUpdate(formData, {
+            onSuccess: () => {
+                closeModal();
+                queryClient.invalidateQueries(["projects"]);
+                toast.success("Project updated successfully!");
+            },
+        });
     }
 
-    // Add initial values when opening the popover
-    useEffect(() => {
-        setValue("title", title ?? "");
-        setValue("description", description ?? "");
-        setValue("status", status ?? "requested");
-    }, [setValue, status, title, description]);
-
-    const currentTitle = watch("title");
-    const currentDescription = watch("description");
-    const currentStatus = watch("status");
-
     const didntChange =
-        currentTitle.trim() === title &&
-        currentDescription.trim() === description &&
-        currentStatus === status;
-
-    const { mutateAsync } = useMutation({
-        mutationFn: async ({ title, description, status }: FormSchema) => {
-            if (!user) return;
-
-            let url = "";
-
-            if (isOnAdminRoute(pathname) && isUserAdmin(user)) {
-                url = `/api/projects/${id}`;
-            } else {
-                url = `/api/users/${user.id}/projects/${id}`;
-            }
-
-            return await fetch(url, {
-                body: JSON.stringify({
-                    title,
-                    description,
-                    status,
-                }),
-                method: "PATCH",
-            });
-        },
-        onSuccess: () => {
-            reset();
-            closeModal();
-            queryClient.invalidateQueries(["projects"]);
-            toast.success("Project updated successfully!");
-        },
-    });
+        formData.currentTitle.trim() === title &&
+        formData.currentDescription.trim() === description &&
+        formData.currentStatus === status;
 
     return (
         <PopoverContent className="border border-gray-200 dark:bg-gray-950/90 dark:border-gray-900">
