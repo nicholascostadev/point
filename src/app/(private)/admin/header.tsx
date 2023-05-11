@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export function Header() {
     return (
-        <header className="h-header fixed top-0 left-0 w-full dark:bg-gray-900/60 bg-gray-50/40 backdrop-blur-md shadow-sm flex justify-center items-center z-50">
-            <nav className="w-layout-base px-2 md:px-8 max-w-full flex justify-between items-center gap-2">
+        <header className="fixed left-0 top-0 z-50 flex h-header w-full items-center justify-center bg-gray-50/40 shadow-sm backdrop-blur-md dark:bg-gray-900/60">
+            <nav className="flex w-layout-base max-w-full items-center justify-between gap-2 px-2 md:px-8">
                 <div className="flex items-center gap-8">
                     <Link href="/">
                         <Image
@@ -17,11 +17,11 @@ export function Header() {
                         />
                     </Link>
                     <div className="hidden md:block">
-                        <ul className="flex items-center justify-center gap-8 dark:text-gray-300 text-lg">
+                        <ul className="flex items-center justify-center gap-8 text-lg dark:text-gray-300">
                             <li>
                                 <Link
                                     href="/admin/dashboard"
-                                    className="dark:hover:text-gray-100 hover:text-gray-600"
+                                    className="hover:text-gray-600 dark:hover:text-gray-100"
                                 >
                                     Dashboard - Admin
                                 </Link>
@@ -29,7 +29,7 @@ export function Header() {
                             <li>
                                 <Link
                                     href="/dashboard"
-                                    className="dark:hover:text-gray-100 hover:text-gray-600"
+                                    className="hover:text-gray-600 dark:hover:text-gray-100"
                                 >
                                     Dashboard
                                 </Link>

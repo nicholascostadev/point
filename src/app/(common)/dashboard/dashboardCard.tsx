@@ -39,14 +39,14 @@ export function DashboardCard({
     const statusColor = generateStatusColor(status as ProjectStatus);
 
     return (
-        <div className="relative flex flex-col gap-2 dark:bg-gray-900/60 bg-gray-200/60 border border-cyan-200/10 dark:border-gray-200/10 backdrop-blur-md min-h-[20rem] p-4 rounded-lg">
+        <div className="relative flex min-h-[20rem] flex-col gap-2 rounded-lg border border-cyan-200/10 bg-gray-200/60 p-4 backdrop-blur-md dark:border-gray-200/10 dark:bg-gray-900/60">
             <h1 className="text-2xl">{title}</h1>
             <p className="text-lg">{description}</p>
-            <div className="absolute flex justify-center items-center gap-2 top-4 right-4">
+            <div className="absolute right-4 top-4 flex items-center justify-center gap-2">
                 <button
                     onClick={() => changeStatus(status as Status)}
                     className={cl(
-                        "text-sm text-gray-950 rounded-full px-2 py-1",
+                        "rounded-full px-2 py-1 text-sm text-gray-950",
                         statusColor
                     )}
                 >

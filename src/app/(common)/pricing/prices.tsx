@@ -51,8 +51,8 @@ export function Prices() {
 
     return (
         <div className="relative w-full">
-            <BackLighting className="blur-[240px] w-1/3" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4 md:w-fit mx-auto max-w-full z-10 relative">
+            <BackLighting className="w-1/3 blur-[240px]" />
+            <div className="relative z-10 mx-auto grid max-w-full grid-cols-1 items-center gap-4 sm:grid-cols-2 md:w-fit md:grid-cols-3">
                 {prices.map((price) => (
                     <PriceCard
                         key={price.title}

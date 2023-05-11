@@ -18,20 +18,20 @@ export const ProjectCard = ({
             href={projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="dark:bg-gray-900/60 bg-gray-200/60 border-cyan-200/10 border dark:border-gray-200/10 backdrop-blur-md rounded-lg"
+            className="rounded-lg border border-cyan-200/10 bg-gray-200/60 backdrop-blur-md dark:border-gray-200/10 dark:bg-gray-900/60"
         >
-            <div className="flex flex-col items-start gap-2 rounded-lg relative">
-                <div className="max-w-full h-48 w-full pb-4 border-b border-b-gray-200/10 relative">
+            <div className="relative flex flex-col items-start gap-2 rounded-lg">
+                <div className="relative h-48 w-full max-w-full border-b border-b-gray-200/10 pb-4">
                     <Image
                         src={projectImage}
                         alt={`${title} preview`}
                         fill
-                        className="object-cover rounded-t-lg"
+                        className="rounded-t-lg object-cover"
                     />
                 </div>
                 <div className="flex flex-col gap-4 px-4 pb-4">
                     <h1 className="text-4xl dark:text-gray-100">{title}</h1>
-                    <p className="text-lg dark:text-gray-300 max-w-sm">
+                    <p className="max-w-sm text-lg dark:text-gray-300">
                         {description}
                     </p>
                 </div>

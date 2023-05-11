@@ -54,7 +54,7 @@ export function UsersTable({ users }: UsersTableProps) {
     ];
 
     return (
-        <div className="flex flex-col w-max max-w-full">
+        <div className="flex w-max max-w-full flex-col">
             <DataTable data={users} columns={columns} />
         </div>
     );

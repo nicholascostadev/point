@@ -24,12 +24,12 @@ export const ThemeToggle = () => {
                     <Button
                         as="button"
                         onClick={toggleTheme}
-                        className="p-2 md:h-11 md:w-11 h-10 w-10 dark:bg-transparent bg-transparent"
+                        className="h-10 w-10 bg-transparent p-2 dark:bg-transparent md:h-11 md:w-11"
                     >
                         {theme === "dark" ? (
-                            <Sun className="w-8 h-8 stroke-default pointer-events-none" />
+                            <Sun className="stroke-default pointer-events-none h-8 w-8" />
                         ) : (
-                            <Moon className="w-8 h-8 fill-default pointer-events-none" />
+                            <Moon className="fill-default pointer-events-none h-8 w-8" />
                         )}
                     </Button>
                 </TooltipTrigger>

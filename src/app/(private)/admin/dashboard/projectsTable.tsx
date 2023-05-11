@@ -48,7 +48,7 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
                 header: ({ column }) => {
                     return (
                         <button
-                            className="flex justify-end items-center gap-1 px-2 py-1"
+                            className="flex items-center justify-end gap-1 px-2 py-1"
                             onClick={() =>
                                 column.toggleSorting(
                                     column.getIsSorted() === "asc"
@@ -104,7 +104,7 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
     );
 
     return (
-        <div className="flex flex-col w-max max-w-full">
+        <div className="flex w-max max-w-full flex-col">
             <DataTable data={data} columns={columns} />
         </div>
     );

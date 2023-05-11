@@ -9,7 +9,7 @@ export default function Login() {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen w-full">
+        <div className="flex h-screen w-full items-center justify-center">
             <SignIn />
         </div>
     );

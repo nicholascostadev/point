@@ -13,10 +13,10 @@ export function Settings() {
         <TooltipProvider>
             <div
                 id="settings-section"
-                className="relative flex justify-end border border-gray-950/20 dark:border-gray-200/20 w-full rounded-lg p-1"
+                className="relative flex w-full justify-end rounded-lg border border-gray-950/20 p-1 dark:border-gray-200/20"
             >
                 <label
-                    className="absolute left-2 -top-[14px]"
+                    className="absolute -top-[14px] left-2"
                     htmlFor="settings-section"
                 >
                     Filters
@@ -32,7 +32,7 @@ export function Settings() {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button as="button" className="p-2 dark:bg-transparent">
-                            <SettingsIcon className="w-6 h-6 stroke-default pointer-events-none" />
+                            <SettingsIcon className="stroke-default pointer-events-none h-6 w-6" />
                         </Button>
                     </TooltipTrigger>
                     <TooltipContent>

@@ -38,14 +38,14 @@ export default async function DashboardPage() {
     );
 
     return (
-        <div className="flex flex-col gap-6 pt-16 mt-header-height w-layout-base mx-auto max-w-full px-2 md:px-8">
+        <div className="mx-auto mt-header-height flex w-layout-base max-w-full flex-col gap-6 px-2 pt-16 md:px-8">
             <h1 className="text-5xl">Dashboard</h1>
 
             <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-3xl">All Users</h2>
                     <Suspense
-                        fallback={<Loader2 className="w-8 h-8 animate-spin" />}
+                        fallback={<Loader2 className="h-8 w-8 animate-spin" />}
                     >
                         {/* @ts-expect-error Server Component  */}
                         <UsersTableSSR />
@@ -56,7 +56,7 @@ export default async function DashboardPage() {
                     <h2 className="text-3xl">All Projects</h2>
 
                     <Suspense
-                        fallback={<Loader2 className="w-8 h-8 animate-spin" />}
+                        fallback={<Loader2 className="h-8 w-8 animate-spin" />}
                     >
                         <ProjectsTable projects={projectsWithAuthor} />
                     </Suspense>

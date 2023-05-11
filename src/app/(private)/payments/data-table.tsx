@@ -62,7 +62,7 @@ export function DataTable<TData, TValue>({
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <button className="ml-auto p-2 hover:bg-gray-100 border border-gray-300 dark:hover:bg-gray-900 dark:border-gray-900 rounded-md mb-4">
+                    <button className="mb-4 ml-auto rounded-md border border-gray-300 p-2 hover:bg-gray-100 dark:border-gray-900 dark:hover:bg-gray-900">
                         Columns
                     </button>
                 </DropdownMenuTrigger>

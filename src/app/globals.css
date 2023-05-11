@@ -24,10 +24,10 @@
 
 @layer components {
     .stroke-default {
-        @apply dark:stroke-gray-200 stroke-gray-800;
+        @apply stroke-gray-800 dark:stroke-gray-200;
     }
 
     .fill-default {
-        @apply dark:fill-gray-200 fill-gray-800;
+        @apply fill-gray-800 dark:fill-gray-200;
     }
 }

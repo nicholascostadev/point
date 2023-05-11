@@ -13,10 +13,10 @@ export const HeaderCTA = () => {
                 as="a"
                 href="/dashboard"
                 aria-label="Go to Dashboard"
-                className="hidden sm:flex dark:bg-transparent"
+                className="hidden dark:bg-transparent sm:flex"
             >
                 Dashboard
-                <LayoutDashboard className="w-6 h-6 stroke-default" />
+                <LayoutDashboard className="stroke-default h-6 w-6" />
             </Button>
         );
 
@@ -25,10 +25,10 @@ export const HeaderCTA = () => {
             as="a"
             href="/login"
             aria-label="Login"
-            className="hidden sm:flex dark:bg-transparent"
+            className="hidden dark:bg-transparent sm:flex"
         >
             Explore
-            <Map className="w-6 h-6" />
+            <Map className="h-6 w-6" />
         </Button>
     );
 };

@@ -4,8 +4,8 @@ import { sections } from "./referencesData";
 export default function References() {
     return (
         <main className="pt-header-height-alert">
-            <BackLighting className="w-1/3 h-1/3" />
-            <div className="w-layout-base max-w-full flex flex-col md:flex-row gap-4 px-2 md:px-8 py-8 mx-auto relative z-10">
+            <BackLighting className="h-1/3 w-1/3" />
+            <div className="relative z-10 mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 py-8 md:flex-row md:px-8">
                 {sections.map((section) => (
                     <section
                         key={section.id}
@@ -21,11 +21,11 @@ export default function References() {
                             {section.data.map((sectionData) => (
                                 <li
                                     key={sectionData.url}
-                                    className="underline-offset-4 w-auto"
+                                    className="w-auto underline-offset-4"
                                 >
                                     <a
                                         href={sectionData.url}
-                                        className="group dark:text-gray-300 dark:hover:text-gray-100 hover:text-gray-600 transition-colors"
+                                        className="group transition-colors hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
                                     >
                                         <span className="underline decoration-dotted group-hover:decoration-dashed">
                                             {sectionData.name}

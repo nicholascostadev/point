@@ -46,7 +46,7 @@ export const columns: ColumnDef<Payment>[] = [
         header: ({ column }) => {
             return (
                 <button
-                    className="flex justify-center items-center gap-1 px-2 py-1 border dark:border-gray-900"
+                    className="flex items-center justify-center gap-1 border px-2 py-1 dark:border-gray-900"
                     onClick={() =>
                         column.toggleSorting(column.getIsSorted() === "asc")
                     }
@@ -69,7 +69,7 @@ export const columns: ColumnDef<Payment>[] = [
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <button className="h-8 w-8 flex justify-center items-center rounded-full">
+                        <button className="flex h-8 w-8 items-center justify-center rounded-full">
                             <span className="sr-only">Open menu</span>
                             <MoreHorizontal className="h-4 w-4" />
                         </button>

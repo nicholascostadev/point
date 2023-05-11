@@ -27,8 +27,8 @@ export default function Page() {
 
     if (!isSignedIn) {
         return (
-            <main className="mt-header-height py-8 min-h-with-header pt-header-height bg-[url('/background-line.svg')]">
-                <div className="w-layout-base max-w-full px-2 md:px-8 mx-auto flex flex-col gap-4 relative">
+            <main className="mt-header-height min-h-with-header bg-[url('/background-line.svg')] py-8 pt-header-height">
+                <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
                     <h1 className="text-4xl">Not Allowed</h1>
                     <p className="text-lg">
                         Sorry, seems like you&apos;re not logged in, click{" "}
@@ -43,15 +43,15 @@ export default function Page() {
     }
 
     return (
-        <main className="mt-header-height py-8 min-h-with-header pt-header-height dark:bg-[url('/background-line.svg')]">
-            <div className="w-layout-base max-w-full px-2 md:px-8 mx-auto flex flex-col gap-4 relative">
-                <BackLighting className="dark:bg-conic-gradient bg-none" />
-                <div className="flex gap-2 items-end">
+        <main className="mt-header-height min-h-with-header py-8 pt-header-height dark:bg-[url('/background-line.svg')]">
+            <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
+                <BackLighting className="bg-none dark:bg-conic-gradient" />
+                <div className="flex items-end gap-2">
                     <h1 className="text-4xl">Dashboard</h1>
                     <span className="text-4xl">-</span>
                     <p className="text-2xl">
                         Current plan:{" "}
-                        <span className="text-cyan-600 dark:text-cyan-400 uppercase">
+                        <span className="uppercase text-cyan-600 dark:text-cyan-400">
                             {userPlan}
                         </span>
                     </p>

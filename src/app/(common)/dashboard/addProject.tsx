@@ -57,9 +57,9 @@ export function AddProject() {
                                     className="p-2 dark:bg-transparent"
                                 >
                                     {isLoadingProjects || isFetchingProjects ? (
-                                        <Loader2 className="w-6 h-6 pointer-events-none stroke-default animate-spin" />
+                                        <Loader2 className="stroke-default pointer-events-none h-6 w-6 animate-spin" />
                                     ) : (
-                                        <Plus className="w-6 h-6 pointer-events-none stroke-default" />
+                                        <Plus className="stroke-default pointer-events-none h-6 w-6" />
                                     )}
                                 </Button>
                             </PopoverTrigger>
@@ -68,7 +68,7 @@ export function AddProject() {
                             <p>Add a new Project</p>
                         </TooltipContent>
                     </Tooltip>
-                    <PopoverContent className="w-min max-w-full border-red-500 focus:ring-0 bg-gray-200/60 dark:bg-gray-950/80 text-red-500">
+                    <PopoverContent className="w-min max-w-full border-red-500 bg-gray-200/60 text-red-500 focus:ring-0 dark:bg-gray-950/80">
                         {errorText}
                         <PopoverArrow className="fill-red-500" />
                     </PopoverContent>
@@ -83,7 +83,7 @@ export function AddProject() {
                                 className="p-2 dark:bg-transparent"
                                 disabled={isLoadingProjects}
                             >
-                                <Plus className="w-6 h-6 pointer-events-none" />
+                                <Plus className="pointer-events-none h-6 w-6" />
                             </Button>
                         </DialogTrigger>
                     </TooltipTrigger>

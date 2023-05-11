@@ -55,7 +55,7 @@ export function StatusSelector() {
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger
                     id="trigger-status-button"
-                    className="border border-gray-950 dark:border-gray-900 rounded-md px-2 py-1 text-lg"
+                    className="rounded-md border border-gray-950 px-2 py-1 text-lg dark:border-gray-900"
                 >
                     {projectStatusFormatter(statusState)}
                 </PopoverTrigger>
