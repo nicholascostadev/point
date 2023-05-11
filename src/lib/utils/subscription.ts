@@ -44,3 +44,19 @@ export function getRemainingProjects(
             return 0;
     }
 }
+
+const userSchema = z.object({
+    publicMetadata: z.object({
+        subscription_plan: subscriptionSchema,
+    }),
+});
+
+export function getUserPlan(user: unknown) {
+    const parseResult = userSchema.safeParse(user);
+
+    if (!parseResult.success) return "starter";
+
+    const { data } = parseResult;
+
+    return data.publicMetadata.subscription_plan;
+}

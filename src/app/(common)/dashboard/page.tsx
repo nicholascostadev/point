@@ -1,16 +1,17 @@
 "use client";
 
-import { LoadingPage } from "./loadingPage";
-import { useUser } from "@clerk/nextjs";
-import { Settings } from "./settings";
-import { Search } from "./search";
-import { ProjectList } from "./projectList";
-import { useMemo } from "react";
-import { useProjectsStore } from "@/stores/projectStore";
 import { BackLighting } from "@/components/backLighting";
+import { getUserPlan } from "@/lib/utils/subscription";
+import { useProjectsStore } from "@/stores/projectStore";
+import { useUser } from "@clerk/nextjs";
+import { useMemo } from "react";
+import { LoadingPage } from "./loadingPage";
+import { ProjectList } from "./projectList";
+import { Search } from "./search";
+import { Settings } from "./settings";
 
 export default function Page() {
-    const { isSignedIn, isLoaded } = useUser();
+    const { user, isSignedIn, isLoaded } = useUser();
     const projects = useProjectsStore((state) => state.projects);
 
     const text = useMemo(() => {
@@ -41,10 +42,19 @@ export default function Page() {
     }
 
     return (
-        <main className="mt-header-height py-8 min-h-with-header pt-header-height bg-[url('/background-line.svg')]">
+        <main className="mt-header-height py-8 min-h-with-header pt-header-height dark:bg-[url('/background-line.svg')]">
             <div className="w-layout-base max-w-full px-2 md:px-8 mx-auto flex flex-col gap-4 relative">
-                <BackLighting />
-                <h1 className="text-4xl">Dashboard</h1>
+                <BackLighting className="dark:bg-conic-gradient bg-none" />
+                <div className="flex gap-2 items-end">
+                    <h1 className="text-4xl">Dashboard</h1>
+                    <span className="text-4xl">-</span>
+                    <p className="text-2xl">
+                        Current plan:{" "}
+                        <span className="text-cyan-600 dark:text-cyan-400 uppercase">
+                            {getUserPlan(user)}
+                        </span>
+                    </p>
+                </div>
                 <p className="text-lg">
                     Check the progress of the projects you&apos;ve requested
                 </p>
