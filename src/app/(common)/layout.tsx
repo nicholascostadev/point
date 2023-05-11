@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs/app-beta";
 import { Inter } from "next/font/google";
 import { Providers } from "../providers";
 
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header/header";
 import "../globals.css";
 
@@ -27,8 +28,10 @@ export default function RootLayout({
                 <Providers>
                     <body className={inter.className}>
                         <Header />
-
-                        {children}
+                        <main className="min-h-[calc(100vh-var(--footer-height))]">
+                            {children}
+                        </main>
+                        <Footer />
                     </body>
                 </Providers>
             </html>

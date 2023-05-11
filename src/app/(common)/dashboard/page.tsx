@@ -43,9 +43,9 @@ export default function Page() {
     }
 
     return (
-        <main className="mt-header-height min-h-with-header py-8 pt-header-height dark:bg-[url('/background-line.svg')]">
+        <div className="min-h-with-header py-8 pt-32">
             <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
-                <BackLighting className="bg-none dark:bg-conic-gradient" />
+                <BackLighting className="bg-none" />
                 <div className="flex items-end gap-2">
                     <h1 className="text-4xl">Dashboard</h1>
                     <span className="text-4xl">-</span>
@@ -72,6 +72,6 @@ export default function Page() {
                     <ProjectList />
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

@@ -27,9 +27,19 @@ export const ThemeToggle = () => {
                         className="h-10 w-10 bg-transparent p-2 dark:bg-transparent md:h-11 md:w-11"
                     >
                         {theme === "dark" ? (
-                            <Sun className="stroke-default pointer-events-none h-8 w-8" />
+                            <>
+                                <Sun className="stroke-default pointer-events-none h-8 w-8" />
+                                <span className="sr-only">
+                                    Change to light mode
+                                </span>
+                            </>
                         ) : (
-                            <Moon className="fill-default pointer-events-none h-8 w-8" />
+                            <>
+                                <Moon className="stroke-default pointer-events-none h-8 w-8" />
+                                <span className="sr-only">
+                                    Change to dark mode
+                                </span>
+                            </>
                         )}
                     </Button>
                 </TooltipTrigger>

@@ -38,7 +38,7 @@ export default async function DashboardPage() {
     );
 
     return (
-        <div className="mx-auto mt-header-height flex w-layout-base max-w-full flex-col gap-6 px-2 pt-16 md:px-8">
+        <div className="mx-auto flex w-layout-base max-w-full flex-col gap-6 px-2 pt-32 md:px-8">
             <h1 className="text-5xl">Dashboard</h1>
 
             <div className="flex flex-col gap-10">

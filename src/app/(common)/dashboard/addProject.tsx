@@ -55,6 +55,11 @@ export function AddProject() {
                                 <Button
                                     as="button"
                                     className="p-2 dark:bg-transparent"
+                                    aria-label={
+                                        isLoadingProjects || isFetchingProjects
+                                            ? "Loading..."
+                                            : "Add new project"
+                                    }
                                 >
                                     {isLoadingProjects || isFetchingProjects ? (
                                         <Loader2 className="stroke-default pointer-events-none h-6 w-6 animate-spin" />
@@ -82,6 +87,7 @@ export function AddProject() {
                                 as="button"
                                 className="p-2 dark:bg-transparent"
                                 disabled={isLoadingProjects}
+                                aria-label="Add new project"
                             >
                                 <Plus className="pointer-events-none h-6 w-6" />
                             </Button>

@@ -48,7 +48,7 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
                 header: ({ column }) => {
                     return (
                         <button
-                            className="flex items-center justify-end gap-1 px-2 py-1"
+                            className="flex items-center justify-end gap-1"
                             onClick={() =>
                                 column.toggleSorting(
                                     column.getIsSorted() === "asc"
@@ -60,9 +60,9 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
                         </button>
                     );
                 },
-                cell: ({ row, getValue }) => {
+                cell: ({ getValue }) => {
                     return (
-                        <div className="text-right">
+                        <div className="whitespace-nowrap text-right">
                             {projectStatusFormatter(
                                 getValue() as ProjectStatus
                             )}

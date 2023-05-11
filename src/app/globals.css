@@ -5,8 +5,12 @@
 @layer base {
     :root {
         --header-height: 80px;
+        --footer-height: 64px;
         --layout-base: 1440px;
         --transparent: rgba(255, 255, 255, 0);
+        --layout-height: calc(
+            100vh - var(--header-height) - var(--footer-height)
+        );
     }
 
     html {

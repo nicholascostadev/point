@@ -4,8 +4,8 @@ import { projects } from "./projectsData";
 
 export default function Projects() {
     return (
-        <main className="flex min-h-screen flex-col items-start bg-[url('/background-line.svg')] py-16 pt-header-height">
-            <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-8 px-2 pt-28 md:px-8">
+        <div className="flex flex-col items-start bg-[url('/background-line.svg')] pb-16 pt-32">
+            <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-8 px-2 md:px-8">
                 <BackLighting />
                 <div className="flex flex-col items-start justify-center gap-2">
                     <h1 className="text-4xl">Projects</h1>
@@ -26,6 +26,6 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

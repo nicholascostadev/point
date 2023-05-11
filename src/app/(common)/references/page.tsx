@@ -3,7 +3,7 @@ import { sections } from "./referencesData";
 
 export default function References() {
     return (
-        <main className="pt-header-height-alert">
+        <div className="pt-32">
             <BackLighting className="h-1/3 w-1/3" />
             <div className="mx-auto w-layout-base max-w-full px-2 md:px-8">
                 <div className="flex flex-col rounded-md bg-cyan-200 p-2">
@@ -78,6 +78,6 @@ export default function References() {
                     </section>
                 ))}
             </div>
-        </main>
+        </div>
     );
 }

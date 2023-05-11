@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <main className="flex min-h-[calc(100vh-var(--header-height))] flex-col items-center bg-[url('/background-line.svg')] bg-no-repeat">
+        <div className="flex flex-col items-center bg-[url('/background-line.svg')] bg-no-repeat">
             <section
                 aria-label="Hero"
                 className="flex w-full flex-col items-center justify-center bg-top pt-header-height dark:bg-spotlight-radial"
@@ -111,6 +111,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

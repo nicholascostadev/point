@@ -43,6 +43,7 @@ module.exports = {
             },
             height: {
                 header: "var(--header-height)",
+                footer: "var(--footer-height)",
             },
             width: {
                 "layout-base": "var(--layout-base)",
@@ -52,6 +53,7 @@ module.exports = {
             },
             minHeight: {
                 "with-header": "calc(100vh - var(--header-height))",
+                layout: "var(--layout-height)",
             },
             margin: {
                 "header-height": "var(--header-height)",

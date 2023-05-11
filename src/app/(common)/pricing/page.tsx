@@ -2,7 +2,7 @@ import { Prices } from "./prices";
 
 export default function Pricing() {
     return (
-        <main className="flex min-h-screen flex-col items-center gap-16 bg-[url('/background-line.svg')] bg-no-repeat px-2 py-[73px] pt-[calc(var(--header-height)+8rem)] md:px-8">
+        <div className="flex flex-col items-center gap-16 bg-[url('/background-line.svg')] bg-no-repeat px-2 pt-32 md:px-8">
             <div className="flex w-full flex-col items-center gap-2 overflow-x-hidden">
                 <h1 className="text-center text-4xl dark:text-gray-100">
                     Pricing
@@ -12,6 +12,6 @@ export default function Pricing() {
                 </p>
             </div>
             <Prices />
-        </main>
+        </div>
     );
 }

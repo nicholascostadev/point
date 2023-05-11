@@ -1,12 +1,12 @@
 import { Button } from "@/components/button";
-import { Settings as SettingsIcon } from "lucide-react";
-import { AddProject } from "./addProject";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/tooltip";
+import { Settings as SettingsIcon } from "lucide-react";
+import { AddProject } from "./addProject";
 
 export function Settings() {
     return (
@@ -16,7 +16,7 @@ export function Settings() {
                 className="relative flex w-full justify-end rounded-lg border border-gray-950/20 p-1 dark:border-gray-200/20"
             >
                 <label
-                    className="absolute -top-[14px] left-2"
+                    className="absolute -top-[14px] left-2  bg-white px-2 dark:bg-gray-950"
                     htmlFor="settings-section"
                 >
                     Filters

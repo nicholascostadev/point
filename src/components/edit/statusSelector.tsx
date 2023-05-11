@@ -73,6 +73,7 @@ export function StatusSelector() {
                                     key={opt.value}
                                     onSelect={handleSelectStatus}
                                     value={opt.value}
+                                    className="aria-selected:ring aria-selected:ring-offset-transparent"
                                 >
                                     <Check
                                         className={cl(
