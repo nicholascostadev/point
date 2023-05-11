@@ -18,6 +18,7 @@ model Project {
   views        Int      @default(0)
   author_id    String
   author_email String
+  type         String   @default("maintenance")
   status       String   @default("requested")
 
   @@unique([author_id, id])
