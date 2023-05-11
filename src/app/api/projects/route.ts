@@ -4,12 +4,12 @@ import {
     subscriptionSchema,
 } from "@/lib/utils/subscription";
 import { isUserAdmin } from "@/lib/utils/userRelated";
-import { descriptionSchema, nameSchema } from "@/validations";
+import { descriptionSchema, titleSchema } from "@/validations";
 import { clerkClient, currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
 
 const requestBodySchema = z.object({
-    name: nameSchema,
+    name: titleSchema,
     description: descriptionSchema,
 });
 

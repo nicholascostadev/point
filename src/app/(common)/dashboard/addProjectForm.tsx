@@ -1,13 +1,13 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/button";
-import { descriptionSchema, nameSchema } from "@/validations";
+import { descriptionSchema, titleSchema } from "@/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const formSchema = z.object({
-    name: nameSchema,
+    name: titleSchema,
     description: descriptionSchema,
 });
 

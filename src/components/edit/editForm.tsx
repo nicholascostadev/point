@@ -1,17 +1,19 @@
 import { Button } from "@/components/button";
+import { isOnAdminRoute, isUserAdmin } from "@/lib/utils/userRelated";
 import { useEditingStoreProjectData } from "@/stores/editingStore";
-import { descriptionSchema, nameSchema } from "@/validations";
+import { descriptionSchema, titleSchema } from "@/validations";
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
 
 const formSchema = z.object({
-    name: nameSchema,
+    title: titleSchema,
     description: descriptionSchema,
 });
 
@@ -26,6 +28,8 @@ export function EditForm({ closeModal }: EditFormProps) {
     const { id, title, description } = useEditingStoreProjectData();
     const queryClient = useQueryClient();
 
+    const pathname = usePathname();
+
     const {
         handleSubmit,
         register,
@@ -36,7 +40,7 @@ export function EditForm({ closeModal }: EditFormProps) {
     } = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: title ?? "",
+            title: title ?? "",
             description: description ?? "",
         },
     });
@@ -47,11 +51,11 @@ export function EditForm({ closeModal }: EditFormProps) {
 
     // Add initial values when opening the popover
     useEffect(() => {
-        setValue("name", title ?? "");
+        setValue("title", title ?? "");
         setValue("description", description ?? "");
     }, [setValue, title, description]);
 
-    const currentTitle = watch("name");
+    const currentTitle = watch("title");
     const currentDescription = watch("description");
 
     const didntChange =
@@ -59,12 +63,20 @@ export function EditForm({ closeModal }: EditFormProps) {
         currentDescription.trim() === description;
 
     const { mutateAsync, isLoading } = useMutation({
-        mutationFn: async ({ name, description }: FormSchema) => {
+        mutationFn: async ({ title, description }: FormSchema) => {
             if (!user) return;
 
-            return await fetch(`/api/users/${user.id}/projects/${id}`, {
+            let url = "";
+
+            if (isOnAdminRoute(pathname) && isUserAdmin(user)) {
+                url = `/api/projects/${id}`;
+            } else {
+                url = `/api/users/${user.id}/projects/${id}`;
+            }
+
+            return await fetch(url, {
                 body: JSON.stringify({
-                    name,
+                    title,
                     description,
                 }),
                 method: "PATCH",
@@ -92,12 +104,12 @@ export function EditForm({ closeModal }: EditFormProps) {
                     type="text"
                     id="name"
                     placeholder="Name of the project"
-                    aria-invalid={!!errors.name}
-                    {...register("name")}
+                    aria-invalid={!!errors.title}
+                    {...register("title")}
                 />
-                {errors.name && (
+                {errors.title && (
                     <small className="text-red-500">
-                        {errors.name.message}
+                        {errors.title.message}
                     </small>
                 )}
             </fieldset>

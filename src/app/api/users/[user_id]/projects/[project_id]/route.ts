@@ -1,7 +1,7 @@
 import { clerkUserIdValidator, projectIdValidator } from "@/app/api/validators";
 import { prisma } from "@/lib/prisma";
 import { isUserAdmin } from "@/lib/utils/userRelated";
-import { descriptionSchema, nameSchema } from "@/validations";
+import { descriptionSchema, titleSchema } from "@/validations";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
 
@@ -16,7 +16,7 @@ type DeleteRequestParams = {
     params: DeleteParams;
 };
 
-export async function DELETE(req: Request, { params }: DeleteRequestParams) {
+export async function DELETE(_: Request, { params }: DeleteRequestParams) {
     const result = deleteRequestParams.safeParse(params);
     const user = await currentUser();
 
@@ -55,7 +55,7 @@ export async function DELETE(req: Request, { params }: DeleteRequestParams) {
 }
 
 const updateSchema = {
-    name: nameSchema.optional(),
+    name: titleSchema.optional(),
     description: descriptionSchema.optional(),
 };
 
