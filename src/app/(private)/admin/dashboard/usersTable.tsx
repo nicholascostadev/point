@@ -54,8 +54,9 @@ export async function UsersTable() {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                                             {(
-                                                user.publicMetadata
-                                                    .roles as Array<string>
+                                                (user.publicMetadata
+                                                    ?.roles as Array<string>) ??
+                                                []
                                             ).join(",")}
                                         </td>
                                     </tr>
