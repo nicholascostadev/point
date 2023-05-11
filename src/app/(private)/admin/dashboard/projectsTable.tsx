@@ -1,8 +1,16 @@
 "use client";
 
-import { projectStatusFormatter } from "@/lib/utils/projectRelated";
+import {
+    ProjectStatus,
+    projectStatusFormatter,
+} from "@/lib/utils/projectRelated";
+import { getFullName } from "@/lib/utils/userRelated";
 import { ProjectWithAuthor } from "@/types";
 import { useQuery } from "@tanstack/react-query";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react";
+import { useMemo } from "react";
+import { DataTable } from "../../payments/data-table";
 import { EditProject } from "./edit/editProject";
 
 type ProjectsTableProps = {
@@ -18,84 +26,86 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
         staleTime: 1000 * 30, // 30 seconds
     });
 
+    const columns: ColumnDef<ProjectWithAuthor>[] = useMemo(
+        () => [
+            {
+                accessorKey: "title",
+                header: "Title",
+                cell: ({ getValue }) => {
+                    return (
+                        <div className="whitespace-nowrap">
+                            {getValue() as string}
+                        </div>
+                    );
+                },
+            },
+            {
+                accessorKey: "description",
+                header: "Description",
+            },
+            {
+                accessorKey: "status",
+                header: ({ column }) => {
+                    return (
+                        <button
+                            className="flex justify-end items-center gap-1 px-2 py-1"
+                            onClick={() =>
+                                column.toggleSorting(
+                                    column.getIsSorted() === "asc"
+                                )
+                            }
+                        >
+                            Status
+                            <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </button>
+                    );
+                },
+                cell: ({ row, getValue }) => {
+                    return (
+                        <div className="text-right">
+                            {projectStatusFormatter(
+                                getValue() as ProjectStatus
+                            )}
+                        </div>
+                    );
+                },
+            },
+            {
+                accessorKey: "author.firstName",
+                header: "Author",
+                cell: ({ row }) => {
+                    return (
+                        <p className="whitespace-nowrap">
+                            {getFullName({
+                                firstName: row.original.author.firstName,
+                                lastName: row.original.author.lastName,
+                            })}
+                        </p>
+                    );
+                },
+            },
+            {
+                accessorKey: "author_email",
+                header: "Author Email",
+            },
+            {
+                accessorKey: "edit",
+                header: () => {
+                    return <div className="text-center">Edit</div>;
+                },
+                cell: ({ row }) => {
+                    const project = row.original;
+
+                    return <EditProject projectData={project} />;
+                },
+            },
+        ],
+        []
+    );
+
     return (
         <div className="flex flex-col w-max max-w-full">
-            <div className="-m-1.5 overflow-x-auto">
-                <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="border rounded-lg overflow-hidden dark:border-gray-900">
-                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-900">
-                            <thead>
-                                <tr>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase w-24"
-                                    >
-                                        Title
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 max-w-xs text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Description
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 max-w-xs text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Status
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 max-w-xs text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Author
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 max-w-xs text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Author Email
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 max-w-xs text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Edit
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
-                                {data.map((project) => (
-                                    <tr key={project.id}>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200 w-24">
-                                            {project.title}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200 min-w-[500px] max-w-full">
-                                            {project.description}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {projectStatusFormatter(
-                                                project.status
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {project.author.firstName}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {project.author_email}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            <EditProject
-                                                projectData={project}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <DataTable data={data} columns={columns} />
         </div>
     );
 }

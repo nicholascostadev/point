@@ -21,6 +21,7 @@
         "@radix-ui/react-tooltip": "^1.0.5",
         "@stripe/stripe-js": "^1.52.1",
         "@tanstack/react-query": "^4.29.5",
+        "@tanstack/react-table": "^8.9.1",
         "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",
         "@types/node": "18.15.13",
         "@types/react": "18.0.38",

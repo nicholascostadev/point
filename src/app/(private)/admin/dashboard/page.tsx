@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { ProjectsTable } from "./projectsTable";
-import { UsersTable } from "./usersTable";
+import { UsersTableSSR } from "./usersTableSSR";
 
 export default async function DashboardPage() {
     const user = await currentUser();
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
                         fallback={<Loader2 className="w-8 h-8 animate-spin" />}
                     >
                         {/* @ts-expect-error Server Component  */}
-                        <UsersTable />
+                        <UsersTableSSR />
                     </Suspense>
                 </div>
 

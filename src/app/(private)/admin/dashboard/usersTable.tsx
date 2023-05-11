@@ -1,71 +1,57 @@
-import { clerkClient } from "@clerk/nextjs/app-beta";
+"use client";
 
-export async function UsersTable() {
-    const users = await clerkClient.users.getUserList();
+import { getFullName } from "@/lib/utils/userRelated";
+import { User } from "@clerk/nextjs/dist/api";
+import { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "../../payments/data-table";
+
+type UsersTableProps = {
+    users: User[];
+};
+
+export function UsersTable({ users }: UsersTableProps) {
+    const columns: ColumnDef<User>[] = [
+        {
+            header: "First Name",
+            cell: ({ row }) => {
+                return getFullName({
+                    firstName: row.original.firstName,
+                    lastName: row.original.lastName,
+                });
+            },
+        },
+        {
+            accessorKey: "username",
+            header: "Username",
+            cell: ({ getValue }) => {
+                const username = getValue() as string | undefined;
+
+                return username ?? "No username";
+            },
+        },
+        {
+            accessorKey: "emailAddresses",
+            header: "Email",
+            cell: ({ getValue }) => {
+                const emails = getValue() as Array<{ emailAddress: string }>;
+
+                return emails[0].emailAddress;
+            },
+        },
+        {
+            accessorKey: "publicMetadata.roles",
+            header: "Roles",
+            cell: ({ getValue }) => {
+                const roles = getValue() as string[] | undefined;
+
+                return roles ? roles.join(", ") : "None";
+            },
+        },
+    ];
 
     return (
         <div className="flex flex-col w-max max-w-full">
-            <div className="-m-1.5 overflow-x-auto">
-                <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="border rounded-lg overflow-hidden dark:border-gray-900">
-                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-900">
-                            <thead>
-                                <tr>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        First Name
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Username
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Email
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-                                    >
-                                        Roles
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
-                                {users.map((user) => (
-                                    <tr key={user.id}>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {user.firstName ?? "No username"}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {user.username ?? "No username"}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {
-                                                user.emailAddresses[0]
-                                                    .emailAddress
-                                            }
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {(
-                                                (user.publicMetadata
-                                                    ?.roles as Array<string>) ??
-                                                []
-                                            ).join(",")}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <DataTable data={users} columns={columns} />
         </div>
     );
 }

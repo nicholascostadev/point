@@ -23,7 +23,7 @@ export function DeleteProject() {
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger className="text-red-500 px-2 py-1 hover:bg-red-500 hover:text-gray-200 focus-visible:bg-red-500 focus-visible:text-gray-200 rounded-full transition-colors">
+            <DialogTrigger className="text-red-500 p-2 hover:bg-red-500 hover:text-gray-200 focus-visible:bg-red-500 focus-visible:text-gray-200 rounded-full transition-colors">
                 Delete Project
             </DialogTrigger>
             <DialogContent>
