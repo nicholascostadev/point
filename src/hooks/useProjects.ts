@@ -4,8 +4,8 @@ import {
 } from "@/lib/utils/subscription";
 import { useFiltersStore } from "@/stores/filters";
 import { useProjectsStore } from "@/stores/projectStore";
+import { ProjectOverridden } from "@/types";
 import { useUser } from "@clerk/nextjs";
-import { Project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -21,7 +21,7 @@ async function getProjects({ userId, search }: GetProjectsParams) {
 
     searchParams.set("query", search ?? "");
 
-    const projects: Project[] = await fetch(
+    const projects: ProjectOverridden[] = await fetch(
         `/api/users/${userId}/projects?${searchParams.toString()}`
     )
         .then((res) => res.json())

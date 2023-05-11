@@ -5,3 +5,7 @@ export type ProjectWithAuthor = Project & {
     author: User;
     status: ProjectStatus;
 };
+
+export type ProjectOverridden = Project & {
+    status: ProjectStatus;
+};
