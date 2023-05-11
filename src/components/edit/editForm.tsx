@@ -1,5 +1,5 @@
+import { FormSchema } from "@/hooks/useEditingForm";
 import { useFormContext } from "react-hook-form";
-import { FormSchema } from "./editPopover";
 
 export function EditForm() {
     const {
