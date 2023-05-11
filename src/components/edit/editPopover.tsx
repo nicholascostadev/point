@@ -1,14 +1,13 @@
 import { PopoverContent } from "@/components/popover";
-import { useEditingForm } from "@/hooks/useEditingForm";
+import { FormSchema, useEditingForm } from "@/hooks/useEditingForm";
 import { useEditingMutation } from "@/hooks/useEditingMutation";
-import { projectStatusSchema } from "@/lib/utils/projectRelated";
+import { isUserAdmin } from "@/lib/utils/userRelated";
 import { useEditingStoreProjectData } from "@/stores/editingStore";
-import { descriptionSchema, titleSchema } from "@/validations";
+import { useUser } from "@clerk/nextjs";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { FormProvider } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { z } from "zod";
 import { Button } from "../button";
 import { DeleteProject } from "./deleteProject";
 import { EditForm } from "./editForm";
@@ -18,19 +17,8 @@ type EditPopoverProps = {
     closeModal: () => void;
 };
 
-const formSchema = z.object({
-    title: titleSchema,
-    description: descriptionSchema,
-    status: projectStatusSchema,
-});
-
-export type FormSchema = z.infer<typeof formSchema>;
-
-type EditFormProps = {
-    closeModal: () => void;
-};
-
 export function EditPopover({ closeModal }: EditPopoverProps) {
+    const { user } = useUser();
     const queryClient = useQueryClient();
     const { title, description, status } = useEditingStoreProjectData();
     const { methods, formState, formData } = useEditingForm();
@@ -50,8 +38,8 @@ export function EditPopover({ closeModal }: EditPopoverProps) {
     }
 
     const didntChange =
-        formData.currentTitle.trim() === title &&
-        formData.currentDescription.trim() === description &&
+        formData.currentTitle?.trim() === title &&
+        formData.currentDescription?.trim() === description &&
         formData.currentStatus === status;
 
     return (
@@ -67,7 +55,7 @@ export function EditPopover({ closeModal }: EditPopoverProps) {
                             onSubmit={handleSubmit(handleUpdateProject)}
                         >
                             <EditForm />
-                            <StatusSelector />
+                            {isUserAdmin(user) && <StatusSelector />}
 
                             <Button
                                 as="button"

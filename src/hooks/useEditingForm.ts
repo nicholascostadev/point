@@ -7,9 +7,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-    title: titleSchema,
-    description: descriptionSchema,
-    status: projectStatusSchema,
+    title: titleSchema.optional(),
+    description: descriptionSchema.optional(),
+    status: projectStatusSchema.optional(),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
