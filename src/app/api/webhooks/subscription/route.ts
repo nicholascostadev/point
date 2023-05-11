@@ -208,7 +208,7 @@ export async function POST(req: Request) {
         event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     } catch (err) {
         log.error("Error constructing webhook event", {
-            err,
+            err: JSON.stringify(err),
         });
 
         if (err instanceof Error) {
