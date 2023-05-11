@@ -67,13 +67,13 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
                             <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
                                 {data.map((project) => (
                                     <tr key={project.id}>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200 w-24">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200 w-24">
                                             {project.title}
                                         </td>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200 min-w-[500px] max-w-full">
                                             {project.description}
                                         </td>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                                             {projectStatusFormatter(
                                                 project.status
                                             )}
