@@ -1,4 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
+import { log } from "next-axiom";
 import { headers } from "next/headers";
 import { Readable } from "stream";
 import Stripe from "stripe";
@@ -206,6 +207,10 @@ export async function POST(req: Request) {
     try {
         event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     } catch (err) {
+        log.error("Error constructing webhook event", {
+            err,
+        });
+
         if (err instanceof Error) {
             return new Response(`Webhook Error: ${err.message}`, {
                 status: 400,
@@ -272,6 +277,8 @@ export async function POST(req: Request) {
                 );
         }
     } catch (err) {
+        log.error("Random error", { err });
+
         if (err instanceof Error) {
             return new Response(JSON.stringify({ err: err.message }), {
                 status: 500,
