@@ -7,8 +7,8 @@ export async function UsersTable() {
         <div className="flex flex-col w-max max-w-full">
             <div className="-m-1.5 overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="border rounded-lg overflow-hidden dark:border-gray-700">
-                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <div className="border rounded-lg overflow-hidden dark:border-gray-900">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-900">
                             <thead>
                                 <tr>
                                     <th
@@ -37,7 +37,7 @@ export async function UsersTable() {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
                                 {users.map((user) => (
                                     <tr key={user.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">

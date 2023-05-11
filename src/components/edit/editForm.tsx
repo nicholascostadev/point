@@ -87,7 +87,7 @@ export function EditForm({ closeModal }: EditFormProps) {
                 <label htmlFor="name">Name</label>
                 <input
                     className={
-                        'bg-transparent border rounded-lg p-2 dark:text-gray-200 placeholder:text-gray-600 dark:placeholder:text-gray-400 text-gray-950 border-gray-950/20 dark:border-gray-200/20 [&[aria-invalid="true"]]:border-red-500'
+                        'bg-transparent border rounded-lg p-2 dark:text-gray-200 placeholder:text-gray-600 dark:placeholder:text-gray-400 text-gray-950 border-gray-950/20 dark:border-gray-900 [&[aria-invalid="true"]]:border-red-500'
                     }
                     type="text"
                     id="name"
@@ -105,7 +105,7 @@ export function EditForm({ closeModal }: EditFormProps) {
                 <label htmlFor="description">Description</label>
                 <textarea
                     className={
-                        'bg-transparent border rounded-lg p-2 resize-none dark:text-gray-200 placeholder:text-gray-600 dark:placeholder:text-gray-400 text-gray-950 border-gray-950/20 dark:border-gray-200/20 [&[aria-invalid="true"]]:border-red-500'
+                        'bg-transparent border rounded-lg p-2 resize-none dark:text-gray-200 placeholder:text-gray-600 dark:placeholder:text-gray-400 text-gray-950 border-gray-950/20 dark:border-gray-900 [&[aria-invalid="true"]]:border-red-500'
                     }
                     id="description"
                     placeholder="Describe what want this project to be like, please be brief."

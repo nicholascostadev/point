@@ -1,10 +1,8 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import { DashboardCard } from "./dashboardCard";
 import { useProjects } from "@/hooks/useProjects";
-import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+import { DashboardCard } from "./dashboardCard";
 
 type ProjectListProps = {
     user: {
