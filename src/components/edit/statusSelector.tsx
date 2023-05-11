@@ -1,5 +1,6 @@
 "use client";
 
+import { FormSchema } from "@/hooks/useEditingForm";
 import { cl } from "@/lib/utils/cl";
 import {
     ProjectStatus,
@@ -18,7 +19,6 @@ import {
     CommandItem,
 } from "../command";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
-import { FormSchema } from "./editPopover";
 
 export function StatusSelector() {
     const { status } = useEditingStoreProjectData();

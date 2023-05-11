@@ -1,11 +1,11 @@
 "use client";
 
-import { FormSchema } from "@/components/edit/editPopover";
 import { isOnAdminRoute, isUserAdmin } from "@/lib/utils/userRelated";
 import { useEditingStoreProjectData } from "@/stores/editingStore";
 import { useUser } from "@clerk/nextjs";
 import { useMutation } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
+import { FormSchema } from "./useEditingForm";
 
 export function useEditingMutation() {
     const { user } = useUser();
