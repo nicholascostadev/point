@@ -1,3 +1,4 @@
+import { prisma } from "@/lib/prisma";
 import { projectStatusSchema } from "@/lib/utils/projectRelated";
 import { isUserAdmin } from "@/lib/utils/userRelated";
 import { descriptionSchema, titleSchema } from "@/validations";
