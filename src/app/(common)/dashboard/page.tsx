@@ -1,7 +1,7 @@
 "use client";
 
 import { BackLighting } from "@/components/backLighting";
-import { getUserPlan } from "@/lib/utils/subscription";
+import { useUserPlan } from "@/hooks/useUserPlan";
 import { useProjectsStore } from "@/stores/projectStore";
 import { useUser } from "@clerk/nextjs";
 import { useMemo } from "react";
@@ -13,6 +13,7 @@ import { Settings } from "./settings";
 export default function Page() {
     const { user, isSignedIn, isLoaded } = useUser();
     const projects = useProjectsStore((state) => state.projects);
+    const userPlan = useUserPlan();
 
     const text = useMemo(() => {
         const project = projects.length > 1 ? "projects" : "project";
@@ -51,7 +52,7 @@ export default function Page() {
                     <p className="text-2xl">
                         Current plan:{" "}
                         <span className="text-cyan-600 dark:text-cyan-400 uppercase">
-                            {getUserPlan(user)}
+                            {userPlan}
                         </span>
                     </p>
                 </div>

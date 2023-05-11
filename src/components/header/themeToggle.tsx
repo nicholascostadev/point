@@ -1,5 +1,6 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "../button";
 import {
@@ -8,7 +9,6 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "../tooltip";
-import { Moon, Sun } from "lucide-react";
 
 export const ThemeToggle = () => {
     const { theme, setTheme } = useTheme();
@@ -20,7 +20,7 @@ export const ThemeToggle = () => {
     return (
         <TooltipProvider>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <Button
                         as="button"
                         onClick={toggleTheme}

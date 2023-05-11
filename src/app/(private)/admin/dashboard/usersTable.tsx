@@ -39,12 +39,16 @@ export function UsersTable({ users }: UsersTableProps) {
             },
         },
         {
-            accessorKey: "publicMetadata.roles",
+            accessorKey: "publicMetadata",
             header: "Roles",
             cell: ({ getValue }) => {
-                const roles = getValue() as string[] | undefined;
+                const publicMetadata = getValue() as
+                    | { roles: string[] }
+                    | undefined;
 
-                return roles ? roles.join(", ") : "None";
+                return publicMetadata?.roles
+                    ? publicMetadata.roles.join(", ")
+                    : "None";
             },
         },
     ];

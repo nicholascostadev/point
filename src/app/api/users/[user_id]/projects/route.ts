@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { isUserAdmin } from "@/lib/utils/userRelated";
 import { currentUser } from "@clerk/nextjs/app-beta";
+import { log } from "next-axiom";
 import { z } from "zod";
 
 const urlParamsSchema = z.object({
@@ -62,7 +63,7 @@ export async function GET(req: Request, { params }: RequestParams) {
 
         return new Response(JSON.stringify(projects));
     } catch (err) {
-        console.error(err);
+        log.error("Error getting projects", { err });
         return new Response("Internal server error", { status: 500 });
     }
 }
