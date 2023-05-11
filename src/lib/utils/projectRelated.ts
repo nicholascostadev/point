@@ -40,6 +40,8 @@ export const projectStatuses: ProjectStatusOption[] = [
 
 export function projectStatusFormatter(status?: ProjectStatus) {
     return (
-        projectStatuses.find((s) => s.value === status)?.label ?? "Requested"
+        projectStatuses.find(
+            (s) => s.value.toLocaleLowerCase() === status?.toLocaleLowerCase()
+        )?.label ?? "Requested"
     );
 }

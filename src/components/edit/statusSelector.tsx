@@ -27,13 +27,17 @@ export function StatusSelector() {
     const { setValue } = useFormContext<FormSchema>();
 
     function handleSelectStatus(currentStatus: string) {
-        setStatus(currentStatus as ProjectStatus);
+        setStatus(
+            currentStatus
+                .toLocaleLowerCase()
+                .replaceAll(" ", "") as ProjectStatus
+        );
         setValue(
             "status",
             (projectStatuses.find(
                 (st) =>
-                    st.label.toLocaleLowerCase() ===
-                    currentStatus.toLocaleLowerCase()
+                    st.label.toLocaleLowerCase().replaceAll(" ", "") ===
+                    currentStatus.toLocaleLowerCase().replaceAll(" ", "")
             )?.value ?? "requested") as ProjectStatus
         );
 
@@ -68,11 +72,13 @@ export function StatusSelector() {
                                 <CommandItem
                                     key={opt.value}
                                     onSelect={handleSelectStatus}
+                                    value={opt.value}
                                 >
                                     <Check
                                         className={cl(
                                             "mr-2 h-4 w-4",
-                                            statusState === opt.value
+                                            statusState?.toLowerCase() ===
+                                                opt.value.toLowerCase()
                                                 ? "opacity-100"
                                                 : "opacity-0"
                                         )}

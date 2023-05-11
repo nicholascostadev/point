@@ -1,5 +1,8 @@
 import { cl } from "@/lib/utils/cl";
-import { ProjectStatus } from "@/lib/utils/projectRelated";
+import {
+    ProjectStatus,
+    projectStatusFormatter,
+} from "@/lib/utils/projectRelated";
 import { Status, useFiltersStore } from "@/stores/filters";
 import { EditProject } from "./edit/editProject";
 
@@ -47,7 +50,7 @@ export function DashboardCard({
                         statusColor
                     )}
                 >
-                    {status}
+                    {projectStatusFormatter(status)}
                 </button>
                 <EditProject
                     projectData={{

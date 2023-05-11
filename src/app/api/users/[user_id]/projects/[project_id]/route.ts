@@ -92,7 +92,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         );
     }
 
-    const { title, description } = parsedBody.data;
+    const { title, description, status } = parsedBody.data;
     const id = params.project_id;
 
     const project = await prisma.project.findFirst({
@@ -111,13 +111,14 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         );
     }
 
-    await prisma.project.update({
+    const updated = await prisma.project.update({
         where: {
             id,
         },
         data: {
             title,
             description,
+            status,
         },
     });
 
