@@ -1,100 +1,17 @@
-import { Button } from "@/components/button";
-import { isOnAdminRoute, isUserAdmin } from "@/lib/utils/userRelated";
-import { useEditingStoreProjectData } from "@/stores/editingStore";
-import { descriptionSchema, titleSchema } from "@/validations";
-import { useUser } from "@clerk/nextjs";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { z } from "zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useFormContext } from "react-hook-form";
+import { FormSchema } from "./editPopover";
 
-const formSchema = z.object({
-    title: titleSchema,
-    description: descriptionSchema,
-});
-
-type FormSchema = z.infer<typeof formSchema>;
-
-type EditFormProps = {
-    closeModal: () => void;
-};
-
-export function EditForm({ closeModal }: EditFormProps) {
-    const { user } = useUser();
-    const { id, title, description } = useEditingStoreProjectData();
+export function EditForm() {
     const queryClient = useQueryClient();
-
-    const pathname = usePathname();
-
     const {
-        handleSubmit,
         register,
-        formState: { errors, isSubmitting },
-        setValue,
-        reset,
-        watch,
-    } = useForm<FormSchema>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            title: title ?? "",
-            description: description ?? "",
-        },
-    });
-
-    async function handleUpdateProject(formData: FormSchema) {
-        await mutateAsync(formData);
-    }
-
-    // Add initial values when opening the popover
-    useEffect(() => {
-        setValue("title", title ?? "");
-        setValue("description", description ?? "");
-    }, [setValue, title, description]);
-
-    const currentTitle = watch("title");
-    const currentDescription = watch("description");
-
-    const didntChange =
-        currentTitle.trim() === title &&
-        currentDescription.trim() === description;
-
-    const { mutateAsync, isLoading } = useMutation({
-        mutationFn: async ({ title, description }: FormSchema) => {
-            if (!user) return;
-
-            let url = "";
-
-            if (isOnAdminRoute(pathname) && isUserAdmin(user)) {
-                url = `/api/projects/${id}`;
-            } else {
-                url = `/api/users/${user.id}/projects/${id}`;
-            }
-
-            return await fetch(url, {
-                body: JSON.stringify({
-                    title,
-                    description,
-                }),
-                method: "PATCH",
-            });
-        },
-        onSuccess: () => {
-            reset();
-            closeModal();
-            queryClient.invalidateQueries(["projects"]);
-            toast.success("Project updated successfully!");
-        },
-    });
+        formState: { errors },
+    } = useFormContext<FormSchema>();
 
     return (
-        <form
-            className="flex flex-col gap-2 w-96"
-            onSubmit={handleSubmit(handleUpdateProject)}
-        >
+        <div className="flex flex-col gap-2">
+            <strong>Editing</strong>
             <fieldset className="flex flex-col gap-2">
                 <label htmlFor="name">Name</label>
                 <input
@@ -131,20 +48,6 @@ export function EditForm({ closeModal }: EditFormProps) {
                     </small>
                 )}
             </fieldset>
-            <Button
-                as="button"
-                type="submit"
-                disabled={isSubmitting || didntChange}
-            >
-                {isSubmitting || isLoading ? (
-                    <div className="flex justify-center items-center gap-1">
-                        <Loader2 className="animate-spin" />
-                        Submitting...
-                    </div>
-                ) : (
-                    "Submit"
-                )}
-            </Button>
-        </form>
+        </div>
     );
 }

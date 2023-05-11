@@ -1,23 +1,24 @@
-import { Status, useFiltersStore } from "@/stores/filters";
 import { cl } from "@/lib/utils/cl";
+import { ProjectStatus } from "@/lib/utils/projectRelated";
+import { Status, useFiltersStore } from "@/stores/filters";
 import { EditProject } from "./edit/editProject";
 
 type DashboardCardProps = {
     id: string;
     title: string;
     description: string;
-    status: string;
+    status: ProjectStatus;
 };
 
-function generateStatusColor(status: Status) {
+function generateStatusColor(status: ProjectStatus) {
     switch (status) {
         case "requested":
             return "bg-cyan-500";
-        case "approved":
+        case "completed":
             return "bg-green-500";
-        case "pending":
+        case "declined":
             return "bg-yellow-500";
-        case "delivered":
+        case "inProgress":
             return "bg-blue-500";
         default:
             return "bg-red-500";
@@ -32,7 +33,7 @@ export function DashboardCard({
 }: DashboardCardProps) {
     const changeStatus = useFiltersStore((state) => state.actions.changeStatus);
 
-    const statusColor = generateStatusColor(status as Status);
+    const statusColor = generateStatusColor(status as ProjectStatus);
 
     return (
         <div className="relative flex flex-col gap-2 dark:bg-gray-900/60 bg-gray-200/60 border border-cyan-200/10 dark:border-gray-200/10 backdrop-blur-md min-h-[20rem] p-4 rounded-lg">
@@ -53,6 +54,7 @@ export function DashboardCard({
                         id,
                         title,
                         description,
+                        status,
                     }}
                 />
             </div>

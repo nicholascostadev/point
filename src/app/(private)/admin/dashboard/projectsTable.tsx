@@ -1,5 +1,6 @@
 "use client";
 
+import { projectStatusFormatter } from "@/lib/utils/projectRelated";
 import { ProjectWithAuthor } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { EditProject } from "./edit/editProject";
@@ -73,7 +74,9 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
                                             {project.description}
                                         </td>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {project.status}
+                                            {projectStatusFormatter(
+                                                project.status
+                                            )}
                                         </td>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
                                             {project.author.firstName}

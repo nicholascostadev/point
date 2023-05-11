@@ -1,5 +1,6 @@
 import { clerkUserIdValidator, projectIdValidator } from "@/app/api/validators";
 import { prisma } from "@/lib/prisma";
+import { projectStatusSchema } from "@/lib/utils/projectRelated";
 import { isUserAdmin } from "@/lib/utils/userRelated";
 import { descriptionSchema, titleSchema } from "@/validations";
 import { currentUser } from "@clerk/nextjs/app-beta";
@@ -55,8 +56,9 @@ export async function DELETE(_: Request, { params }: DeleteRequestParams) {
 }
 
 const updateSchema = {
-    name: titleSchema.optional(),
+    title: titleSchema.optional(),
     description: descriptionSchema.optional(),
+    status: projectStatusSchema.optional(),
 };
 
 type UpdateProjectParams = {
@@ -82,7 +84,6 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
     const parsedBody = z.object(updateSchema).safeParse(body);
 
     if (!parsedBody.success) {
-        console.log(parsedBody.error);
         return new Response(
             JSON.stringify({
                 error: "Invalid body",
@@ -91,7 +92,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         );
     }
 
-    const { name, description } = parsedBody.data;
+    const { title, description } = parsedBody.data;
     const id = params.project_id;
 
     const project = await prisma.project.findFirst({
@@ -115,7 +116,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
             id,
         },
         data: {
-            title: name,
+            title,
             description,
         },
     });

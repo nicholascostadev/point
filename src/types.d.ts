@@ -3,4 +3,5 @@ import type { Project } from "@prisma/client";
 
 export type ProjectWithAuthor = Project & {
     author: User;
+    status: ProjectStatus;
 };

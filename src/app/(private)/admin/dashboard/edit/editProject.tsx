@@ -3,6 +3,7 @@
 import { Dialog } from "@/components/dialog";
 import { EditPopover } from "@/components/edit/editPopover";
 import { Popover, PopoverTrigger } from "@/components/popover";
+import { ProjectStatus } from "@/lib/utils/projectRelated";
 import { useEditingStoreActions } from "@/stores/editingStore";
 import { MoreVertical } from "lucide-react";
 import { useState } from "react";
@@ -12,6 +13,7 @@ type EditProjectProps = {
         id: string;
         title: string;
         description: string;
+        status: ProjectStatus;
     };
 };
 

@@ -1,4 +1,6 @@
+import { projectStatusSchema } from "@/lib/utils/projectRelated";
 import { isUserAdmin } from "@/lib/utils/userRelated";
+import { descriptionSchema, titleSchema } from "@/validations";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
 import { projectIdValidator } from "../../validators";
@@ -60,9 +62,9 @@ type PatchParams = {
 };
 
 const updateProjectSchema = z.object({
-    title: z.string().optional(),
-    description: z.string().optional(),
-    status: z.string().optional(),
+    title: titleSchema.optional(),
+    description: descriptionSchema.optional(),
+    status: projectStatusSchema.optional(),
 });
 
 export async function PATCH(req: Request, { params }: PatchParams) {
@@ -114,8 +116,9 @@ export async function PATCH(req: Request, { params }: PatchParams) {
                 id,
             },
             data: {
-                title: title,
+                title,
                 description,
+                status,
             },
         });
 

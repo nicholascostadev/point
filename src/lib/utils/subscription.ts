@@ -27,8 +27,6 @@ export function getRemainingProjects(
     plan?: SubscriptionPlan,
     totalProjects: number | undefined = 0
 ) {
-    console.log({ plan });
-
     switch (plan) {
         case "enterprise":
             return ENTERPRISE_MAXIMUM_PROJECTS - totalProjects > 0
