@@ -1,9 +1,7 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useFormContext } from "react-hook-form";
 import { FormSchema } from "./editPopover";
 
 export function EditForm() {
-    const queryClient = useQueryClient();
     const {
         register,
         formState: { errors },
