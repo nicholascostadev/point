@@ -2,7 +2,7 @@ import {
     SubscriptionPlan,
     getRemainingProjects,
 } from "@/lib/utils/subscription";
-import { useFiltersStore } from "@/stores/filters";
+import { StoreProjectStatus, useFiltersStore } from "@/stores/filters";
 import { useProjectsStore } from "@/stores/projectStore";
 import { ProjectOverridden } from "@/types";
 import { useUser } from "@clerk/nextjs";
@@ -12,14 +12,20 @@ import { useEffect } from "react";
 type GetProjectsParams = {
     userId?: string;
     search?: string;
+    statusFilter: StoreProjectStatus;
 };
 
-async function getProjects({ userId, search }: GetProjectsParams) {
+async function getProjects({
+    userId,
+    search,
+    statusFilter,
+}: GetProjectsParams) {
     if (!userId) return Promise.resolve([]);
 
     const searchParams = new URLSearchParams();
 
     searchParams.set("query", search ?? "");
+    searchParams.set("status", statusFilter === "none" ? "" : statusFilter);
 
     const projects: ProjectOverridden[] = await fetch(
         `/api/users/${userId}/projects?${searchParams.toString()}`
@@ -34,6 +40,7 @@ async function getProjects({ userId, search }: GetProjectsParams) {
 
 export function useProjects() {
     const { user } = useUser();
+    const statusFilter = useFiltersStore((state) => state.status);
     const {
         changeFetchingState,
         changeLoadingState,
@@ -45,11 +52,12 @@ export function useProjects() {
     const subscriptionPlan = user?.publicMetadata.subscription_plan;
 
     const query = useQuery({
-        queryKey: ["projects", "user", search],
+        queryKey: ["projects", "user", search, statusFilter],
         queryFn: () =>
             getProjects({
                 userId: user?.id,
                 search,
+                statusFilter,
             }),
         staleTime: 1000 * 30, // 30 seconds
     });

@@ -1,14 +1,35 @@
 import { Button } from "@/components/button";
 import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/dropdown-menu";
+import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/tooltip";
+import {
+    projectStatusFormatter,
+    projectStatuses,
+} from "@/lib/utils/projectRelated";
+import { StoreProjectStatus, useFiltersStore } from "@/stores/filters";
 import { Settings as SettingsIcon } from "lucide-react";
 import { AddProject } from "./addProject";
 
 export function Settings() {
+    const changeFilterStatus = useFiltersStore(
+        (state) => state.actions.changeStatus
+    );
+    const selectedFilterStatus = useFiltersStore((state) => state.status);
+
+    const dropdownOptions = [
+        ...projectStatuses,
+        { value: "none", label: "All" },
+    ].filter((st) => st.value !== selectedFilterStatus);
+
     return (
         <TooltipProvider>
             <div
@@ -21,6 +42,38 @@ export function Settings() {
                 >
                     Filters
                 </label>
+                <DropdownMenu>
+                    <Tooltip>
+                        <DropdownMenuTrigger
+                            className="rounded-md px-2"
+                            asChild
+                        >
+                            <TooltipTrigger>
+                                {projectStatusFormatter(selectedFilterStatus)}
+                            </TooltipTrigger>
+                        </DropdownMenuTrigger>
+                        <TooltipContent>
+                            <p>Filter by status</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <DropdownMenuContent>
+                        <p className="border-b border-b-gray-100 p-2 dark:border-gray-900">
+                            Filter by status
+                        </p>
+                        {dropdownOptions.map((st) => (
+                            <DropdownMenuItem
+                                key={st.value}
+                                onSelect={() =>
+                                    changeFilterStatus(
+                                        st.value as StoreProjectStatus
+                                    )
+                                }
+                            >
+                                {st.label}
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <AddProject />

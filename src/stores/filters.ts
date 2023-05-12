@@ -1,19 +1,14 @@
-import { useRouter } from "next/navigation";
+import { ProjectStatus } from "@/lib/utils/projectRelated";
 import { create } from "zustand";
 
-export type Status =
-    | "requested"
-    | "approved"
-    | "pending"
-    | "delivered"
-    | "none"
-    | "error";
+export type StoreProjectStatus = ProjectStatus | "none";
+
 type Store = {
-    status: Status;
+    status: StoreProjectStatus;
     search: string;
     actions: {
         onChangeSearch: (search: string) => void;
-        changeStatus: (status: Status) => void;
+        changeStatus: (status: StoreProjectStatus) => void;
     };
 };
 

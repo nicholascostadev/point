@@ -38,7 +38,9 @@ export const projectStatuses: ProjectStatusOption[] = [
     },
 ];
 
-export function projectStatusFormatter(status?: ProjectStatus) {
+export function projectStatusFormatter(status?: ProjectStatus | "none") {
+    if (status === "none") return "All";
+
     return (
         projectStatuses.find(
             (s) => s.value.toLocaleLowerCase() === status?.toLocaleLowerCase()

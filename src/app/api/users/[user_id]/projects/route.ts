@@ -20,6 +20,8 @@ export async function GET(req: Request, { params }: RequestParams) {
         const url = new URL(req.url);
 
         const query = url.searchParams.get("query");
+        let status: string | null | undefined = url.searchParams.get("status");
+        status === "" ? (status = undefined) : (status = status);
 
         const user = await currentUser();
 
@@ -39,6 +41,7 @@ export async function GET(req: Request, { params }: RequestParams) {
 
         const projects = await prisma.project.findMany({
             where: {
+                status: status ?? undefined,
                 OR: [
                     {
                         author_id: user.id,

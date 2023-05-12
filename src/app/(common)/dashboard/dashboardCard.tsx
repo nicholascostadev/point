@@ -3,7 +3,7 @@ import {
     ProjectStatus,
     projectStatusFormatter,
 } from "@/lib/utils/projectRelated";
-import { Status, useFiltersStore } from "@/stores/filters";
+import { useFiltersStore } from "@/stores/filters";
 import { EditProject } from "./edit/editProject";
 
 type DashboardCardProps = {
@@ -44,7 +44,7 @@ export function DashboardCard({
                 <h1 className="text-2xl">{title}</h1>
                 <div className="flex items-center justify-center gap-2 whitespace-nowrap">
                     <button
-                        onClick={() => changeStatus(status as Status)}
+                        onClick={() => changeStatus(status as ProjectStatus)}
                         className={cl(
                             "rounded-full px-2 py-1 text-sm text-gray-950",
                             statusColor
