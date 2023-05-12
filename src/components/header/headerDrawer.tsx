@@ -30,40 +30,52 @@ export function HeaderDrawer() {
                     <div className="flex flex-col items-start justify-start gap-4">
                         <ul className="flex w-full flex-col gap-4 py-4 text-xl">
                             <li>
-                                <Link href="/#about">About us</Link>
+                                <Dialog.Close asChild>
+                                    <Link href="/#about">About us</Link>
+                                </Dialog.Close>
                             </li>
                             <li>
-                                <Link href="/projects">Projects</Link>
+                                <Dialog.Close asChild>
+                                    <Link href="/projects">Projects</Link>
+                                </Dialog.Close>
                             </li>
                             <li>
-                                <Link href="/pricing">Pricing</Link>
+                                <Dialog.Close asChild>
+                                    <Link href="/pricing">Pricing</Link>
+                                </Dialog.Close>
                             </li>
                             <li>
-                                <Link href="/references">References</Link>
+                                <Dialog.Close asChild>
+                                    <Link href="/references">References</Link>
+                                </Dialog.Close>
                             </li>
                             <li className="mt-3 flex items-start justify-start border-t pt-6 dark:border-t-gray-400">
                                 {isSignedIn ? (
-                                    <Link
-                                        href="/dashboard"
-                                        className="flex items-center justify-center gap-2"
-                                    >
-                                        Dashboard
-                                        <LayoutDashboard
-                                            aria-label="Binocular"
-                                            className="h-6 w-6"
-                                        />
-                                    </Link>
+                                    <Dialog.Close asChild>
+                                        <Link
+                                            href="/dashboard"
+                                            className="flex items-center justify-center gap-2"
+                                        >
+                                            Dashboard
+                                            <LayoutDashboard
+                                                aria-label="Binocular"
+                                                className="h-6 w-6"
+                                            />
+                                        </Link>
+                                    </Dialog.Close>
                                 ) : (
-                                    <Link
-                                        href="/login"
-                                        className="flex items-center justify-center gap-2"
-                                    >
-                                        Login
-                                        <Map
-                                            aria-label="Binocular"
-                                            className="h-6 w-6"
-                                        />
-                                    </Link>
+                                    <Dialog.Close asChild>
+                                        <Link
+                                            href="/login"
+                                            className="flex items-center justify-center gap-2"
+                                        >
+                                            Login
+                                            <Map
+                                                aria-label="Binocular"
+                                                className="h-6 w-6"
+                                            />
+                                        </Link>
+                                    </Dialog.Close>
                                 )}
                             </li>
                         </ul>
