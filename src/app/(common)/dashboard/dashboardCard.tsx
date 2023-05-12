@@ -62,7 +62,9 @@ export function DashboardCard({
                     />
                 </div>
             </div>
-            <p className="text-lg">{description}</p>
+            <p className="text-lg text-gray-800 dark:text-gray-300">
+                {description}
+            </p>
         </div>
     );
 }
