@@ -1,4 +1,4 @@
-import { UserButton } from "@clerk/nextjs/app-beta";
+import { SignedIn, UserButton } from "@clerk/nextjs/app-beta";
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderCTA } from "./headerCTA";
@@ -58,16 +58,18 @@ export function Header() {
 
                 <div className="flex items-center justify-start gap-4">
                     <ThemeToggle />
-                    <UserButton
-                        appearance={{
-                            elements: {
-                                rootBox: {
-                                    width: 32,
-                                    height: 32,
+                    <SignedIn>
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    rootBox: {
+                                        width: 32,
+                                        height: 32,
+                                    },
                                 },
-                            },
-                        }}
-                    />
+                            }}
+                        />
+                    </SignedIn>
                     <HeaderDrawer />
                     <div className="hidden sm:flex">
                         <HeaderCTA />

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "../button";
 import { useSession } from "@clerk/nextjs";
 import { LayoutDashboard, Map } from "lucide-react";
+import { Button } from "../button";
 
 export const HeaderCTA = () => {
     const { isSignedIn } = useSession();
@@ -27,7 +27,7 @@ export const HeaderCTA = () => {
             aria-label="Login"
             className="hidden dark:bg-transparent sm:flex"
         >
-            Explore
+            Login
             <Map className="h-6 w-6" />
         </Button>
     );

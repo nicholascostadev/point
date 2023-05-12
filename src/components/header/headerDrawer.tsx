@@ -1,11 +1,10 @@
 "use client";
 
 import { Logo } from "@/icons/logo";
-import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "../button";
-import { LayoutDashboard, List, Map, X } from "lucide-react";
-import { Menu } from "lucide-react";
 import { useSession } from "@clerk/nextjs";
+import * as Dialog from "@radix-ui/react-dialog";
+import { LayoutDashboard, Map, Menu, X } from "lucide-react";
+import { Button } from "../button";
 
 export function HeaderDrawer() {
     const { isSignedIn } = useSession();
@@ -22,7 +21,7 @@ export function HeaderDrawer() {
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Content className="fixed inset-0 z-50 h-screen w-full rounded-[6px] bg-white px-4 pb-6 pt-2 data-[state=closed]:animate-slide-out-left data-[state=open]:animate-slide-in-left dark:bg-gray-950">
-                    <div className="absolute inset-0 m-auto h-full w-1/2 bg-conic-gradient blur-[360px]"></div>
+                    <div className="absolute inset-0 m-auto h-full w-1/2 blur-[360px]"></div>
 
                     <Dialog.Title>
                         <Logo />
@@ -55,10 +54,10 @@ export function HeaderDrawer() {
                                     </a>
                                 ) : (
                                     <a
-                                        href="/projects"
+                                        href="/login"
                                         className="flex items-center justify-center gap-2"
                                     >
-                                        Explore
+                                        Login
                                         <Map
                                             aria-label="Binocular"
                                             className="h-6 w-6"
