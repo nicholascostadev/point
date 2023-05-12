@@ -4,6 +4,7 @@ import { Logo } from "@/icons/logo";
 import { useSession } from "@clerk/nextjs";
 import * as Dialog from "@radix-ui/react-dialog";
 import { LayoutDashboard, Map, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { Button } from "../button";
 
 export function HeaderDrawer() {
@@ -29,20 +30,20 @@ export function HeaderDrawer() {
                     <div className="flex flex-col items-start justify-start gap-4">
                         <ul className="flex w-full flex-col gap-4 py-4 text-xl">
                             <li>
-                                <a href="/#about">About us</a>
+                                <Link href="/#about">About us</Link>
                             </li>
                             <li>
-                                <a href="/projects">Projects</a>
+                                <Link href="/projects">Projects</Link>
                             </li>
                             <li>
-                                <a href="/pricing">Pricing</a>
+                                <Link href="/pricing">Pricing</Link>
                             </li>
                             <li>
-                                <a href="/references">References</a>
+                                <Link href="/references">References</Link>
                             </li>
                             <li className="mt-3 flex items-start justify-start border-t pt-6 dark:border-t-gray-400">
                                 {isSignedIn ? (
-                                    <a
+                                    <Link
                                         href="/dashboard"
                                         className="flex items-center justify-center gap-2"
                                     >
@@ -51,9 +52,9 @@ export function HeaderDrawer() {
                                             aria-label="Binocular"
                                             className="h-6 w-6"
                                         />
-                                    </a>
+                                    </Link>
                                 ) : (
-                                    <a
+                                    <Link
                                         href="/login"
                                         className="flex items-center justify-center gap-2"
                                     >
@@ -62,7 +63,7 @@ export function HeaderDrawer() {
                                             aria-label="Binocular"
                                             className="h-6 w-6"
                                         />
-                                    </a>
+                                    </Link>
                                 )}
                             </li>
                         </ul>
