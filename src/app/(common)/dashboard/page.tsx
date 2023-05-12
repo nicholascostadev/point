@@ -11,7 +11,7 @@ import { Search } from "./search";
 import { Settings } from "./settings";
 
 export default function Page() {
-    const { user, isSignedIn, isLoaded } = useUser();
+    const { isSignedIn, isLoaded } = useUser();
     const projects = useProjectsStore((state) => state.projects);
     const userPlan = useUserPlan();
 

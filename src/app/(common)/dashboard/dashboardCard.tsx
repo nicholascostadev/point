@@ -40,27 +40,29 @@ export function DashboardCard({
 
     return (
         <div className="relative flex min-h-[20rem] flex-col gap-2 rounded-lg border border-gray-200 bg-white p-4 shadow-lg backdrop-blur-md dark:border-gray-200/10 dark:bg-gray-900/60">
-            <h1 className="text-2xl">{title}</h1>
-            <p className="text-lg">{description}</p>
-            <div className="absolute right-4 top-4 flex items-center justify-center gap-2">
-                <button
-                    onClick={() => changeStatus(status as Status)}
-                    className={cl(
-                        "rounded-full px-2 py-1 text-sm text-gray-950",
-                        statusColor
-                    )}
-                >
-                    {projectStatusFormatter(status)}
-                </button>
-                <EditProject
-                    projectData={{
-                        id,
-                        title,
-                        description,
-                        status,
-                    }}
-                />
+            <div className="flex items-start justify-between gap-2">
+                <h1 className="text-2xl">{title}</h1>
+                <div className="flex items-center justify-center gap-2 whitespace-nowrap">
+                    <button
+                        onClick={() => changeStatus(status as Status)}
+                        className={cl(
+                            "rounded-full px-2 py-1 text-sm text-gray-950",
+                            statusColor
+                        )}
+                    >
+                        {projectStatusFormatter(status)}
+                    </button>
+                    <EditProject
+                        projectData={{
+                            id,
+                            title,
+                            description,
+                            status,
+                        }}
+                    />
+                </div>
             </div>
+            <p className="text-lg">{description}</p>
         </div>
     );
 }

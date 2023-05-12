@@ -28,7 +28,7 @@ export function ProjectList() {
     return (
         <div className="flex flex-col gap-6">
             {isFetching && <Loader2 className="animate-spin" />}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {data?.map((proj) => (
                     <DashboardCard
                         key={proj.id}

@@ -22,7 +22,7 @@
     }
 
     * {
-        @apply focus:outline-none focus:ring focus:ring-offset-transparent focus:aria-disabled:ring-0;
+        @apply focus:outline-none focus:ring focus:ring-offset-transparent focus:aria-disabled:ring-0 aria-selected:ring aria-selected:ring-offset-transparent;
     }
 }
 
