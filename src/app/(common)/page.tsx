@@ -11,7 +11,7 @@ export default function Home() {
                 aria-label="Hero"
                 className="flex w-full flex-col items-center justify-center bg-top pt-header-height dark:bg-spotlight-radial"
             >
-                <div className="flex flex-col items-center justify-center gap-8 px-2 pb-8 pt-48 md:px-8">
+                <div className="flex flex-col items-center justify-center gap-8 px-2 pb-8 pt-20 md:px-8 md:pt-36">
                     <h1 className="text-center text-3xl">
                         Bring Your Vision to Life with Custom Development
                     </h1>
@@ -36,38 +36,21 @@ export default function Home() {
                     </strong>{" "}
                     client products
                 </h2>
-                <div className="relative flex w-full items-center justify-center">
+                <div className="flex w-full items-center justify-center pt-24">
                     <BackLighting
                         className="top-2/3 h-[550px] max-h-full w-full max-w-layout-base -translate-y-1/2 blur-[240px]"
                         style={{ margin: "unset" }}
                     />
-                    <div className="relative z-40 flex h-[950px] w-full max-w-layout-base">
-                        <a
-                            href="https://clerk.com/"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <Image
-                                src="/clerk-landing.svg"
-                                fill
-                                alt="Clerk's website landing page"
-                                className="absolute !left-[-280px] !top-1/3 max-h-[520px] max-w-6xl"
-                                priority
-                            />
-                        </a>
-                        <a
-                            href="https://linear.app"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <Image
-                                src="/linear-landing.svg"
-                                fill
-                                alt="Linear's website landing page"
-                                className="absolute inset-x-0 top-0 mx-auto max-w-6xl"
-                                priority
-                            />
-                        </a>
+                    <div className="z-40 flex w-full max-w-[1440px] px-2 md:px-8">
+                        <Image
+                            src="/hero-image.png"
+                            width={1920}
+                            height={1080}
+                            alt="Linear's website landing page"
+                            className="object-contain"
+                            quality={100}
+                            priority
+                        />
                     </div>
                 </div>
             </section>
