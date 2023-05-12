@@ -29,7 +29,7 @@ export default function References() {
                     <p className="pt-2 text-gray-950">
                         That&apos;s why I have this section, to show respect to
                         all the amazing companies and the developers that made
-                        the effort to make this incredible softwares.
+                        the effort to make these incredible softwares.
                     </p>
                     <p className="pt-2 text-gray-950">
                         The entire project is available as open source on{" "}

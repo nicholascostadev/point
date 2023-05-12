@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cl } from "@/lib/utils/cl";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import * as React from "react";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -46,7 +46,7 @@ const DialogContent = React.forwardRef<
         <DialogPrimitive.Content
             ref={ref}
             className={cl(
-                "fixed z-50 grid w-full gap-4 rounded-b-lg border bg-gray-200/60 p-6 shadow-lg backdrop-blur-lg animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 dark:bg-gray-950/80 sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0",
+                "fixed z-50 grid w-full gap-4 rounded-b-lg border bg-white p-6 shadow-lg backdrop-blur-lg animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 dark:bg-gray-950 sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0",
                 className
             )}
             {...props}

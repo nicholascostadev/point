@@ -13,7 +13,7 @@ export function Settings() {
         <TooltipProvider>
             <div
                 id="settings-section"
-                className="relative flex w-full justify-end rounded-lg border border-gray-950/20 p-1 dark:border-gray-200/20"
+                className="relative flex w-full justify-end rounded-lg border border-gray-950/20 p-1 dark:border-gray-900"
             >
                 <label
                     className="absolute -top-[14px] left-2  bg-white px-2 dark:bg-gray-950"

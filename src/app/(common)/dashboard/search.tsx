@@ -22,7 +22,7 @@ export function Search() {
             <input
                 type="text"
                 placeholder="Search for a project name"
-                className="w-full rounded-lg border-2 border-gray-950/20 p-2 focus:outline-none dark:border-gray-200/60 dark:bg-transparent dark:focus:border-gray-50/80"
+                className="w-full rounded-lg border-2 border-gray-950/20 p-2 dark:border-gray-900 dark:bg-transparent"
                 onChange={(e) => debounced(e.target.value)}
                 defaultValue={search}
             />

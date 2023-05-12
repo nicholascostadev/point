@@ -39,7 +39,7 @@ export function DashboardCard({
     const statusColor = generateStatusColor(status as ProjectStatus);
 
     return (
-        <div className="relative flex min-h-[20rem] flex-col gap-2 rounded-lg border border-cyan-200/10 bg-gray-200/60 p-4 backdrop-blur-md dark:border-gray-200/10 dark:bg-gray-900/60">
+        <div className="relative flex min-h-[20rem] flex-col gap-2 rounded-lg border border-gray-200 bg-white p-4 shadow-lg backdrop-blur-md dark:border-gray-200/10 dark:bg-gray-900/60">
             <h1 className="text-2xl">{title}</h1>
             <p className="text-lg">{description}</p>
             <div className="absolute right-4 top-4 flex items-center justify-center gap-2">
