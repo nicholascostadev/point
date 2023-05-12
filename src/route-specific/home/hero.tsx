@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Button } from "@/components/button";
 import { Map } from "lucide-react";
+import Image from "next/image";
 
 export function Hero() {
     return (
@@ -8,7 +8,7 @@ export function Hero() {
             aria-label="Hero"
             className="flex w-full flex-col items-center justify-center"
         >
-            <div className="flex flex-col items-center justify-center gap-8 px-2 pb-8 pt-48 md:px-8">
+            <div className="flex flex-col items-center justify-center gap-8 px-2 pb-8 pt-12 md:px-8 md:pt-48">
                 <h1 className="text-center text-3xl">
                     Bring Your Vision to Life with Custom Development
                 </h1>
