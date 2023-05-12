@@ -1,9 +1,9 @@
 "use client";
 
-import { Logo } from "@/icons/logo";
 import { useSession } from "@clerk/nextjs";
 import * as Dialog from "@radix-ui/react-dialog";
 import { LayoutDashboard, Map, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../button";
 
@@ -25,7 +25,12 @@ export function HeaderDrawer() {
                     <div className="absolute inset-0 m-auto h-full w-1/2 blur-[360px]"></div>
 
                     <Dialog.Title>
-                        <Logo />
+                        <Image
+                            src="/logo.png"
+                            alt='letter P with "point" written below it'
+                            width={80}
+                            height={80}
+                        />
                     </Dialog.Title>
                     <div className="flex flex-col items-start justify-start gap-4">
                         <ul className="flex w-full flex-col gap-4 py-4 text-xl">
