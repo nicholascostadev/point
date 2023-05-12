@@ -1,8 +1,8 @@
 import { SignedIn, UserButton } from "@clerk/nextjs/app-beta";
 import Image from "next/image";
 import Link from "next/link";
-import { HeaderCTA } from "./headerCTA";
-import { HeaderDrawer } from "./headerDrawer";
+import { HeaderCTA } from "./header-cta";
+import { HeaderDrawer } from "./header-drawer";
 import { ThemeToggle } from "./themeToggle";
 
 export function Header() {
