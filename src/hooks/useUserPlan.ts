@@ -9,7 +9,7 @@ import { useUser } from "@clerk/nextjs";
 export function useUserSubscriptionStatus(): SubscriptionStatus {
     const { user } = useUser();
 
-    const subscriptionPlan = user?.publicMetadata.subscription_plan;
+    const subscriptionPlan = user?.publicMetadata.subscription_status;
 
     const subscriptionValidationResult =
         subscriptionStatusSchema.safeParse(subscriptionPlan);
