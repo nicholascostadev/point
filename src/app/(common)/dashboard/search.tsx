@@ -17,12 +17,11 @@ export function Search() {
     }
 
     return (
-        <div className="flex flex-col gap-2">
-            <p className="text-2xl">Search</p>
+        <div className="flex flex-1 flex-col gap-2">
             <input
                 type="text"
                 placeholder="Search for a project name"
-                className="w-full rounded-lg border-2 border-gray-950/20 p-2 dark:border-gray-900 dark:bg-transparent"
+                className="w-full rounded-lg p-2 focus:ring-0 dark:bg-transparent"
                 onChange={(e) => debounced(e.target.value)}
                 defaultValue={search}
             />

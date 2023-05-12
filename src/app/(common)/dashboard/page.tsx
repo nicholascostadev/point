@@ -8,8 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { useMemo } from "react";
 import { LoadingPage } from "./loadingPage";
 import { ProjectList } from "./projectList";
-import { Search } from "./search";
-import { Settings } from "./settings";
+import { Filters } from "./settings";
 
 export default function Page() {
     const { isSignedIn, isLoaded } = useUser();
@@ -49,9 +48,9 @@ export default function Page() {
             <div className="min-h-with-header py-8 pt-32">
                 <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
                     <BackLighting className="bg-none" />
-                    <div className="flex items-end gap-2">
+                    <div className="flex flex-col items-start gap-2 md:flex-row md:items-end">
                         <h1 className="text-4xl">Dashboard</h1>
-                        <span className="text-4xl">-</span>
+                        <span className="hidden text-4xl md:inline">-</span>
                         <p className="text-2xl">
                             Current plan:{" "}
                             <span className="uppercase text-cyan-600 dark:text-cyan-400">
@@ -64,8 +63,7 @@ export default function Page() {
                     </p>
                     <div className="flex flex-col gap-8 pt-4">
                         <div className="flex flex-col gap-8">
-                            <Search />
-                            <Settings />
+                            <Filters />
                         </div>
                         {projects.length > 0 && (
                             <div>
