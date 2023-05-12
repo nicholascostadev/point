@@ -12,14 +12,14 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { useUserSubscriptionStatus } from "@/hooks/useUserPlan";
-import { useProjectsStore } from "@/stores/projectStore";
+import { useAddProjectModal, useProjectsStore } from "@/stores/projectStore";
 import { PopoverArrow } from "@radix-ui/react-popover";
 import { Loader2, Plus } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { AddProjectForm } from "./addProjectForm";
 
 export function AddProject() {
-    const [open, setOpen] = useState(false);
+    const { open, setOpen } = useAddProjectModal();
     const userSubscriptionStatus = useUserSubscriptionStatus();
     const remainingProjects = useProjectsStore(
         (state) => state.remainingProjects

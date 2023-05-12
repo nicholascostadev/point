@@ -1,6 +1,7 @@
 "use client";
 
 import { BackLighting } from "@/components/backLighting";
+import { CommandMenu } from "@/components/command-menu";
 import { useUserPlan } from "@/hooks/useUserPlan";
 import { useProjectsStore } from "@/stores/projectStore";
 import { useUser } from "@clerk/nextjs";
@@ -43,35 +44,38 @@ export default function Page() {
     }
 
     return (
-        <div className="min-h-with-header py-8 pt-32">
-            <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
-                <BackLighting className="bg-none" />
-                <div className="flex items-end gap-2">
-                    <h1 className="text-4xl">Dashboard</h1>
-                    <span className="text-4xl">-</span>
-                    <p className="text-2xl">
-                        Current plan:{" "}
-                        <span className="uppercase text-cyan-600 dark:text-cyan-400">
-                            {userPlan}
-                        </span>
-                    </p>
-                </div>
-                <p className="text-lg">
-                    Check the progress of the projects you&apos;ve requested
-                </p>
-                <div className="flex flex-col gap-8 pt-4">
-                    <div className="flex flex-col gap-8">
-                        <Search />
-                        <Settings />
+        <>
+            <CommandMenu />
+            <div className="min-h-with-header py-8 pt-32">
+                <div className="relative mx-auto flex w-layout-base max-w-full flex-col gap-4 px-2 md:px-8">
+                    <BackLighting className="bg-none" />
+                    <div className="flex items-end gap-2">
+                        <h1 className="text-4xl">Dashboard</h1>
+                        <span className="text-4xl">-</span>
+                        <p className="text-2xl">
+                            Current plan:{" "}
+                            <span className="uppercase text-cyan-600 dark:text-cyan-400">
+                                {userPlan}
+                            </span>
+                        </p>
                     </div>
-                    {projects.length > 0 && (
-                        <div>
-                            <h4 className="text-lg">{text}</h4>
+                    <p className="text-lg">
+                        Check the progress of the projects you&apos;ve requested
+                    </p>
+                    <div className="flex flex-col gap-8 pt-4">
+                        <div className="flex flex-col gap-8">
+                            <Search />
+                            <Settings />
                         </div>
-                    )}
-                    <ProjectList />
+                        {projects.length > 0 && (
+                            <div>
+                                <h4 className="text-lg">{text}</h4>
+                            </div>
+                        )}
+                        <ProjectList />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
