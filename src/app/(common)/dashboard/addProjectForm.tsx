@@ -56,7 +56,13 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         accept: fileTypes ? generateReactDropzoneAccept(fileTypes) : undefined,
+        maxFiles: 1,
+        multiple: false,
+        onDropRejected: () => {
+            toast.error("File type is not accepted, only images are allowed");
+        },
     });
+
     const {
         handleSubmit,
         register,
