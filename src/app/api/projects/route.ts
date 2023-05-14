@@ -11,6 +11,7 @@ import { z } from "zod";
 const requestBodySchema = z.object({
     name: titleSchema,
     description: descriptionSchema,
+    image: z.string().optional(),
 });
 
 export async function POST(req: Request) {
@@ -66,7 +67,7 @@ export async function POST(req: Request) {
         );
     }
 
-    const { name, description } = parsedBody.data;
+    const { name, description, image } = parsedBody.data;
 
     await prisma.project.create({
         data: {
@@ -74,6 +75,7 @@ export async function POST(req: Request) {
             description,
             author_email: user.emailAddresses[0].emailAddress,
             author_id: user.id,
+            image,
         },
     });
 

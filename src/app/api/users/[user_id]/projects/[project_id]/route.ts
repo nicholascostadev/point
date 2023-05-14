@@ -59,6 +59,7 @@ const updateSchema = {
     title: titleSchema.optional(),
     description: descriptionSchema.optional(),
     status: projectStatusSchema.optional(),
+    image: z.string().optional(),
 };
 
 type UpdateProjectParams = {
@@ -92,7 +93,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         );
     }
 
-    const { title, description, status } = parsedBody.data;
+    const { title, description, status, image } = parsedBody.data;
     const id = params.project_id;
 
     const project = await prisma.project.findFirst({
@@ -119,6 +120,7 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
             title,
             description,
             status,
+            image,
         },
     });
 

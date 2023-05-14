@@ -36,6 +36,7 @@ export function ProjectList() {
                         title={proj.title}
                         description={proj.description}
                         status={proj.status}
+                        image={proj.image}
                     />
                 ))}
             </div>

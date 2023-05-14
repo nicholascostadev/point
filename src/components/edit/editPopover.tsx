@@ -43,7 +43,7 @@ export function EditPopover({ closeModal }: EditPopoverProps) {
         formData.currentStatus === status;
 
     return (
-        <PopoverContent className="border border-gray-200 dark:border-gray-900 dark:bg-gray-950/90">
+        <PopoverContent className="border border-gray-200 dark:border-gray-900">
             <div className="flex flex-col items-start justify-start gap-1">
                 <section
                     aria-label="Editing Zone"
@@ -51,7 +51,7 @@ export function EditPopover({ closeModal }: EditPopoverProps) {
                 >
                     <FormProvider {...methods}>
                         <form
-                            className="flex w-96 flex-col gap-4"
+                            className="flex w-96 max-w-full flex-col gap-4"
                             onSubmit={handleSubmit(handleUpdateProject)}
                         >
                             <EditForm />
