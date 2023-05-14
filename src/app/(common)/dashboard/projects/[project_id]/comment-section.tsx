@@ -11,7 +11,7 @@ export function CommentSection() {
                         name: "Nicholas Costa",
                         role: "Developer",
                     }}
-                    text="This project is currently not possible for our team to pick up, so we are closing it up, sorry, feel free to delete this project and request another one."
+                    content="This project is currently not possible for our team to pick up, so we are closing it up, sorry, feel free to delete this project and request another one."
                 />
             </div>
         </div>

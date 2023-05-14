@@ -11,16 +11,29 @@ datasource db {
 }
 
 model Project {
-  id           String   @id @default(cuid())
-  created_at   DateTime @default(now())
+  id           String    @id @default(cuid())
+  created_at   DateTime  @default(now())
   title        String
   description  String
-  views        Int      @default(0)
+  views        Int       @default(0)
   author_id    String
   author_email String
   image        String?
-  type         String   @default("maintenance")
-  status       String   @default("requested")
+  type         String    @default("maintenance")
+  status       String    @default("requested")
+  comments     Comment[]
+
+  @@unique([author_id, id])
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  author_id  String
+  content    String
+  project_id String
+  Project    Project  @relation(fields: [projectId], references: [id])
+  projectId  String
 
   @@unique([author_id, id])
 }
