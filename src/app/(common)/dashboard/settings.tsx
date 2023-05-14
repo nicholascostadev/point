@@ -38,7 +38,7 @@ export function Filters() {
                 className="relative flex w-full justify-end gap-12 rounded-lg border border-gray-950/20 p-1 dark:border-gray-900"
             >
                 <label
-                    className="absolute -top-[14px] left-0.5  bg-white px-2 dark:bg-gray-950"
+                    className="absolute -top-[14px] left-2  bg-white px-2 dark:bg-gray-950"
                     htmlFor="settings-section"
                 >
                     Filters
