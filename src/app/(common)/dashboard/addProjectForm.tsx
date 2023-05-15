@@ -36,14 +36,13 @@ type AddProjectFormProps = {
 };
 
 export function AddProjectForm({ closeModal }: AddProjectFormProps) {
-    const { startUpload, isUploading, permittedFileInfo } =
-        useUploadThing<string>({
-            endpoint: "imageUploader",
-            onClientUploadComplete: (res) => {
-                toast.success("Uploaded, yay!!!");
-                toast.success(JSON.stringify(res));
-            },
-        });
+    const { startUpload, permittedFileInfo } = useUploadThing<string>({
+        endpoint: "imageUploader",
+        onClientUploadComplete: (res) => {
+            toast.success("Uploaded, yay!!!");
+            toast.success(JSON.stringify(res));
+        },
+    });
 
     const [files, setFiles] = useState<File[]>([]);
     const [preview, setPreview] = useState<string>();
