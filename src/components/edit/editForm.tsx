@@ -14,7 +14,7 @@ export function EditForm() {
                 <label htmlFor="name">Name</label>
                 <input
                     className={
-                        'rounded-lg border border-gray-950/20 bg-transparent p-2 text-gray-950 placeholder:text-gray-600 dark:border-gray-900 dark:text-gray-200 dark:placeholder:text-gray-400 [&[aria-invalid="true"]]:border-red-500'
+                        'rounded-lg border border-gray-900/20 bg-transparent p-2 text-gray-950 placeholder:text-gray-600 dark:border-gray-900 dark:text-gray-200 dark:placeholder:text-gray-400 [&[aria-invalid="true"]]:border-red-500'
                     }
                     type="text"
                     id="name"
@@ -32,7 +32,7 @@ export function EditForm() {
                 <label htmlFor="description">Description</label>
                 <textarea
                     className={
-                        'resize-none rounded-lg border border-gray-950/20 bg-transparent p-2 text-gray-950 placeholder:text-gray-600 dark:border-gray-900 dark:text-gray-200 dark:placeholder:text-gray-400 [&[aria-invalid="true"]]:border-red-500'
+                        'resize-none rounded-lg border border-gray-900/20 bg-transparent p-2 text-gray-950 placeholder:text-gray-600 dark:border-gray-900 dark:text-gray-200 dark:placeholder:text-gray-400 [&[aria-invalid="true"]]:border-red-500'
                     }
                     id="description"
                     placeholder="Describe what want this project to be like, please be brief."

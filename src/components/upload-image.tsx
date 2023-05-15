@@ -1,4 +1,5 @@
 import { cl } from "@/lib/utils/cl";
+import { useEditingStoreProjectData } from "@/stores/editingStore";
 import Image from "next/image";
 import { useCallback, useEffect } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
@@ -42,6 +43,7 @@ export function UploadImage({
     );
 
     const { maxSize, fileTypes } = permittedFileInfo ?? {};
+    const { image } = useEditingStoreProjectData();
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
@@ -55,6 +57,10 @@ export function UploadImage({
 
     useEffect(() => {
         if (!files[0]) {
+            if (image) {
+                setPreview(image);
+                return;
+            }
             setPreview(undefined);
             return;
         }
@@ -65,6 +71,8 @@ export function UploadImage({
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl);
     }, [files[0]]);
+
+    console.log({ preview });
 
     return (
         <fieldset>
@@ -85,7 +93,7 @@ export function UploadImage({
                         />
                     </div>
                 )}
-                {!files[0] && (
+                {!preview && (
                     <div className="text-center" {...getRootProps()}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +131,7 @@ export function UploadImage({
                         </div>
                     </div>
                 )}
-                {files[0] && (
+                {preview && (
                     <div {...getRootProps()}>
                         <label
                             htmlFor="file-upload"

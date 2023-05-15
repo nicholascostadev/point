@@ -7,7 +7,7 @@ import {
 } from "@/components/dialog";
 import { useDeleteProject } from "@/hooks/useDeleteProject";
 import { useEditingStoreProjectData } from "@/stores/editingStore";
-import { Loader2 } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 import { useState } from "react";
 
 export function DeleteProject() {
@@ -23,8 +23,8 @@ export function DeleteProject() {
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger className="rounded-full px-5 py-2 text-red-500 transition-colors hover:bg-red-500 hover:text-gray-200 focus-visible:bg-red-500 focus-visible:text-gray-200">
-                Delete Project
+            <DialogTrigger className="flex items-center justify-center gap-1 rounded-full px-3 py-1 text-red-500 transition-colors hover:bg-red-500 hover:text-gray-200 focus-visible:bg-red-500 focus-visible:text-gray-200">
+                Delete <Trash className="h-4 w-4" />
             </DialogTrigger>
             <DialogContent>
                 <DialogTitle>Are you sure?</DialogTitle>
@@ -38,7 +38,7 @@ export function DeleteProject() {
                     {isLoading ? (
                         <div className="flex items-center gap-1">
                             <Loader2 className="animate-spin" />
-                            Deleting your project...
+                            Deleting...
                         </div>
                     ) : (
                         "Confirm"

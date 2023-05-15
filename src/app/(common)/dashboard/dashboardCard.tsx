@@ -50,17 +50,19 @@ export function DashboardCard({
                             title,
                             description,
                             status,
+                            image,
                         }}
                     />
                 </div>
             </div>
             {image && (
-                <div className="relative h-56 w-full">
+                <div className="relative h-full w-full">
                     <Image
                         src={image}
                         alt="Project image"
-                        fill
-                        className="object-cover"
+                        className="rounded-md object-cover"
+                        width={500}
+                        height={500}
                     />
                 </div>
             )}

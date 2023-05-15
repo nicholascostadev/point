@@ -14,12 +14,13 @@ type EditProjectProps = {
         title: string;
         description: string;
         status: ProjectStatus;
+        image: string | null;
     };
 };
 
 export function EditProject({ projectData }: EditProjectProps) {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const { selectProject } = useEditingStoreActions();
+    const { selectProject, resetEditingProjectData } = useEditingStoreActions();
 
     function handleEditProject() {
         selectProject(projectData);
@@ -38,7 +39,10 @@ export function EditProject({ projectData }: EditProjectProps) {
                 >
                     <MoreVertical />
                 </PopoverTrigger>
-                <EditPopover closeModal={() => onOpenChange(false)} />
+                <EditPopover
+                    resetEditingProjectData={resetEditingProjectData}
+                    closeModal={() => onOpenChange(false)}
+                />
             </Popover>
         </Dialog>
     );

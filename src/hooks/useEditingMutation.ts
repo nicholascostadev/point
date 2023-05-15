@@ -13,7 +13,12 @@ export function useEditingMutation() {
     const { id } = useEditingStoreProjectData();
 
     const mutation = useMutation({
-        mutationFn: async ({ title, description, status }: FormSchema) => {
+        mutationFn: async ({
+            title,
+            description,
+            status,
+            image,
+        }: FormSchema & { image?: string }) => {
             if (!user) return;
 
             let url = "";
@@ -29,15 +34,15 @@ export function useEditingMutation() {
                     title,
                     description,
                     status,
+                    image,
                 }),
                 method: "PATCH",
             });
         },
-        onSuccess: () => {},
     });
 
     async function submitUpdate(
-        { title, description, status }: FormSchema,
+        { title, description, status, image }: FormSchema & { image?: string },
         { onSuccess }: { onSuccess?: () => void }
     ) {
         await mutation.mutateAsync(
@@ -45,6 +50,7 @@ export function useEditingMutation() {
                 title,
                 description,
                 status,
+                image,
             },
             {
                 onSuccess,

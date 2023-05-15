@@ -66,6 +66,7 @@ const updateProjectSchema = z.object({
     title: titleSchema.optional(),
     description: descriptionSchema.optional(),
     status: projectStatusSchema.optional(),
+    image: z.string().optional(),
 });
 
 export async function PATCH(req: Request, { params }: PatchParams) {
@@ -92,7 +93,7 @@ export async function PATCH(req: Request, { params }: PatchParams) {
         );
     }
 
-    const { title, description, status } = parsedBody.data;
+    const { title, description, status, image } = parsedBody.data;
 
     const id = params.id;
 
@@ -120,6 +121,7 @@ export async function PATCH(req: Request, { params }: PatchParams) {
                 title,
                 description,
                 status,
+                image,
             },
         });
 

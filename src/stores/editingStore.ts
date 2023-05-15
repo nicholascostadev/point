@@ -6,12 +6,14 @@ type ProjectData = {
     title?: string;
     description?: string;
     status?: ProjectStatus;
+    image?: string | null;
 };
 
 type Store = {
     projectData: ProjectData;
     actions: {
         selectProject: (projectData: ProjectData) => void;
+        resetEditingProjectData: () => void;
     };
 };
 
@@ -19,6 +21,7 @@ export const useEditingStore = create<Store>((set) => ({
     projectData: {},
     actions: {
         selectProject: (projectData) => set({ projectData }),
+        resetEditingProjectData: () => set({ projectData: {} }),
     },
 }));
 

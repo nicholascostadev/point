@@ -112,22 +112,26 @@ export async function PATCH(req: Request, { params }: UpdateProjectParams) {
         );
     }
 
-    const updated = await prisma.project.update({
-        where: {
-            id,
-        },
-        data: {
-            title,
-            description,
-            status,
-            image,
-        },
-    });
+    try {
+        await prisma.project.update({
+            where: {
+                id,
+            },
+            data: {
+                title,
+                description,
+                status,
+                image,
+            },
+        });
 
-    return new Response(
-        JSON.stringify({
-            message: "Project updated",
-        }),
-        { status: 200 }
-    );
+        return new Response(
+            JSON.stringify({
+                message: "Project updated",
+            }),
+            { status: 200 }
+        );
+    } catch (err) {
+        return new Response("Something went wrong", { status: 500 });
+    }
 }

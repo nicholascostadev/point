@@ -55,7 +55,7 @@ export function StatusSelector() {
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger
                     id="trigger-status-button"
-                    className="rounded-md border border-gray-950 px-2 py-1 text-lg dark:border-gray-900"
+                    className="rounded-md border border-gray-900/20 px-2 py-1 text-lg transition-colors hover:bg-gray-100 dark:border-gray-900 dark:hover:bg-gray-900 dark:aria-selected:bg-gray-900"
                 >
                     {projectStatusFormatter(statusState)}
                 </PopoverTrigger>
@@ -73,7 +73,7 @@ export function StatusSelector() {
                                     key={opt.value}
                                     onSelect={handleSelectStatus}
                                     value={opt.value}
-                                    className="aria-selected:ring aria-selected:ring-offset-transparent"
+                                    className="cursor-pointer transition-colors aria-selected:bg-gray-100 aria-selected:ring aria-selected:ring-offset-transparent dark:aria-selected:bg-gray-900"
                                 >
                                     <Check
                                         className={cl(
