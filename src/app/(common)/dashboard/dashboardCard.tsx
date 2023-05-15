@@ -60,7 +60,7 @@ export function DashboardCard({
                     <Image
                         src={image}
                         alt="Project image"
-                        className="rounded-md object-cover"
+                        className="h-full max-h-52 w-full rounded-md object-cover"
                         width={500}
                         height={500}
                     />

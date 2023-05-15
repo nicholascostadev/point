@@ -58,15 +58,19 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
     });
 
     async function handleCreateProject(data: FormSchema) {
-        const response = await startUpload([files[0]]);
-        if (!response) {
-            toast.error("Error uploading image");
+        if (files[0]) {
+            const response = await startUpload([files[0]]);
+            if (!response) {
+                toast.error("Error uploading image");
+                return;
+            }
+
+            const uploadedFile = response[0];
+            await addPost({ ...data, image: uploadedFile.fileUrl });
             return;
         }
 
-        const uploadedFile = response[0];
-
-        await addPost({ ...data, image: uploadedFile.fileUrl });
+        await addPost(data);
     }
 
     return (
