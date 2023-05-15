@@ -1,3 +1,4 @@
+import { Dialog, DialogContent, DialogTrigger } from "@/components/dialog";
 import { cl } from "@/lib/utils/cl";
 import {
     ProjectStatus,
@@ -56,14 +57,26 @@ export function DashboardCard({
                 </div>
             </div>
             {image && (
-                <div className="relative h-full w-full">
-                    <Image
-                        src={image}
-                        alt="Project image"
-                        className="h-full max-h-52 w-full rounded-md object-cover"
-                        width={500}
-                        height={500}
-                    />
+                <div className="h-full w-full">
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Image
+                                src={image}
+                                alt="Project image"
+                                className="h-full max-h-52 rounded-md object-cover"
+                                width={500}
+                                height={500}
+                            />
+                        </DialogTrigger>
+                        <DialogContent className="flex h-full w-full !max-w-full items-end justify-center !border-none !bg-transparent !shadow-none !backdrop-blur-none md:h-5/6 md:w-5/6">
+                            <Image
+                                src={image}
+                                alt="Project image"
+                                className="rounded-md object-contain"
+                                fill
+                            />
+                        </DialogContent>
+                    </Dialog>
                 </div>
             )}
             <p className="text-lg text-gray-800 dark:text-gray-300">
