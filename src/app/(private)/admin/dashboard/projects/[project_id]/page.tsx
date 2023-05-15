@@ -58,7 +58,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
         <div className="mx-auto flex w-layout-base max-w-full flex-col items-start justify-start gap-6 px-2 pb-12 pt-32 md:px-8">
             <Link
-                href="/dashboard"
+                href="/admin/dashboard"
                 className="dark:hover:text-gray-400"
                 aria-label="Go back to dashboard"
             >

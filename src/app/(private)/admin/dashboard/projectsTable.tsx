@@ -9,8 +9,9 @@ import { ProjectWithAuthor } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
 import { useMemo } from "react";
-import { DataTable } from "../../payments/data-table";
+import { DataTable } from "../../../../components/data-table";
 import { EditProject } from "./edit/editProject";
 
 type ProjectsTableProps = {
@@ -31,10 +32,16 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
             {
                 accessorKey: "title",
                 header: "Title",
-                cell: ({ getValue }) => {
+                cell: ({ getValue, row }) => {
+                    const projectId = row.original.id;
+
                     return (
-                        <div className="whitespace-nowrap">
-                            {getValue() as string}
+                        <div className="min-w-[215px] max-w-full">
+                            <Link
+                                href={`/admin/dashboard/projects/${projectId}`}
+                            >
+                                {getValue() as string}
+                            </Link>
                         </div>
                     );
                 },
@@ -42,6 +49,13 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
             {
                 accessorKey: "description",
                 header: "Description",
+                cell: ({ getValue }) => {
+                    return (
+                        <div className="min-w-[275px] max-w-full">
+                            {getValue() as string}
+                        </div>
+                    );
+                },
             },
             {
                 accessorKey: "status",

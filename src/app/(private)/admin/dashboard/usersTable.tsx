@@ -3,7 +3,7 @@
 import { getFullName } from "@/lib/utils/userRelated";
 import { User } from "@clerk/nextjs/dist/api";
 import { ColumnDef } from "@tanstack/react-table";
-import { DataTable } from "../../payments/data-table";
+import { DataTable } from "../../../../components/data-table";
 
 type UsersTableProps = {
     users: User[];
