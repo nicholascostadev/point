@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { ProjectStatus, generateStatusColor } from "@/lib/utils/projectRelated";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -38,8 +37,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         );
     }
 
-    const statusColor = generateStatusColor(project?.status as ProjectStatus);
-
     return (
         <div className="mx-auto flex w-layout-base max-w-full flex-col items-start justify-start gap-6 px-2 pb-12 pt-32 md:px-8">
             <Link
@@ -57,7 +54,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         image={project.image}
                         status={project.status}
                     />
-                    <CommentSection />
+                    <CommentSection projectId={project.id} />
                 </div>
             </div>
         </div>

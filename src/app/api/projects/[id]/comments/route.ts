@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { isUserAdmin } from "@/lib/utils/userRelated";
-import { currentUser } from "@clerk/nextjs/app-beta";
+import { clerkClient, currentUser } from "@clerk/nextjs/app-beta";
 import { z } from "zod";
 
 type Params = {
@@ -64,4 +64,56 @@ export async function POST(req: Request, { params }: Params) {
             status: 500,
         });
     }
+}
+
+export async function GET(req: Request, { params }: Params) {
+    const { id } = params;
+    const user = await currentUser();
+
+    if (!user) {
+        return new Response(JSON.stringify({ err: "Not authorized" }), {
+            status: 401,
+        });
+    }
+
+    const project = await prisma.project.findUnique({
+        where: {
+            id,
+        },
+    });
+
+    if (!project) {
+        return new Response(JSON.stringify({ err: "Project not found" }), {
+            status: 404,
+        });
+    }
+
+    if (project.author_id !== user.id && !isUserAdmin(user)) {
+        return new Response(JSON.stringify({ err: "Not authorized" }), {
+            status: 401,
+        });
+    }
+
+    let comments = await prisma.comment.findMany({
+        where: {
+            project_id: id,
+        },
+    });
+
+    const commentsWithAuthor = await Promise.all(
+        comments.map(async (comment) => {
+            const author = await clerkClient.users.getUser(comment.author_id);
+
+            return {
+                ...comment,
+                author: {
+                    ...author,
+                },
+            };
+        })
+    );
+
+    return new Response(JSON.stringify({ comments: commentsWithAuthor }), {
+        status: 200,
+    });
 }

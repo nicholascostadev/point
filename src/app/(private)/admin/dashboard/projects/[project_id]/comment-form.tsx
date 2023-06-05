@@ -45,7 +45,7 @@ export function CommentForm({ projectId }: CommentFormProps) {
             <textarea
                 ref={textareaRef}
                 rows={4}
-                className="w-full resize-none rounded-md border border-gray-200 p-2 dark:border-gray-900"
+                className="w-full resize-none rounded-md border border-gray-200 bg-white p-2 dark:border-gray-900 dark:bg-gray-950"
                 placeholder="Post a response..."
             />
             <button className="rounded-md px-2 py-1">

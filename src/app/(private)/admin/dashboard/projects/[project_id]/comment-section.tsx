@@ -29,7 +29,11 @@ export function CommentSection({ projectId, comments }: CommentSectionProps) {
                                 firstName: comment.author.firstName,
                                 lastName: comment.author.lastName,
                             }),
-                            role: "Developer",
+                            role: (
+                                comment.author.publicMetadata?.roles as string[]
+                            ).includes("admin")
+                                ? "Admin"
+                                : "Developer",
                         }}
                         content={comment.content}
                     />
