@@ -1,7 +1,7 @@
 "use client";
 
 import { getFullName } from "@/lib/utils/userRelated";
-import { User } from "@clerk/nextjs/dist/api";
+import { User } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "../../../../components/data-table";
 
