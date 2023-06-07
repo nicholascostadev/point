@@ -48,6 +48,7 @@ export function Header() {
                                 },
                             },
                         }}
+                        afterSignOutUrl="/"
                     />
                 </div>
             </nav>
