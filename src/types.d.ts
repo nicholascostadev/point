@@ -38,34 +38,4 @@ export type User = {
     readonly phoneNumbers: PhoneNumber[];
     readonly web3Wallets: Web3Wallet[];
     readonly externalAccounts: ExternalAccount[];
-    constructor(
-        id: string,
-        passwordEnabled: boolean,
-        totpEnabled: boolean,
-        backupCodeEnabled: boolean,
-        twoFactorEnabled: boolean,
-        banned: boolean,
-        createdAt: number,
-        updatedAt: number,
-        profileImageUrl: string,
-        imageUrl: string,
-        gender: string,
-        birthday: string,
-        primaryEmailAddressId: string | null,
-        primaryPhoneNumberId: string | null,
-        primaryWeb3WalletId: string | null,
-        lastSignInAt: number | null,
-        externalId: string | null,
-        username: string | null,
-        firstName: string | null,
-        lastName: string | null,
-        publicMetadata?: UserPublicMetadata,
-        privateMetadata?: Record<string, unknown>,
-        unsafeMetadata?: UserUnsafeMetadata,
-        emailAddresses?: EmailAddress[],
-        phoneNumbers?: PhoneNumber[],
-        web3Wallets?: Web3Wallet[],
-        externalAccounts?: ExternalAccount[]
-    );
-    static fromJSON(data: UserJSON): User;
 };
