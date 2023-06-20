@@ -69,8 +69,6 @@ export function AddProjectForm({ closeModal }: AddProjectFormProps) {
             await addPost({ ...data, image: uploadedFile.fileUrl });
             return;
         }
-
-        await addPost(data);
     }
 
     return (

@@ -72,8 +72,6 @@ export function UploadImage({
         return () => URL.revokeObjectURL(objectUrl);
     }, [files[0]]);
 
-    console.log({ preview });
-
     return (
         <fieldset>
             <label htmlFor="file-upload">Upload an example image</label>

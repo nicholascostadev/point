@@ -36,17 +36,23 @@ export function EditModal({ closeModal }: EditModalProps) {
     const { handleSubmit } = methods;
 
     async function handleUpdateProject(formData: FormSchema) {
-        const response = await startUpload([files[0]]);
+        let uploadedFile: any = undefined;
+        if (files[0]) {
+            const response = await startUpload([files[0]]);
 
-        if (!response) {
-            toast.error("Error uploading image");
-            return;
+            if (!response) {
+                toast.error("Error uploading image");
+                return;
+            }
+
+            uploadedFile = response[0];
         }
 
-        const uploadedFile = response[0];
-
         await submitUpdate(
-            { ...formData, image: uploadedFile.fileUrl },
+            {
+                ...formData,
+                image: uploadedFile ? uploadedFile.fileUrl : undefined,
+            },
             {
                 onSuccess: () => {
                     closeModal();
