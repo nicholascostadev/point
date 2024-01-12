@@ -12,7 +12,7 @@
         "format": "prettier --write \"src/**/*.{css,js,jsx,ts,tsx,json}\""
     },
     "dependencies": {
-        "@clerk/nextjs": "^4.19.0",
+        "@clerk/nextjs": "^4.29.3",
         "@hookform/resolvers": "^3.1.0",
         "@prisma/client": "^4.14.0",
         "@radix-ui/react-dialog": "^1.0.3",
